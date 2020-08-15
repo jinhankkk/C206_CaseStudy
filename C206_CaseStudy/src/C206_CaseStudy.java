@@ -4,6 +4,8 @@ public class C206_CaseStudy {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		ArrayList<Currency> currencyList = new ArrayList<Currency>();
 		int option = -1;
 
 		while (option != 5) {
@@ -11,12 +13,13 @@ public class C206_CaseStudy {
 			menu();
 			option = Helper.readInt("Enter choice > ");
 			if (option == 1) {
-				viewAllItems(itemList);
+				viewAllCurrency(currencyList);
 			} else if (option == 2) {
-				addItem();
-				itemList =load();
+				addCurrency(currencyList);
+
 			} else if (option == 3) {
-				getMostExpensive(itemList);
+				deleteCurrency(currencyList);
+
 			} else if (option == 4) {
 				getCheapest(itemList);
 			} else if (option == 5) {
@@ -37,6 +40,8 @@ public class C206_CaseStudy {
 		System.out.println("3. DELETE CURRENCY");
 		System.out.println("4. VIEW HOLDINGS OF CURRENCY");
 		System.out.println("5. ADD HOLDINGS TO CURRENCY");
+		System.out.println("6. DELETE HOLDINGS OF CURRENCY");
+		System.out.println("7. ");
 		
 	}
 
@@ -44,7 +49,16 @@ public class C206_CaseStudy {
 		
 	}
 	
-	public void addCurrency(ArrayList<Currency> currencyList ) {
+	public static void viewAllCurrency(ArrayList<Currency> currencyList) {
+		Helper.line(20, "-");
+		System.out.println("VIEW ALL CURRENCY");
+		Helper.line(20, "-");
+		for (Currency i : currencyList) {
+			System.out.println(i.toString());
+		}
+	}
+	
+	public static void addCurrency(ArrayList<Currency> currencyList ) {
 		Helper.line(20, "-");
 		System.out.println("ADD CURRENCY");
 		Helper.line(20, "-");
@@ -69,21 +83,7 @@ public class C206_CaseStudy {
 		
 	}
 	
-	public String retrieveAllCurrency(ArrayList<Currency> cur) {
-		return null;
-		
-	}
-	
-	public void viewAllCurrency(ArrayList<Currency> currencyList) {
-		Helper.line(20, "-");
-		System.out.println("VIEW ALL CURRENCY");
-		Helper.line(20, "-");
-		for (Currency i : currencyList) {
-			System.out.println(i.toString());
-		}
-	}
-	
-	public void deleteCurrency(ArrayList<Currency> currencyList ) {
+	public static void deleteCurrency(ArrayList<Currency> currencyList ) {
 		Helper.line(20, "-");
 		System.out.println("DELETE CURRENCY");
 		Helper.line(20, "-");
@@ -103,6 +103,15 @@ public class C206_CaseStudy {
 		}
 		
 	}
+	
+	public String retrieveAllCurrency(ArrayList<Currency> cur) {
+		return null;
+		
+	}
+	
+	
+	
+
 
 	public MoneyHolding inputMoneyHolding() {
 		return null;
