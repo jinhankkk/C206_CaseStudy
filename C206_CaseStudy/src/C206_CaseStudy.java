@@ -32,11 +32,11 @@ public class C206_CaseStudy {
 		Helper.line(20, "-");
 		System.out.println("WELCOME TO  J MONEY EXCHANGE MANAGEMENT SYSTEM");
 		Helper.line(20, "-");
-		System.out.println("1. ADD CURRENCY");
-		System.out.println("2. VIEW LIST OF CURRENCIES");
+		System.out.println("1. VIEW LIST OF CURRENCIES");
+		System.out.println("2. ADD CURRENCY");
 		System.out.println("3. DELETE CURRENCY");
-		System.out.println("4. ");
-		System.out.println("5. ");
+		System.out.println("4. VIEW HOLDINGS OF CURRENCY");
+		System.out.println("5. ADD HOLDINGS TO CURRENCY");
 		
 	}
 
