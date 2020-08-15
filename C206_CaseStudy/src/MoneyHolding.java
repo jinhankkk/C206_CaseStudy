@@ -21,7 +21,7 @@ public class MoneyHolding {
 		String iso = this.iso;
 		String holdingAmt = Double.toString(this.holdingAmt);
 		
-		return iso + "," + holdingAmt;
+		return iso + "," + holdingAmt; 
 	}
 	
 }
