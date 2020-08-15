@@ -45,6 +45,9 @@ public class C206_CaseStudy {
 	}
 	
 	public void addCurrency(ArrayList<Currency> currencyList ) {
+		Helper.line(20, "-");
+		System.out.println("ADD CURRENCY");
+		Helper.line(20, "-");
 		String iso = Helper.readString("Enter ISO > ");
 		String curName = Helper.readString("Enter Currency Name > ");
 		double buyRate = Helper.readDouble("Enter Buy Rate > ");
@@ -69,12 +72,32 @@ public class C206_CaseStudy {
 	}
 	
 	public void viewAllCurrency(ArrayList<Currency> currencyList) {
+		Helper.line(20, "-");
+		System.out.println("VIEW ALL CURRENCY");
+		Helper.line(20, "-");
 		for (Currency i : currencyList) {
 			System.out.println(i.toString());
 		}
 	}
 	
 	public void deleteCurrency(ArrayList<Currency> currencyList ) {
+		Helper.line(20, "-");
+		System.out.println("DELETE CURRENCY");
+		Helper.line(20, "-");
+		String curName = Helper.readString("Enter Currency Name > ");
+		boolean exist = false;
+		
+		for (Currency i : currencyList) {
+			if (i.getCurrencyName().equalsIgnoreCase(curName)) {
+				currencyList.remove(i);
+				exist = true;
+				break;
+			}
+		}
+		
+		if (exist == false) {
+			System.out.println("Currency does not exist");
+		}
 		
 	}
 
