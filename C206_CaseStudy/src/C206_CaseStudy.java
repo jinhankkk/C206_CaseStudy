@@ -50,7 +50,7 @@ public class C206_CaseStudy {
 		Helper.line(20, "-");
 		String iso = Helper.readString("Enter ISO > ");
 		String curName = Helper.readString("Enter Currency Name > ");
-		double buyRate = Helper.readDouble("Enter Buy Rate > ");
+		double buyRate = Helper.readDouble("Enter Buy Rate > "); 
 		double sellRate = Helper.readDouble("Enter Sell Rate > ");
 		
 		if (iso != null && curName != null) {
@@ -63,11 +63,14 @@ public class C206_CaseStudy {
 			}
 			// INSERT INTO CurrencyList
 			currencyList.add(new Currency (iso,curName,buyRate,sellRate));
+			//test
+			
 		}
 		
 	}
 	
 	public String retrieveAllCurrency(ArrayList<Currency> cur) {
+		return null;
 		
 	}
 	
@@ -102,6 +105,7 @@ public class C206_CaseStudy {
 	}
 
 	public MoneyHolding inputMoneyHolding() {
+		return null;
 		
 	}
 
@@ -109,51 +113,54 @@ public class C206_CaseStudy {
 		
 	}
 	
-	public String retrieveAllMoneyHolding(ArrayList<MoneyHolding> ) {
+	public String retrieveAllMoneyHolding(ArrayList<MoneyHolding> MoneyHolding) {
+		return null;
 		
 	}
 	
-	public void viewAllMoneyHolding(ArrayList<MoneyHolding>) {
+	public void viewAllMoneyHolding(ArrayList<MoneyHolding>MoneyHolding) {
 		
 	}
 	
-	public void deleteMoneyHolding(ArrayList<MoneyHolding> ) {
+	public void deleteMoneyHolding(ArrayList<MoneyHolding> MoneyHolding) {
 		
 	}
 	
-	public void retrieveAllHoldingAndSgdValue(ArrayList<MoneyHolding>) {
+	public void retrieveAllHoldingAndSgdValue(ArrayList<MoneyHolding> MoneyHolding) {
 		
 	}
 	
-	public void viewAllHoldingAndSgdValue(ArrayList<MoneyHolding>) {
+	public void viewAllHoldingAndSgdValue(ArrayList<MoneyHolding>MoneyHolding) {
 		
 	}
 
-	public void searchRateByCurrency(ArrayList<Currency> , String a) {
+	public void searchRateByCurrency(ArrayList<Currency>Currency , String a) {
 		
 	}
 	
-	public void convertCurrency(ArrayList<Currency>) {
+	public void convertCurrency(ArrayList<Currency>Currency) {
 		
 	}
 	
 	public Transaction inputTransaction() {
+		return null;
 		
 	}
 	
 	public void addTransaction(ArrayList<Transaction> Transaction) {
+		 
+	} 
+	
+	public String retrieveAllTransaction(ArrayList<Transaction>Transaction) {
+		return null;
 		
 	}
 	
-	public String retrieveAllTransaction(ArrayList<Transaction>) {
+	public void viewAllTransaction(ArrayList<Transaction>Transaction) {
 		
 	}
 	
-	public void viewAllTransaction(ArrayList<transaction>) {
-		
-	}
-	
-	public void deleteTransaction(ArrayList<Transaction>, String word) {
+	public void deleteTransaction(ArrayList<Transaction>Transaction, String word) {
 		
 	}
 	
