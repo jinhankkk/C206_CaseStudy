@@ -18,7 +18,10 @@ public class MoneyHolding {
 	}
 	
 	public String toString() {
-		return ;
+		String iso = this.iso;
+		String holdings = Double.toString(this.holdingAmt);
+		
+		return iso + "," + holdings;
 	}
 	
 }
