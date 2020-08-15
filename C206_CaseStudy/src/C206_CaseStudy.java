@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class C206_CaseStudy {
 
@@ -26,7 +27,7 @@ public class C206_CaseStudy {
 
 		}
 	}
-	private static void menu() {
+	public static void menu() {
 		//TODO: P05 Task 1 - Write code here for the menu options.
 		Helper.line(20, "-");
 		System.out.println("WELCOME TO SUSHI WORLD");
@@ -39,20 +40,80 @@ public class C206_CaseStudy {
 		
 	}
 
-	private void setHeader(String a) {
+	public void setHeader(String a) {
 		
 	}
 	
-	private void addCurrency(ArrayList<Currency> addCurr ) {
+	public void addCurrency(ArrayList<Currency> addCurr ) {
+		
+	}
+	
+	public String retrieveAllCurrency(ArrayList<Currency> cur) {
+		
+	}
+	
+	public void viewAllCurrency(ArrayList<Currency> currencyList) {
+		
+	}
+	
+	public void deleteCurrency(ArrayList<Currency> currencyList ) {
 		
 	}
 
+	public MoneyHolding inputMoneyHolding() {
+		
+	}
 
+	public void addMoneyHolding(ArrayList<MoneyHolding> MoneyHolding) {
+		
+	}
+	
+	public String retrieveAllMoneyHolding(ArrayList<MoneyHolding> ) {
+		
+	}
+	
+	public void viewAllMoneyHolding(ArrayList<MoneyHolding>) {
+		
+	}
+	
+	public void deleteMoneyHolding(ArrayList<MoneyHolding> ) {
+		
+	}
+	
+	public void retrieveAllHoldingAndSgdValue(ArrayList<MoneyHolding>) {
+		
+	}
+	
+	public void viewAllHoldingAndSgdValue(ArrayList<MoneyHolding>) {
+		
+	}
 
-
-
-
-
-
-
+	public void searchRateByCurrency(ArrayList<Currency> , String a) {
+		
+	}
+	
+	public void convertCurrency(ArrayList<Currency>) {
+		
+	}
+	
+	public Transaction inputTransaction() {
+		
+	}
+	
+	public void addTransaction(ArrayList<Transaction> Transaction) {
+		
+	}
+	
+	public String retrieveAllTransaction(ArrayList<Transaction>) {
+		
+	}
+	
+	public void viewAllTransaction(ArrayList<transaction>) {
+		
+	}
+	
+	public void deleteTransaction(ArrayList<Transaction>, String "") {
+		
+	}
+	
 }
