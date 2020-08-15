@@ -48,4 +48,5 @@ public class Transaction {
 		return rate;
 	}
 	
+	
 }
