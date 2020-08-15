@@ -30,13 +30,13 @@ public class C206_CaseStudy {
 	public static void menu() {
 		//TODO: P05 Task 1 - Write code here for the menu options.
 		Helper.line(20, "-");
-		System.out.println("WELCOME TO SUSHI WORLD");
+		System.out.println("WELCOME TO  J MONEY EXCHANGE MANAGEMENT SYSTEM");
 		Helper.line(20, "-");
-		System.out.println("1. View all items");
-		System.out.println("2. Add item");
-		System.out.println("3. Most expensive item");
-		System.out.println("4. Cheapest item");
-		System.out.println("5. Quit");
+		System.out.println("1. ADD CURRENCY");
+		System.out.println("2. VIEW LIST OF CURRENCIES");
+		System.out.println("3. DELETE CURRENCY");
+		System.out.println("4. ");
+		System.out.println("5. ");
 		
 	}
 
@@ -44,7 +44,23 @@ public class C206_CaseStudy {
 		
 	}
 	
-	public void addCurrency(ArrayList<Currency> addCurr ) {
+	public void addCurrency(ArrayList<Currency> currencyList ) {
+		String iso = Helper.readString("Enter ISO > ");
+		String curName = Helper.readString("Enter Currency Name > ");
+		double buyRate = Helper.readDouble("Enter Buy Rate > ");
+		double sellRate = Helper.readDouble("Enter Sell Rate > ");
+		
+		if (iso != null && curName != null) {
+			// CHECK IF CURRENCY EXIST
+			for (int i=0; i<currencyList.size(); i++) {
+				if (currencyList.get(i).getCurrencyName().equalsIgnoreCase(curName)) {
+					System.out.println("Currency already exist");
+					break;
+				}
+			}
+			// INSERT INTO CurrencyList
+			currencyList.add(new Currency (iso,curName,buyRate,sellRate));
+		}
 		
 	}
 	
@@ -53,7 +69,9 @@ public class C206_CaseStudy {
 	}
 	
 	public void viewAllCurrency(ArrayList<Currency> currencyList) {
-		
+		for (Currency i : currencyList) {
+			System.out.println(i.toString());
+		}
 	}
 	
 	public void deleteCurrency(ArrayList<Currency> currencyList ) {
@@ -112,7 +130,7 @@ public class C206_CaseStudy {
 		
 	}
 	
-	public void deleteTransaction(ArrayList<Transaction>, String "") {
+	public void deleteTransaction(ArrayList<Transaction>, String word) {
 		
 	}
 	
