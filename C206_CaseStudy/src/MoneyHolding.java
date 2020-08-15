@@ -14,7 +14,7 @@ public class MoneyHolding {
 	}
 	
 	public double getHoldingAmt() {
-		return holdingAmt;
+		return holdingAmt; 
 	}
 	
 	public String toString() {
