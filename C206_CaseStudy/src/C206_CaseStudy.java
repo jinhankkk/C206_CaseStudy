@@ -63,7 +63,7 @@ public class C206_CaseStudy {
 			}
 			// INSERT INTO CurrencyList
 			currencyList.add(new Currency (iso,curName,buyRate,sellRate));
-			//test
+			
 			
 		}
 		
