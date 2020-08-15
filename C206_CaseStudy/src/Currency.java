@@ -34,7 +34,7 @@ public class Currency {
 		String iso = this.iso;
 		String currencyName = this.currencyName;
 		String buyRate = Double.toString(this.buyRate);
-		String sellRate = Double.toString(this.sellRate);
+		String sellRate = Double.toString(this.sellRate); 
 		
 		return iso + ", " + currencyName + ", " + buyRate + ", " + sellRate ;
 		
