@@ -21,7 +21,7 @@ public class C206_CaseStudy {
 				deleteCurrency(currencyList);
 
 			} else if (option == 4) {
-				getCheapest(itemList);
+				//getCheapest();
 			} else if (option == 5) {
 				System.out.println("Thank you for using Sushi World!");
 			} else {
