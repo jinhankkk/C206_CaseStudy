@@ -174,6 +174,29 @@ public class C206_CaseStudy {
 
 	
 	//MEMBER 2 (6) and 3 (7)
+	public static String viewAllHoldingAndSgdValueTest(ArrayList<MoneyHolding> holdingList,ArrayList<Currency> currencyList) {
+		String output = "";
+		
+		for (int i =0; i < holdingList.size(); i++) {
+			for (int j =0; j < currencyList.size(); j++) {
+				String iso = currencyList.get(j).getIso();
+				if (holdingList.get(i).getIso().equalsIgnoreCase(iso)) {
+					String items [] = holdingList.get(i).toString().split(",");
+					
+					//GET SELL RATE
+					double sellRate = currencyList.get(j).getSellRate();
+					//CALCULATE SGD
+					double sgdValue = Double.parseDouble(items[1]) * sellRate;
+					double curValue = Double.parseDouble(items[1]);
+					output += String.format("%-10s %-10.2f %-20.4f\n", items[0], curValue,sgdValue);
+				}
+				
+			}
+			}
+		
+		return output;
+	}
+	
 		public static void viewAllHoldingAndSgdValue(ArrayList<MoneyHolding> holdingList,ArrayList<Currency> currencyList) {
 			Helper.line(20, "-");
 			System.out.println("VIEW ALL HOLDING");
@@ -181,23 +204,9 @@ public class C206_CaseStudy {
 			
 			String output = String.format("%-10s %-10s %-20s\n", "ISO" , "HOLDINGS" , "SGD_VALUE");
 			
-			for (int i =0; i < holdingList.size(); i++) {
-				for (int j =0; j < currencyList.size(); j++) {
-					String iso = currencyList.get(j).getIso();
-					if (holdingList.get(i).getIso().equalsIgnoreCase(iso)) {
-						String items [] = holdingList.get(i).toString().split(",");
-						
-						//GET SELL RATE
-						double sellRate = currencyList.get(j).getSellRate();
-						//CALCULATE SGD
-						double sgdValue = Double.parseDouble(items[1]) * sellRate;
-						double curValue = Double.parseDouble(items[1]);
-						output += String.format("%-10s %-10.2f %-20.4f\n", items[0], curValue,sgdValue);
-					}
-					
-				}
-				}
+			output+= viewAllHoldingAndSgdValueTest(holdingList,currencyList);
 			System.out.println(output);
+			
 			}
 		public static void deleteMoneyHolding(ArrayList<MoneyHolding> MoneyHolding) {
 			Helper.line(20, "-");

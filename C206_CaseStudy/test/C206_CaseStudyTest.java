@@ -47,7 +47,11 @@ public class C206_CaseStudyTest {
 	public void addMoneyHoldingTest() {
 		assertNotNull("Check the holding not empty.", holdingList);
 	}
-
+	@Test
+	public void viewAllHoldingAndSgdValueTest() {
+		// check not empty
+				assertNotNull("Check the holding not empty.", holdingList);
+	}
 	public void addCurrencyTest() {
 		assertNotNull("Check the currency not empty.", currencyList);
 		C206_CaseStudy.addCurrency(currencyList);
@@ -65,4 +69,12 @@ public class C206_CaseStudyTest {
 	
 	
 
+	@Test
+	public void searchHoldingAndSgdValueTest() {
+		// check not empty
+		assertNotNull("Check the holding not empty.", holdingList);
+		
+	
+	}
+	
 }
