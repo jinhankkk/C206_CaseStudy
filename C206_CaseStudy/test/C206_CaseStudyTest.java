@@ -39,16 +39,15 @@ public class C206_CaseStudyTest {
 
 	}
 
+	//MEMBER 4 - SEARCH BY CURRENCY TEST
 	public void searchRateByCurrency() {
 		//CHECK IF THE CURRENCY LIST IS NOT EMPTY
 		assertNotNull("Check the currencyList not empty.", currencyList);
 		
 		//TEST IF THE EXPECTED OUTPUT STRING IS SAME AS WHAT WAS SEARCHED
 		String searchedOutput = String.format("%-10s%-20s%-20s%-20s","MYR","Malaysia Ringt","3.075","3.07");
-		 String search =  C206_CaseStudy.searchRateByCurrency(currencyList, "MYR");
-		 System.out.println(search);
-		 System.out.println(searchedOutput);
-		 assertEquals("Test searchRateByCurrency", searchedOutput,search);
+		String search =  C206_CaseStudy.searchRateByCurrency(currencyList, "MYR");
+		assertEquals("Test searchRateByCurrency", searchedOutput,search);
 
 	}
 
