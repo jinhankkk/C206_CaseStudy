@@ -54,7 +54,7 @@ public class C206_CaseStudyTest {
 		
 		//TEST IF THE SEARCHED CURRENCY IS NOT IN THE LIST
 		String missingTest =  C206_CaseStudy.searchRateByCurrency(currencyList, "SGD");
-		String expected = "";
+		String expected = "Currency does not exist";
 		assertEquals("Test that the searched currency is not in the list", expected,missingTest);
 		
 		//TEST IF THE EXPECTED OUTPUT STRING IS SAME AS WHAT WAS SEARCHED
