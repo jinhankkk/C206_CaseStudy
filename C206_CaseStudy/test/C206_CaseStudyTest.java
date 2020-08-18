@@ -103,7 +103,7 @@ public class C206_CaseStudyTest {
 
 	@Test//MEMBER 2 ADD MONEY INTO HOLDING 
 
-	public void addMoneyHoldingTest() {
+	public void addinputHoldingTest() {
 		//CHECKING THE LIST IS NOT EMPTY 
 		assertNotNull("Check the holding not empty.", holdingList);
 		//MAKE SURE IS NOT EMPTY
