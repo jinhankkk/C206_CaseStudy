@@ -60,7 +60,7 @@ public class C206_CaseStudyTest {
 
 		assertEquals("Check that Camcorder arraylist size is 2", 2, currencyList.size());
 		assertSame("Check that Currency is added", cc2, currencyList.get(1));
-
+ 
 	
 	}
 	public void deleteCurrencyTest() { 
