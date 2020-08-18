@@ -70,8 +70,7 @@ public class C206_CaseStudyTest {
 		//CHECK IF THE CURRENCY LIST IS NOT EMPTY
 		assertNotNull("Check the currencyList not empty.", currencyList);
 
-
-		//TEST IF THE SEARCHED CURRENCY IS NOT IN THE LIST
+		//TEST IF THE CONVERTED CURRENCY CORRECT
 		String getConvert =  C206_CaseStudy.convertCurrency(currencyList, "SELL","MYR",500,"KRW");
 		String expected = "SELLING KRW 437445.00 for MYR 500.00";
 		
@@ -80,7 +79,6 @@ public class C206_CaseStudyTest {
 		assertEquals("Test that the searched currency MYR is converted correctly", expected,getConvert);
 		
 	}
-
 
 
 
@@ -117,6 +115,7 @@ public class C206_CaseStudyTest {
 	}
 	
 	//Member 1 - ADD CURRENCY
+	@Test
 	public void addCurrencyTest() { 
 		assertNotNull("Check the currency not empty.", currencyList);
 		C206_CaseStudy.addCurrency(currencyList);
