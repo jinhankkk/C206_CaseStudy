@@ -9,13 +9,7 @@ public class C206_CaseStudy {
 		ArrayList<Transaction> transactionList = new ArrayList<>();
 		int option = -1;
 
-		ArrayList<MoneyHolding>  MoneyHolding = new ArrayList<MoneyHolding>();
-		
-		while (option != 5) {
-
-
 		while (option != 12) {
-
 
 			menu();
 			option = Helper.readInt("Enter choice > ");
@@ -51,7 +45,7 @@ public class C206_CaseStudy {
 				System.out.println("Invalid option!");
 			}
 
-		}}
+		}
 	}
 	public static void menu() {
 		//TODO: P05 Task 1 - Write code here for the menu options.
@@ -135,25 +129,7 @@ public class C206_CaseStudy {
 	}
 
 	public MoneyHolding inputMoneyHolding() {
-		Helper.line(20, "-");
-		System.out.println("ADD HOLDING");
-		Helper.line(20, "-");
-		String iso = Helper.readString("Enter ISO > ");
-		String holdingname = Helper.readString("Enter Holding Name > ");
-		double buyRate = Helper.readDouble("Enter Buy Rate > "); 
-		double sellRate = Helper.readDouble("Enter Sell Rate > ");
-		
-		if (iso != null && holdingname != null) {
-			// CHECK IF CURRENCY EXIST
-			for (int i=0; i<MoneyHolding.size(); i++) {
-				if (MoneyHolding.get(i).getMoneyHolding().equalsIgnoreCase(holdingname)) {
-					System.out.println("Currency already exist");
-					break;
-				}
-			}
-			// INSERT INTO CURRENCY LIST
-			MoneyHolding.add(new MoneyHolding (iso,holdingname,buyRate,sellRate));
-		
+		return null;
 		
 	}
 
@@ -166,16 +142,6 @@ public class C206_CaseStudy {
 		
 	}
 	
-
-	public void viewAllMoneyHolding(ArrayList<MoneyHolding>MoneyHolding) {
-		Helper.line(20, "-");
-		System.out.println("VIEW ALL HOLDING");
-		Helper.line(20, "-");
-		for (MoneyHolding i : MoneyHolding) {
-			System.out.println(i.toString());
-		}
-		
-
 	public void viewAllMoneyHolding(ArrayList<MoneyHolding> holdingList) {
 		Helper.line(20, "-");
 		System.out.println("VIEW ALL HOLDING");
@@ -183,27 +149,9 @@ public class C206_CaseStudy {
 		for (MoneyHolding i : holdingList) {
 			System.out.println(i.toString());
 		}
-
 	}
 	
 	public void deleteMoneyHolding(ArrayList<MoneyHolding> MoneyHolding) {
-		Helper.line(20, "-");
-		System.out.println("DELETE CURRENCY");
-		Helper.line(20, "-");
-		String holdingname = Helper.readString("Enter Holding Name > ");
-		boolean exist = false;
-		
-		for (MoneyHolding i : MoneyHolding) {
-			if (i.getMoneyHolding().equalsIgnoreCase(holdingname)) {
-				MoneyHolding.remove(i);
-				exist = true;
-				break;
-			}
-		}
-		
-		if (exist == false) {
-			System.out.println("Holding does not exist");
-		}
 		
 	}
 	
@@ -232,12 +180,12 @@ public class C206_CaseStudy {
 	}
 	
 	public void convertCurrency(ArrayList<Currency>Currency) {
+		double sgd = 1.0;
 		for(int i = 0 ; i < Currency.size() ; i++)
 		{
-			
+			System.out.println("Currency: " + Currency.get(i).getCurrencyName());
+			System.out.println("SGD" + sgd + "=" + Currency.get(i).getIso() + sgd*Currency.get(i).getSellRate());
 		}
-		
-		
 	}
 	
 	public Transaction inputTransaction() {
