@@ -345,7 +345,7 @@ public class C206_CaseStudy {
 					break;
 				}
 			}
-			output = String.format("SELLING %s%.2f for %s%.2f", ccout.toUpperCase(), convertedAmt, ccin.toUpperCase(), amtin);
+			output = String.format("SELLING %s %.2f for %s %.2f", ccout.toUpperCase(), convertedAmt, ccin.toUpperCase(), amtin);
 
 			System.out.println(output);
 			return output;
