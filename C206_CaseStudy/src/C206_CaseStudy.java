@@ -31,8 +31,12 @@ public class C206_CaseStudy {
 				viewAllCurrency(currencyList);
 				
 			} else if (option == OPTION_2) {
-				viewAllCurrency(currencyList);
-				addCurrency(currencyList);
+				String iso = Helper.readString("Enter ISO > ");
+				String curName = Helper.readString("Enter Currency Name > ");
+				double buyRate = Helper.readDouble("Enter Buy Rate > "); 
+				double sellRate = Helper.readDouble("Enter Sell Rate > ");
+				
+				addCurrency(currencyList,iso,curName,buyRate,sellRate);
 			} else if (option == 3) {
 				deleteCurrency(currencyList);
 			} else if (option == 4) {
@@ -90,16 +94,11 @@ public class C206_CaseStudy {
 	}
 
 	//MEMBER 1 - ADD,VIEW,DELETE CURRENCY
-	public static Currency inputCurrency()
+	public static Currency inputCurrency(String iso, String curName, double buyRate, double sellRate)
 	{
 		Helper.line(20, "-");
         System.out.println("ADD CURRENCY");  
         Helper.line(20, "-");
-
-		String iso = Helper.readString("Enter ISO > ");
-		String curName = Helper.readString("Enter Currency Name > ");
-		double buyRate = Helper.readDouble("Enter Buy Rate > "); 
-		double sellRate = Helper.readDouble("Enter Sell Rate > ");
 
 		if (iso != null && curName != null) {
             
@@ -112,9 +111,12 @@ public class C206_CaseStudy {
         }
 		
 	}
-	public static void addCurrency(ArrayList<Currency> currencyList ) {
-		currencyList.add(inputCurrency());
-		System.out.println("Currency Added!");
+	public static String addCurrency(ArrayList<Currency> currencyList, String iso, String curName, double buyRate, double sellRate ) {
+		
+		currencyList.add(inputCurrency(iso,curName,buyRate,sellRate));
+		String output = "Currency Added!";
+		System.out.println(output);
+		return output;
 		
 	}
 	
@@ -172,10 +174,11 @@ public class C206_CaseStudy {
         }
 	}
 
-	public static void addMoneyHolding(ArrayList<MoneyHolding> holdingList,String iso, double amount) {
+	public static String addMoneyHolding(ArrayList<MoneyHolding> holdingList,String iso, double amount) {
 
 		holdingList.add(inputMoneyHolding(iso,amount));
-		System.out.println("Holdings added!");
+		String output = "Holdings added!";
+		return output;
 	}
 
 	

@@ -27,6 +27,7 @@ public class C206_CaseStudyTest {
 		cc1 = new Currency("MYR", "Malaysia Ringt", 3.075, 3.070);
 		cc2 = new Currency("KRW", "Korean Won", 878.73, 874.89);
 		cc3 = new Currency("USD","United State Dollar", 0.78,0.727);
+		
 		mh1 = new MoneyHolding("USD", 100000);
 		mh2 = new MoneyHolding("MYR", 500000);
 		//double amountout=0;
@@ -111,7 +112,7 @@ public class C206_CaseStudyTest {
 		assertEquals("Check that holding arraylist size is 2", 2, holdingList.size());
 
 		//CHECK THAT THE ARRAYLIST SIZE INCREASE WHEN THE HOLDINGS HAVE BEEN ADDED
-		C206_CaseStudy.addMoneyHolding(holdingList,"USD",5000.0);
+		String output = C206_CaseStudy.addMoneyHolding(holdingList,"USD",5000.0);
 		
 		assertEquals("Check that holding arraylist size is ", 3, holdingList.size());
 		
@@ -121,38 +122,39 @@ public class C206_CaseStudyTest {
 	} 
 	 
 	
-
-	
 	//Member 1 - ADD CURRENCY
-	
+	@Test
 	public void addCurrencyTest() { 
+		//LIST IS NOT EMPTY
 		assertNotNull("Check the currency not empty.", currencyList);
-		C206_CaseStudy.addCurrency(currencyList);
+		
+		//CHECK IF THE ARRAYLIST INCREASE BY 1 WHEN THE OBJECT HAVE BEEN ADDED
+		//add new object
+		String expectedOutput = C206_CaseStudy.addCurrency(currencyList,"SGD","SINGAPORE",1.0,1.0);
+		//did the size increase?
 		assertEquals("Check that currency arraylist size is 4", 4, currencyList.size());
-		assertSame("Check that Currency is added", cc1, currencyList.get(0));
+		//did it succeed?
+		assertEquals("Check that Currency is added", "Currency Added!",expectedOutput );
 
-		assertEquals("Check that currency arraylist size is 2", 2, currencyList.size());
-		assertSame("Check that Currency is added", cc2, currencyList.get(1));
 	}
 
 	@Test
 	public void searchHoldingAndSgdValueTest() {
 		// CHECKING THE LIST IS NOT EMPTY 
 		assertNotNull("Check the holding not empty.", holdingList);
-		
-	
+
 	}
 	
 	
-	@Test//MEMBER 5 -ADD TRANSACTION RECORD
-public void addTransaction() {
-	//check that the transaction object is created and addinto the transactionlist
-	assertNotNull("Check the transactionlist not empty",transactionList);
-	assertNotEquals(null, t1);
-	assertNotEquals(null, t2);
-
+	@Test//MEMBER 5 - ADD TRANSACTION RECORD
+	public void addTransaction() {
+		//check that the transaction object is created and addinto the transactionlist
+		assertNotNull("Check the transactionlist not empty",transactionList);
+		assertNotEquals(null, t1);
+		assertNotEquals(null, t2);
 	
-}
+		
+	}
 	@Test
 	public void deleteTransaction() {
 		// TEST IF THE CORRECT TRANSACTION IS DELETED
