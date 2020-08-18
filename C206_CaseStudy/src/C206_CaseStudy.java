@@ -151,10 +151,13 @@ public class C206_CaseStudy {
 				System.out.println(Currency.get(i).toString());	
 			}
 		} 
-		
 	}
 	
 	public void convertCurrency(ArrayList<Currency>Currency) {
+		for(int i = 0 ; i < Currency.size() ; i++)
+		{
+			
+		}
 		
 		
 	}
