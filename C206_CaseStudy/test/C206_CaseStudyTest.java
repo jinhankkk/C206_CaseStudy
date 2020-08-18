@@ -51,7 +51,7 @@ public class C206_CaseStudyTest {
 	public void addCurrencyTest() {
 		assertNotNull("Check the currency not empty.", currencyList);
 	}
-	public void deleteCurrencyTest() {
+	public void deleteCurrencyTest() { 
 		assertNotNull("Check the currency exist.", currencyList);
 	}
 
