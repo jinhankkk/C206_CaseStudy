@@ -47,92 +47,29 @@ public class C206_CaseStudyTest {
 	public void addMoneyHoldingTest() {
 		assertNotNull("Check the holding not empty.", holdingList);
 	}
-<<<<<<< HEAD
-	
 	@Test
 	public void viewAllHoldingAndSgdValueTest() {
-		// CHECK IF LIST NOT EMPTY
-		assertNotNull("Check the currency not empty.", currencyList);
-		assertNotNull("Check the holding not empty.", holdingList);
-		holdingList.add(mh1);
-		holdingList.add(mh2);
-		currencyList.add(cc1);
-		currencyList.add(cc2);
-		assertEquals("Test if that Currency arraylist size is 2?", 2, currencyList.size());
-		assertEquals("Test if that Holding arraylist size is 2?", 2, holdingList.size());
-	
 		String output = String.format("%-10s %-10s %-20s\n", "ISO" , "HOLDINGS" , "SGD_VALUE");
+		output += String.format("%-10s %-10.2f %-20.4f\n", "MYR", 100000.00, 307000.0000);
+		output += String.format("%-10s %-10.2f %-20.4f\n", "KRW", 500000.00, 437445000.0000);
+		assertEquals("Test if appear" , output,C206_CaseStudy.viewAllHoldingAndSgdValueTest(holdingList,currencyList));
 		
-		for (int i =0; i < holdingList.size(); i++) {
-			for (int j =0; j < currencyList.size(); j++) {
-				String iso = currencyList.get(j).getIso();
-				if (holdingList.get(i).getIso().equalsIgnoreCase(iso)) {
-					String items [] = holdingList.get(i).toString().split(",");
-					
-					//GET SELL RATE
-					double sellRate = currencyList.get(j).getSellRate();
-					//CALCULATE SGD
-					double sgdValue = Double.parseDouble(items[1]) * sellRate;
-					double curValue = Double.parseDouble(items[1]);
-					output += String.format("%-10s %-10.2f %-20.4f\n", items[0], curValue,sgdValue);
-				}
-				
-				}
-			}
-		System.out.println(output);
-=======
-
+	}
 	public void addCurrencyTest() {
 		assertNotNull("Check the currency not empty.", currencyList);
 	}
 	public void deleteCurrencyTest() { 
 		assertNotNull("Check the currency exist.", currencyList);
->>>>>>> branch 'master' of https://github.com/jinhankkk/C206_CaseStudy.git
 	}
 
-	
+	/*
 	@Test
 	public void searchHoldingAndSgdValueTest() {
-		// CHECK IF LIST NOT EMPTY
-		assertNotNull("Check the currency not empty.", currencyList);
-		assertNotNull("Check the holding not empty.", holdingList);
-		holdingList.add(mh1);
-		holdingList.add(mh2);
-		currencyList.add(cc1);
-		currencyList.add(cc2);
-		assertEquals("Test if that Currency arraylist size is 2?", 2, currencyList.size());
-		assertEquals("Test if that Holding arraylist size is 2?", 2, holdingList.size());
-		
 		// CHECK IF THE EXPECTED OUTPUT SAME AS CASE STUDY
-		String curToSearch = "USD";
-		String output = String.format("%-10s %-10s %-20s\n", "ISO" , "HOLDINGS" , "SGD_VALUE");
+		String output = String.format("%-10s %-10.2f %-20.4f\n", "MYR", 100000.00, 307000.0000);
+		assertEquals("Test if USD appear" , output,C206_CaseStudy.viewAllHoldingAndSgdValueTest(holdingList,currencyList));
 		
-		String iso = "";
-		double holdingAmt = 0.0;
-		
-		boolean exist = false;
-		// check if exist
-		for (MoneyHolding i : holdingList) {
-			if (i.getIso().equalsIgnoreCase(curToSearch)) {
-			String items [] = i.toString().split(",");
-			iso = items[0];
-			holdingAmt = Double.parseDouble(items[1]);
-			exist = true;
-			break;
-		}
-		}
-		// if exist
-		if (exist == true) {
-			for (int j =0; j <currencyList.size(); j++) {
-				if (currencyList.get(j).getIso().equalsIgnoreCase(iso)) {
-					//GET SELL RATE
-					double sellRate = currencyList.get(j).getSellRate();
-					//CALCULATE SGD
-					double sgdValue = holdingAmt * sellRate;
-					output += String.format("%-10s %-10.2f %-20.4f\n", iso, holdingAmt,sgdValue);	
-				}	
-			}	
-		}
-		System.out.println(output);
+	
 	}
+	*/
 }
