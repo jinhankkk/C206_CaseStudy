@@ -25,7 +25,7 @@ public class C206_CaseStudy {
 			} else if (option == 4) {
 				addMoneyHolding(holdingList);
 			} else if (option == 5) {
-				
+				viewAllMoneyHolding(holdingList,currencyList);
 			}  else if (option == 6) {
 				
 			}  else if (option == 7) {
@@ -39,6 +39,8 @@ public class C206_CaseStudy {
 			}  else if (option == 11) {
 				
 			} else if (option == 12) {
+				viewAllMoneyHolding(holdingList,currencyList);
+			} else if  (option == 13){
 				System.out.println("Goodbye!");
 			} else {
 				System.out.println("Invalid option!");
@@ -60,8 +62,9 @@ public class C206_CaseStudy {
 		System.out.println("7. SEARCH BY RATE");
 		System.out.println("8. CONVERT CURRENCY");
 		System.out.println("9. ADD TRANSACTION");
-		System.out.println("10. VIEW ALL LTRANSACTION");
+		System.out.println("10. VIEW ALL TRANSACTION");
 		System.out.println("11. DELETE TRANSACTION");
+		System.out.println("12. SEARCH HOLDING OF CURRENCY");
 	//	System.out.println("4. VIEW HOLDINGS OF CURRENCY");
 	//	System.out.println("5. ADD HOLDINGS TO CURRENCY");
 	//	System.out.println("6. DELETE HOLDINGS OF CURRENCY");
@@ -170,7 +173,29 @@ public class C206_CaseStudy {
 		
 	}
 	
-	public void viewAllMoneyHolding(ArrayList<MoneyHolding> holdingList) {
+	public static void viewAllMoneyHolding(ArrayList<MoneyHolding> holdingList,ArrayList<Currency> currencyList) {
+		Helper.line(20, "-");
+		System.out.println("VIEW ALL HOLDING");
+		Helper.line(20, "-");
+		
+		String output = String.format("%-10s% -10s% -20s", "ISO" , "HOLDINGS" , "SGD_VALUE");
+		
+		for (int i =0; i < holdingList.size(); i++) {
+			for (int j =0; j < currencyList.size(); j++) {
+				if (holdingList.get(i).getIso().equalsIgnoreCase(currencyList.get(j).getIso())) {
+					String items [] = holdingList.get(i).toString().split(",");
+					
+					//GET SELL RATE
+					double sellRate = currencyList.get(j).getSellRate();
+					//CALCULATE SGD
+					double sgdValue = Double.parseDouble(items[1]) * sellRate;
+					output += String.format("%-10s%-10.2f%-20.4f", items[0], items[1],sgdValue);
+					System.out.println(output);
+					break;
+				}
+			}
+		}
+		/*
 		Helper.line(20, "-");
 		System.out.println("VIEW ALL HOLDING");
 		Helper.line(20, "-");
@@ -183,8 +208,44 @@ public class C206_CaseStudy {
 			System.out.println(String.format("%-10s%-10.2f%-20.4f", items[0], items[1],sgd ));
 			
 		}
+		*/
 	}
-	
+	//MEMBER 3 (8)
+		public void searchHolding(ArrayList<MoneyHolding> holdingList, ArrayList<Currency> currencyList) {
+			
+			String curToSearch = Helper.readString("Enter currency to search > ");
+			String output = String.format("%-10s% -10s% -20s", "ISO" , "HOLDINGS" , "SGD_VALUE");
+			
+			String iso = "";
+			double holdingAmt = 0.0;
+			
+			boolean exist = false;
+			// check if exist
+			for (MoneyHolding i : holdingList) {
+				if (i.getIso().equalsIgnoreCase(curToSearch));
+				iso = i.getIso();
+				holdingAmt = i.getHoldingAmt();
+				exist = true;
+				break;
+			}
+			
+			// if exist
+			if (exist == true) {
+				for (int i =0; i <currencyList.size(); i++) {
+					if (currencyList.get(i).getIso().equalsIgnoreCase(iso)) {
+						//GET SELL RATE
+						double sellRate = currencyList.get(i).getSellRate();
+						//CALCULATE SGD
+						double sgdValue = holdingAmt * sellRate;
+						output += String.format("%-10s%-10.2f%-20.4f", iso, holdingAmt,sgdValue);
+						System.out.println(output);
+						break;
+					}
+				}
+			}
+			
+			
+		}
 	public void deleteMoneyHolding(ArrayList<MoneyHolding> MoneyHolding) {
 		Helper.line(20, "-");
 		System.out.println("DELETE Holding");
@@ -193,7 +254,7 @@ public class C206_CaseStudy {
 		boolean exist = false;
 		
 		for (MoneyHolding i : MoneyHolding) {
-			if (i.getMoneyHolding().equalsIgnoreCase(curName)) {
+			if (i.getIso().equalsIgnoreCase(curName)) {
 				MoneyHolding.remove(i);
 				exist = true;
 				break;
@@ -212,16 +273,15 @@ public class C206_CaseStudy {
 	public void viewAllHoldingAndSgdValue(ArrayList<MoneyHolding>MoneyHolding) {
 		
 	}
-<<<<<<< HEAD
 //MEMEBER 4 - SEARCH AND CURRENCY CONVERTER
 	public static void searchRateByCurrency(ArrayList<Currency>currencyList , String name) {
-=======
-	
+		
+	}
+
 	//MEMEBER 4 - SEARCH AND CURRNCEY CONVERTER
 	public static void searchRateByCurrency(ArrayList<Currency>currencyList) {
 		
 		String name = Helper.readString("Enter currency(iso) to search > ");
->>>>>>> branch 'master' of https://github.com/jinhankkk/C206_CaseStudy.git
 		boolean exist = false;
 		
 		System.out.println(String.format("%-10s%-10s%-20s%-20s", "ISO", "CURRENCY", "BUY RATE", "SELL RATE"));
