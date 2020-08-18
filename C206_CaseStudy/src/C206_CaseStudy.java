@@ -22,7 +22,7 @@ public class C206_CaseStudy {
 				deleteCurrency(currencyList);
 
 			} else if (option == 4) {
-				getCheapest(itemList);
+				//getCheapest();
 			} else if (option == 5) {
 				System.out.println("Thank you for using Sushi World!");
 			} else {
@@ -48,7 +48,7 @@ public class C206_CaseStudy {
 
 	public void setHeader(String a) {
 		
-	}
+	} 
 	
 	public static void viewAllCurrency(ArrayList<Currency> currencyList) {
 		Helper.line(20, "-");
