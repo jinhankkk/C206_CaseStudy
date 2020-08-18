@@ -54,7 +54,7 @@ public class C206_CaseStudyTest {
 	}
 	
 	//Member 1
-	public void addCurrencyTest() {
+	public void addCurrencyTest() { 
 		assertNotNull("Check the currency not empty.", currencyList);
 		C206_CaseStudy.addCurrency(currencyList);
 		assertEquals("Check that Camcorder arraylist size is 1", 1, currencyList.size());
