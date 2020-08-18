@@ -142,6 +142,7 @@ public class C206_CaseStudy {
 	}
 
 	//MONEY HOLDING
+	//MEMBER2
 	public static MoneyHolding inputMoneyHolding() {
 
 		Helper.line(20, "-");
@@ -250,11 +251,14 @@ public class C206_CaseStudy {
 		Helper.line(20, "-");
 		System.out.println("DELETE Holding");
 		Helper.line(20, "-");
-		String curName = Helper.readString("Enter Holding Name > ");
+		String ISO = Helper.readString("Enter Holding Name > ");
 		boolean exist = false;
 		
 		for (MoneyHolding i : MoneyHolding) {
+
 			if (i.getIso().equalsIgnoreCase(curName)) {
+
+			if (i.getHoldingAmt().equalsIgnoreCase(ISO)) {
 				MoneyHolding.remove(i);
 				exist = true;
 				break;
@@ -271,17 +275,21 @@ public class C206_CaseStudy {
 	}
 	
 	public void viewAllHoldingAndSgdValue(ArrayList<MoneyHolding>MoneyHolding) {
-		
+
 	}
+
 //MEMEBER 4 - SEARCH AND CURRENCY CONVERTER
 	public static void searchRateByCurrency(ArrayList<Currency>currencyList , String name) {
+
 		
 	}
+
 
 	//MEMEBER 4 - SEARCH AND CURRNCEY CONVERTER
 	public static void searchRateByCurrency(ArrayList<Currency>currencyList) {
 		
 		String name = Helper.readString("Enter currency(iso) to search > ");
+
 		boolean exist = false;
 		
 		System.out.println(String.format("%-10s%-10s%-20s%-20s", "ISO", "CURRENCY", "BUY RATE", "SELL RATE"));
