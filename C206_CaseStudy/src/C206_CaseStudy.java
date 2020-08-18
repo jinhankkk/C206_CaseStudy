@@ -14,6 +14,7 @@ public class C206_CaseStudy {
 			option = Helper.readInt("Enter choice > ");
 			if (option == 1) {
 				viewAllCurrency(currencyList);
+				
 			} else if (option == 2) {
 				addCurrency(currencyList);
 
