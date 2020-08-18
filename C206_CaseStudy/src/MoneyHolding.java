@@ -34,4 +34,5 @@ public class MoneyHolding {
 		return null;
 	}
 	
+	
 }
