@@ -198,7 +198,7 @@ public class C206_CaseStudy {
 	public void viewAllHoldingAndSgdValue(ArrayList<MoneyHolding>MoneyHolding) {
 		
 	}
-
+//MEMEBER 4 - SEARCH AND CURRNCEY CONVERTER
 	public static void searchRateByCurrency(ArrayList<Currency>currencyList , String name) {
 		boolean exist = false;
 		
@@ -230,6 +230,7 @@ public class C206_CaseStudy {
 		}
 	}
 	
+	//TRANSACTION
 	public Transaction inputTransaction() {
 
 		Helper.line(20, "-");
@@ -254,9 +255,6 @@ public class C206_CaseStudy {
         {
         	return null;
         }
-	
-
-		
 		
 	}
 	
@@ -274,9 +272,14 @@ public class C206_CaseStudy {
 	public void viewAllTransaction(ArrayList<Transaction> transactionList) {
 		Helper.line(20, "-");
 		System.out.println("VIEW ALL HOLDING");
+		System.out.println(String.format("%-10s%-10s%-20s%-10s%-20s%-10s%-10s", "DATE", "TYPE", "CURRENCY IN", "AMOUNT IN", "CURRENCY OUT","RATE"));
+
 		Helper.line(20, "-");
 		for (Transaction i : transactionList) {
-			System.out.println(i.toString());
+
+			String items [] = i.toString().split(",");
+			System.out.println(String.format("%-10s%-10s%-20s%-10.2f%-20s%-10.2f%-10.2f", items[0], items[1], items[2], items[3],items[4],items[5],items[6]));
+
 		}
 	}
 	

@@ -1,4 +1,7 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class Transaction {
 
@@ -48,5 +51,19 @@ public class Transaction {
 		return rate;
 	}
 	
+	public String toString() {
+		
+		LocalDateTime now = LocalDateTime.now();
+		String formattedDate = now.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+		
+		String type = this.type;
+		String ccin = this.ccyIn;
+		String amtin = String.valueOf(this.amtIn);
+		String ccout = this.ccyout;
+		String amtout = String.valueOf(this.amtOut);
+		String rate = String.valueOf(this.rate);
+		
+		return formattedDate+","+type+","+ccin+","+amtin+","+ccout+","+amtout+","+rate;
+	}
 	
 }
