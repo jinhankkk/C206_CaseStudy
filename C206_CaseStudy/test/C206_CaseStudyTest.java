@@ -117,6 +117,7 @@ public class C206_CaseStudyTest {
 	}
 	
 	//Member 1 - ADD CURRENCY
+	@Test
 	public void addCurrencyTest() { 
 		assertNotNull("Check the currency not empty.", currencyList);
 		C206_CaseStudy.addCurrency(currencyList);
