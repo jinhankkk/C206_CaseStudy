@@ -279,12 +279,6 @@ public class C206_CaseStudy {
 
 	}
 
-//MEMEBER 4 - SEARCH AND CURRENCY CONVERTER
-	public static void searchRateByCurrency(ArrayList<Currency>currencyList , String name) {
-
-		
-	}
-
 
 	//MEMEBER 4 - SEARCH AND CURRNCEY CONVERTER
 	public static void searchRateByCurrency(ArrayList<Currency>currencyList) {
