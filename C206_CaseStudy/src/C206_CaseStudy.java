@@ -12,7 +12,7 @@ public class C206_CaseStudy {
 		ArrayList<MoneyHolding> holdingList = new ArrayList<>();
 		ArrayList<Transaction> transactionList = new ArrayList<>();
 		int option = -1;
- 
+  
 		//add default objects
 		Currency a = new Currency("MYR","Malaysia Ringt",3.075,3.070);
 		currencyList.add(a);
