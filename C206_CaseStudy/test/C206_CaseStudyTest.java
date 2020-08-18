@@ -27,9 +27,9 @@ public class C206_CaseStudyTest {
 		cc2 = new Currency("KRW", "Korean Won", 878.73, 874.89);
 		mh1 = new MoneyHolding("USD", 100000);
 		mh2 = new MoneyHolding("MYR", 500000);
-		double amountout=0;
-		t1 = new Transaction(LocalDateTime.now(),1,"SELL","SGD",100,"MYR",amountout,currencyList.get(0).getSellRate());
-		t2 = new Transaction(LocalDateTime.now(),2,"BUY","MYR",100,"SGD",amountout,currencyList.get(0).getBuyRate());
+		//double amountout=0;
+		t1 = new Transaction(LocalDateTime.now(),1,"SELL","SGD",100,"MYR",(100*3.075),3.075);
+		t2 = new Transaction(LocalDateTime.now(),2,"BUY","MYR",100,"SGD",(100*3.070),3.070);
 		currencyList = new ArrayList<>();
 		currencyList.add(cc1);
 		currencyList.add(cc2);
@@ -45,15 +45,7 @@ public class C206_CaseStudyTest {
 	
 	
 	
-	@Test//MEMBER 5 -ADD TRANSACTION RECORD
-public void addTransaction() {
-	//check that the transaction object is created and addinto the transactionlist
-	assertNotNull("Check the transactionlist not empty",transactionList);
-	assertNotEquals(null, t1);
-	assertNotEquals(null, t2);
-	
-	
-}
+
 	//MEMBER 4 - SEARCH BY CURRENCY TEST
 	@Test
 	public void searchRateByCurrency() {
@@ -131,6 +123,26 @@ public void addTransaction() {
 		assertNotNull("Check the holding not empty.", holdingList);
 		
 	
+	}
+	@Test//MEMBER 5 -ADD TRANSACTION RECORD
+public void addTransaction() {
+	//check that the transaction object is created and addinto the transactionlist
+	assertNotNull("Check the transactionlist not empty",transactionList);
+	assertNotEquals(null, t1);
+	assertNotEquals(null, t2);
+
+	
+}
+	@Test
+	public void deleteTransaction() {
+		// TEST IF THE CORRECT TRANSACTION IS DELETED
+		ArrayList<Transaction> list2 = new ArrayList<Transaction>();
+		list2.add(t1);
+		list2.add(t2);
+		
+		
+		C206_CaseStudy.deleteTransaction(transactionList, 1);
+	    assertNotEquals(list2, transactionList);
 	}
 	
 }
