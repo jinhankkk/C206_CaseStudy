@@ -20,6 +20,8 @@ public class C206_CaseStudy {
 		Currency b = new Currency("KRW","Korean Won",878.73,874.89);
 		currencyList.add(b);
 		
+		holdingList.add(new MoneyHolding("MYR" , 100000));
+		holdingList.add(new MoneyHolding("KRW" , 500000));
 		
 		while (option != 13) {
  
@@ -34,7 +36,7 @@ public class C206_CaseStudy {
 			} else if (option == 3) {
 				deleteCurrency(currencyList);
 			} else if (option == 4) {
-				viewAllMoneyHolding(holdingList,currencyList);
+				viewAllHoldingAndSgdValue(holdingList,currencyList);
 			} else if (option == addHolding) {
 				addMoneyHolding(holdingList);
 			}  else if (option == 6) {
@@ -50,7 +52,7 @@ public class C206_CaseStudy {
 			}  else if (option == 11) {
 				deleteTransaction(transactionList, 1);
 			} else if (option == 12) {
-				viewAllMoneyHolding(holdingList,currencyList);
+				searchHoldingAndSgdValue(holdingList,currencyList);
 			} else if  (option == 13){
 				System.out.println("Goodbye!");
 			} else {
@@ -142,6 +144,7 @@ public class C206_CaseStudy {
 	} 
 
 	//MONEY HOLDING
+	
 	//MEMBER2
 	public static MoneyHolding inputMoneyHolding() {
 
@@ -170,46 +173,32 @@ public class C206_CaseStudy {
 	}
 
 	
-	public static void viewAllMoneyHolding(ArrayList<MoneyHolding> holdingList,ArrayList<Currency> currencyList) {
-		Helper.line(20, "-");
-		System.out.println("VIEW ALL HOLDING");
-		Helper.line(20, "-");
-		
-		String output = String.format("%-10s% -10s% -20s", "ISO" , "HOLDINGS" );
-		
-		for (int i =0; i < holdingList.size(); i++) {
-			for (int j =0; j < currencyList.size(); j++) {
-				if (holdingList.get(i).getIso().equalsIgnoreCase(currencyList.get(j).getIso())) {
-					String items [] = holdingList.get(i).toString().split(",");
-					
-					output += String.format("%-10s%-10.2f%-20.4f", items[0]);
-
-					//GET SELL RATE
-					double sellRate = currencyList.get(j).getSellRate();
-					//CALCULATE SGD
-					double sgdValue = Double.parseDouble(items[1]) * sellRate;
-					output += String.format("%-10s%-10s%-20.2f", items[0], items[1],sgdValue);
-
-					System.out.println(output);
-					break;
-				}
-			}
-		}
-	}
-		/*
-		Helper.line(20, "-");
-		System.out.println("VIEW ALL HOLDING");
-		Helper.line(20, "-");
-		for (MoneyHolding i : holdingList)
-		{			
-			String items [] = i.toString().split(",");
-
-			//HOW TO CALCULATE THE SGD VALUE 
-			int sgd = Integer.parseInt(items[1]); //----> HOW GET THE SELL RATE 
-			System.out.println(String.format("%-10s%-10.2f%-20.4f", items[0], items[1],sgd ));
+	//MEMBER 2 (6) and 3 (7)
+		public static void viewAllHoldingAndSgdValue(ArrayList<MoneyHolding> holdingList,ArrayList<Currency> currencyList) {
+			Helper.line(20, "-");
+			System.out.println("VIEW ALL HOLDING");
+			Helper.line(20, "-");
 			
-		}
-		*/
+			String output = String.format("%-10s %-10s %-20s\n", "ISO" , "HOLDINGS" , "SGD_VALUE");
+			
+			for (int i =0; i < holdingList.size(); i++) {
+				for (int j =0; j < currencyList.size(); j++) {
+					String iso = currencyList.get(j).getIso();
+					if (holdingList.get(i).getIso().equalsIgnoreCase(iso)) {
+						String items [] = holdingList.get(i).toString().split(",");
+						
+						//GET SELL RATE
+						double sellRate = currencyList.get(j).getSellRate();
+						//CALCULATE SGD
+						double sgdValue = Double.parseDouble(items[1]) * sellRate;
+						double curValue = Double.parseDouble(items[1]);
+						output += String.format("%-10s %-10.2f %-20.4f\n", items[0], curValue,sgdValue);
+					}
+					
+				}
+				}
+			System.out.println(output);
+			}
 		public static void deleteMoneyHolding(ArrayList<MoneyHolding> MoneyHolding) {
 			Helper.line(20, "-");
 			System.out.println("DELETE Holding");
@@ -233,40 +222,46 @@ public class C206_CaseStudy {
 			
 		}
 	}
-	//MEMBER 3 (8)
-		public void searchHolding(ArrayList<MoneyHolding> holdingList, ArrayList<Currency> currencyList) {
-			
-			String curToSearch = Helper.readString("Enter currency to search > ");
-			String output = String.format("%-10s% -10s% -20s", "ISO" , "HOLDINGS" , "SGD_VALUE");
-			
-			String iso = "";
-			double holdingAmt = 0.0;
-			
-			boolean exist = false;
-			// check if exist
-			for (MoneyHolding i : holdingList) {
-				if (i.getIso().equalsIgnoreCase(curToSearch));
-				iso = i.getIso();
-				holdingAmt = i.getHoldingAmt();
-				exist = true;
-				break;
-			}
-			
-			// if exist 
-			if (exist == true) {
-				for (int i =0; i <currencyList.size(); i++) {
-					if (currencyList.get(i).getIso().equalsIgnoreCase(iso)) {
-						//GET SELL RATE
-						double sellRate = currencyList.get(i).getSellRate();
-						//CALCULATE SGD
-						double sgdValue = holdingAmt * sellRate;
-						output += String.format("%-10s%-10.2f%-20.4f", iso, holdingAmt,sgdValue);
-						System.out.println(output);
+		//MEMBER 3 (8)
+				public static void searchHoldingAndSgdValue(ArrayList<MoneyHolding> holdingList, ArrayList<Currency> currencyList) {
+					
+					String curToSearch = Helper.readString("Enter currency to search > ");
+					
+					String output = String.format("%-10s %-10s %-20s\n", "ISO" , "HOLDINGS" , "SGD_VALUE");
+					
+					String iso = "";
+					double holdingAmt = 0.0;
+					
+					boolean exist = false;
+					// check if exist
+					for (MoneyHolding i : holdingList) {
+						if (i.getIso().equalsIgnoreCase(curToSearch)) {
+						String items [] = i.toString().split(",");
+						iso = items[0];
+						holdingAmt = Double.parseDouble(items[1]);
+						exist = true;
 						break;
 					}
+					}
+					// if exist
+					if (exist == true) {
+						for (int j =0; j <currencyList.size(); j++) {
+							if (currencyList.get(j).getIso().equalsIgnoreCase(iso)) {
+								//GET SELL RATE
+								double sellRate = currencyList.get(j).getSellRate();
+								//CALCULATE SGD
+								double sgdValue = holdingAmt * sellRate;
+								output += String.format("%-10s %-10.2f %-20.4f\n", iso, holdingAmt,sgdValue);
+								
+							}
+							
+						}
+						
+					}
+					
+					
+					System.out.println(output);
 				}
-			}
-		}
 
 	public static void viewAllMoneyHoldingAndSgdValue(ArrayList<MoneyHolding> holdingList,ArrayList<Currency> currencyList) {
 		Helper.line(20, "-");
