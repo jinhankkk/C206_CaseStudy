@@ -421,10 +421,6 @@ public class C206_CaseStudy {
 
 	
 public void addTransaction(ArrayList<Transaction> transactionList,ArrayList<Currency>currencyList) {
-
-		 
-		
-
 		inputTransaction(currencyList);
 		System.out.println("Transaction Added!");
 	} 
