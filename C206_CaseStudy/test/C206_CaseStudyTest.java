@@ -156,6 +156,8 @@ public class C206_CaseStudyTest {
 public void addTransaction() {
 	//test that the transaction object is created and addinto the transactionlist
 		 ArrayList<Transaction> tList=new ArrayList<Transaction>();
+		 
+		 //TEST THE TRANSACTION IS ADDED SUCCESSFULLY
 	C206_CaseStudy.addTransaction(tList, currencyList, 1, "MYR", 100, 3.075);
 	assertNotNull(tList);
 
