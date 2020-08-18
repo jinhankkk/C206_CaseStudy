@@ -6,6 +6,7 @@ public class C206_CaseStudy {
 		// TODO Auto-generated method stub
 		ArrayList<Currency> currencyList = new ArrayList<>();
 		ArrayList<MoneyHolding> holdingList = new ArrayList<>();
+		ArrayList<Transaction> transactionList = new ArrayList<>();
 		int option = -1;
 
 		while (option != 5) {
@@ -31,14 +32,19 @@ public class C206_CaseStudy {
 	public static void menu() {
 		//TODO: P05 Task 1 - Write code here for the menu options.
 		Helper.line(20, "-");
-		System.out.println("WELCOME TO  J MONEY EXCHANGE MANAGEMENT SYSTEM");
+		System.out.println("WELCOME TO J MONEY EXCHANGE MANAGEMENT SYSTEM");
 		Helper.line(20, "-");
 		System.out.println("1. ADD CURRENCY");
 		System.out.println("2. VIEW LIST OF CURRENCIES");
 		System.out.println("3. DELETE CURRENCY");
-		System.out.println("4. ");
-		System.out.println("5. ");
-		
+		System.out.println("4. ADD MONEY HOLDING");
+		System.out.println("5. VIEW MONEY HOLDING");
+		System.out.println("6. DELETE MONEY HOLDING");
+		System.out.println("7. SEARCH BY RATE");
+		System.out.println("8. CONVERT CURRENCY");
+		System.out.println("9. ADD TRANSACTION");
+		System.out.println("10. VIEW ALL LTRANSACTION");
+		System.out.println("11. DELETE TRANSACTION");
 	}
 
 	public void setHeader(String a) {
@@ -112,13 +118,18 @@ public class C206_CaseStudy {
 		
 	}
 	
-	public String retrieveAllMoneyHolding(ArrayList<MoneyHolding> MoneyHolding) {
+	public String retrieveAllMoneyHolding(ArrayList<MoneyHolding> holdingList) {
 		return null;
 		
 	}
 	
-	public void viewAllMoneyHolding(ArrayList<MoneyHolding>MoneyHolding) {
-		
+	public void viewAllMoneyHolding(ArrayList<MoneyHolding> holdingList) {
+		Helper.line(20, "-");
+		System.out.println("VIEW ALL HOLDING");
+		Helper.line(20, "-");
+		for (MoneyHolding i : holdingList) {
+			System.out.println(i.toString());
+		}
 	}
 	
 	public void deleteMoneyHolding(ArrayList<MoneyHolding> MoneyHolding) {
@@ -146,20 +157,25 @@ public class C206_CaseStudy {
 		
 	}
 	
-	public void addTransaction(ArrayList<Transaction> Transaction) {
+	public void addTransaction(ArrayList<Transaction> transactionList) {
 		 
 	} 
 	
-	public String retrieveAllTransaction(ArrayList<Transaction>Transaction) {
+	public String retrieveAllTransaction(ArrayList<Transaction>transactionList) {
 		return null;
 		
 	}
 	
-	public void viewAllTransaction(ArrayList<Transaction>Transaction) {
-		
+	public void viewAllTransaction(ArrayList<Transaction> transactionList) {
+		Helper.line(20, "-");
+		System.out.println("VIEW ALL HOLDING");
+		Helper.line(20, "-");
+		for (Transaction i : transactionList) {
+			System.out.println(i.toString());
+		}
 	}
 	
-	public void deleteTransaction(ArrayList<Transaction>Transaction, String word) {
+	public void deleteTransaction(ArrayList<Transaction>transactionList, String word) {
 		
 	}
 	
