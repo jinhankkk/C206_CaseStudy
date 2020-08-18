@@ -242,7 +242,7 @@ public class C206_CaseStudy {
         double amtin = Helper.readDouble("Enter amount in > ");
         String ccout = Helper.readString("Enter currency out > ");
         
-        double amtout = 0.0; //DO CALCULATION AND RATE
+        double amtout = 0.0; //-------------------DO CALCULATION AND RATE-------------------------
         double rate = 0.0;
        
         if (!type.equals(null) && !ccin.equals(null) && amtin != 0 && !ccout.equals(null)) {
