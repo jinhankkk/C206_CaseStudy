@@ -4,6 +4,8 @@ import java.util.ArrayList;
 public class C206_CaseStudy {
 
 	private static final int OPTION_2 = 2;
+	private static final int addHolding = 5;
+
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -11,7 +13,14 @@ public class C206_CaseStudy {
 		ArrayList<MoneyHolding> holdingList = new ArrayList<>();
 		ArrayList<Transaction> transactionList = new ArrayList<>();
 		int option = -1;
+ 
+		//add default objects
+		Currency a = new Currency("MYR","Malaysia Ringt",3.075,3.070);
+		currencyList.add(a);
 
+		Currency b = new Currency("KRW","Korean Won",878.73,874.89);
+		currencyList.add(b);
+		
 		while (option != 13) {
 
 			menu();
@@ -22,11 +31,19 @@ public class C206_CaseStudy {
 			} else if (option == OPTION_2) {
 				viewAllCurrency(currencyList);
 				addCurrency(currencyList);
+				
+			} else if (option == OPTION_2) {
+				viewAllCurrency(currencyList);
+				addCurrency(currencyList);
 			} else if (option == 3) {
 				deleteCurrency(currencyList);
 			} else if (option == 4) {
 				viewAllMoneyHolding(holdingList, currencyList);
 			} else if (option == 5) {
+				deleteCurrency(currencyList);
+			} else if (option == 4) {
+				viewAllMoneyHolding(holdingList,currencyList);
+			} else if (option == addHolding) {
 				addMoneyHolding(holdingList);
 			} else if (option == 6) {
 				deleteMoneyHolding(holdingList);
@@ -40,6 +57,12 @@ public class C206_CaseStudy {
 
 			} else if (option == 11) {
 
+			}  else if (option == 9) {
+				addTransaction(transactionList, currencyList);
+			}  else if (option == 10) {
+				viewAllTransaction(transactionList);
+			}  else if (option == 11) {
+				deleteTransaction(transactionList, null);
 			} else if (option == 12) {
 				viewAllMoneyHolding(holdingList, currencyList);
 			} else if (option == 13) {
@@ -187,16 +210,25 @@ public class C206_CaseStudy {
 
 		String output = String.format("%-10s% -10s% -20s", "ISO", "HOLDINGS", "SGD_VALUE");
 
-		for (int i = 0; i < holdingList.size(); i++) {
-			for (int j = 0; j < currencyList.size(); j++) {
+		for (int i =0; i < holdingList.size(); i++) {
+			for (int j =0; j < currencyList.size(); j++) {
 				if (holdingList.get(i).getIso().equalsIgnoreCase(currencyList.get(j).getIso())) {
-					String items[] = holdingList.get(i).toString().split(",");
+
 
 					// GET SELL RATE
+					String items [] = holdingList.get(i).toString().split(",");
+					
+
+					
+					
+					output += String.format("%-10s%-10.2f%-20.4f", items[0]);
+
+					//GET SELL RATE
 					double sellRate = currencyList.get(j).getSellRate();
 					// CALCULATE SGD
 					double sgdValue = Double.parseDouble(items[1]) * sellRate;
 					output += String.format("%-10s%-10s%-20.2f", items[0], items[1], sgdValue);
+
 					System.out.println(output);
 					break;
 				}
@@ -277,6 +309,29 @@ public class C206_CaseStudy {
 
 	}
 
+		public static void viewAllMoneyHoldingAndSgdValue(ArrayList<MoneyHolding> holdingList,ArrayList<Currency> currencyList) {
+			Helper.line(20, "-");
+			System.out.println("VIEW ALL HOLDING");
+			Helper.line(20, "-");
+			
+			String output = String.format("%-10s% -10s% -20s", "ISO" , "HOLDINGS" , "SGD_VALUE");
+			
+			for (int i =0; i < holdingList.size(); i++) {
+				for (int j =0; j < currencyList.size(); j++) {
+					if (holdingList.get(i).getIso().equalsIgnoreCase(currencyList.get(j).getIso())) {
+						String items [] = holdingList.get(i).toString().split(",");
+						
+						//GET SELL RATE
+						double sellRate = currencyList.get(j).getSellRate();
+						//CALCULATE SGD
+						double sgdValue = Double.parseDouble(items[1]) * sellRate;
+						output += String.format("%-10s%-10.2f%-20.4f", items[0], items[1],sgdValue);
+						System.out.println(output);
+						break;
+					}
+				}}
+			}
+	
 	public void retrieveAllHoldingAndSgdValue(ArrayList<MoneyHolding> MoneyHolding) {
 
 	}
@@ -343,7 +398,7 @@ public class C206_CaseStudy {
 	}
 
 	// MEMBER 5 - TRANSACTION
-	public double getrate(ArrayList<Currency> Currency, String a, String type) {
+	public static double getrate(ArrayList<Currency> Currency, String a, String type) {
 		double rate = 0; 
 		for (int i = 0; i < Currency.size(); i++) {
 			if (Currency.get(i).getCurrencyName().equalsIgnoreCase(a)) {
@@ -356,11 +411,13 @@ public class C206_CaseStudy {
 		}
 		return rate;
 
+
 	}
 
-	public Transaction inputTransaction(ArrayList<Currency> currencyList) {
+	public static Transaction inputTransaction(ArrayList<Currency>currencyList) {
 
 		Helper.line(20, "-");
+
 		System.out.println("ADD TRANSACTION");
 		Helper.line(20, "-");
 		int typei = Helper.readInt("Chose your transaction type (1)BUY (2)SELL");
@@ -398,17 +455,22 @@ public class C206_CaseStudy {
 		}
 
 		return null;
+		
+       
+			
+	} 
+	
 
-	}
-
-	public void addTransaction(ArrayList<Transaction> transactionList, ArrayList<Currency> currencyList) {
-		inputTransaction(currencyList);
-		System.out.println("Transaction Added!");
-	}
-
-	public void viewAllTransaction(ArrayList<Transaction> transactionList) {
+	public static void addTransaction(ArrayList<Transaction> transactionList,ArrayList<Currency>currencyList) {
+			transactionList.add(inputTransaction(currencyList));
+			System.out.println("Transaction Added!");
+		} 
+	
+	
+	public static void viewAllTransaction(ArrayList<Transaction> transactionList) {
 		Helper.line(20, "-");
 		System.out.println("VIEW ALL TRANSACTIONS");
+
 		System.out.println(String.format("%-10s%-10s%-20s%-10s%-20s%-10s%-10s", "DATE", "TYPE", "CURRENCY IN",
 				"AMOUNT IN", "CURRENCY OUT", "RATE"));
 
@@ -419,7 +481,18 @@ public class C206_CaseStudy {
 			System.out.println(String.format("%-10s%-10s%-20s%-10.2f%-20s%-10.2f%-10.2f", items[0], items[1], items[OPTION_2],
 					items[3], items[4], items[5], items[6]));
 
-		}
+		} 
 	}
-
-}
+	
+	public static void deleteTransaction(ArrayList<Transaction>transactionList, String word) {
+        for(int i =0; i<transactionList.size(); i++) {
+               if(transactionList.get(i).getTxnDate().equals(word)) {
+                transactionList.remove(i);
+               }
+               else {
+                System.out.println("Transaction not found!");
+               }
+              }
+    }
+	
+	}
