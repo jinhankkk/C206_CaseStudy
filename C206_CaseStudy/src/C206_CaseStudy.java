@@ -3,6 +3,9 @@ import java.util.ArrayList;
 
 public class C206_CaseStudy {
 
+	private static final int addHolding = 5;
+
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ArrayList<Currency> currencyList = new ArrayList<>();
@@ -24,7 +27,7 @@ public class C206_CaseStudy {
 				deleteCurrency(currencyList);
 			} else if (option == 4) {
 				viewAllMoneyHolding(holdingList,currencyList);
-			} else if (option == 5) {
+			} else if (option == addHolding) {
 				addMoneyHolding(holdingList);
 			}  else if (option == 6) {
 				deleteMoneyHolding(holdingList);
