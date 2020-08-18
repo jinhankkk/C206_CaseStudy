@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class C206_CaseStudy {
 
 	private static final int OPTION_2 = 2;
+	private static final int addHolding = 5;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -34,7 +35,7 @@ public class C206_CaseStudy {
 				deleteCurrency(currencyList);
 			} else if (option == 4) {
 				viewAllMoneyHolding(holdingList,currencyList);
-			} else if (option == 5) {
+			} else if (option == addHolding) {
 				addMoneyHolding(holdingList);
 			}  else if (option == 6) {
 				deleteMoneyHolding(holdingList);
@@ -191,18 +192,24 @@ public class C206_CaseStudy {
 		System.out.println("VIEW ALL HOLDING");
 		Helper.line(20, "-");
 		
-		String output = String.format("%-10s% -10s% -20s", "ISO" , "HOLDINGS" , "SGD_VALUE");
+		String output = String.format("%-10s% -10s% -20s", "ISO" , "HOLDINGS" );
 		
 		for (int i =0; i < holdingList.size(); i++) {
 			for (int j =0; j < currencyList.size(); j++) {
 				if (holdingList.get(i).getIso().equalsIgnoreCase(currencyList.get(j).getIso())) {
 					String items [] = holdingList.get(i).toString().split(",");
 					
+
+					
+					
+					output += String.format("%-10s%-10.2f%-20.4f", items[0]);
+
 					//GET SELL RATE
 					double sellRate = currencyList.get(j).getSellRate();
 					//CALCULATE SGD
 					double sgdValue = Double.parseDouble(items[1]) * sellRate;
 					output += String.format("%-10s%-10s%-20.2f", items[0], items[1],sgdValue);
+
 					System.out.println(output);
 					break;
 				}
@@ -281,6 +288,28 @@ public class C206_CaseStudy {
 			
 			
 		}
+		public static void viewAllMoneyHoldingAndSgdValue(ArrayList<MoneyHolding> holdingList,ArrayList<Currency> currencyList) {
+			Helper.line(20, "-");
+			System.out.println("VIEW ALL HOLDING");
+			Helper.line(20, "-");
+			
+			String output = String.format("%-10s% -10s% -20s", "ISO" , "HOLDINGS" , "SGD_VALUE");
+			
+			for (int i =0; i < holdingList.size(); i++) {
+				for (int j =0; j < currencyList.size(); j++) {
+					if (holdingList.get(i).getIso().equalsIgnoreCase(currencyList.get(j).getIso())) {
+						String items [] = holdingList.get(i).toString().split(",");
+						
+						//GET SELL RATE
+						double sellRate = currencyList.get(j).getSellRate();
+						//CALCULATE SGD
+						double sgdValue = Double.parseDouble(items[1]) * sellRate;
+						output += String.format("%-10s%-10.2f%-20.4f", items[0], items[1],sgdValue);
+						System.out.println(output);
+						break;
+					}
+				}}
+			}
 	
 	
 	public void retrieveAllHoldingAndSgdValue(ArrayList<MoneyHolding> MoneyHolding) {
