@@ -28,8 +28,8 @@ public class C206_CaseStudyTest {
 		mh1 = new MoneyHolding("USD", 100000);
 		mh2 = new MoneyHolding("MYR", 500000);
 		double amountout=0;
-		t1 = new Transaction(LocalDateTime.now(),1,"SELL","SGD",100,"MYR",amountout,3.070);
-		t2 = new Transaction(LocalDateTime.now(),1,"BUY","MYR",100,"SGD",amountout,3.075);
+		t1 = new Transaction(LocalDateTime.now(),1,"SELL","SGD",100,"MYR",amountout,currencyList.get(0).getSellRate());
+		t2 = new Transaction(LocalDateTime.now(),2,"BUY","MYR",100,"SGD",amountout,currencyList.get(0).getBuyRate());
 		currencyList = new ArrayList<>();
 		currencyList.add(cc1);
 		currencyList.add(cc2);
@@ -42,12 +42,16 @@ public class C206_CaseStudyTest {
 		transactionList.add(t1);
 		transactionList.add(t2);
 	}
-	//MEMBER 5 -ADD TRANSACTION RECORD
 	
+	
+	
+	@Test//MEMBER 5 -ADD TRANSACTION RECORD
 public void addTransaction() {
 	//check that the transaction object is created and addinto the transactionlist
 	assertNotNull("Check the transactionlist not empty",transactionList);
-	//
+	assertNotEquals(null, t1);
+	assertNotEquals(null, t2);
+	
 	
 }
 	//MEMBER 4 - SEARCH BY CURRENCY TEST
@@ -79,10 +83,10 @@ public void addTransaction() {
 	public void addCurrencyTest() { 
 		assertNotNull("Check the currency not empty.", currencyList);
 		C206_CaseStudy.addCurrency(currencyList);
-		assertEquals("Check that Camcorder arraylist size is 1", 1, currencyList.size());
+		assertEquals("Check that currency arraylist size is 1", 1, currencyList.size());
 		assertSame("Check that Currency is added", cc1, currencyList.get(0));
 
-		assertEquals("Check that Camcorder arraylist size is 2", 2, currencyList.size());
+		assertEquals("Check that currency arraylist size is 2", 2, currencyList.size());
 		assertSame("Check that Currency is added", cc2, currencyList.get(1));
 	}
 
