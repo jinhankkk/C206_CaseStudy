@@ -76,7 +76,16 @@ public void addTransaction() {
 	@Test
 	public void viewAllHoldingAndSgdValueTest() {
 		// check not empty
-				assertNotNull("Check the holding not empty.", holdingList);
+			assertNotNull("Check the holding not empty.", holdingList);
+			
+			String allHoldings = C206_CaseStudy.viewAllHoldingAndSgdValueTest(holdingList, currencyList);
+			
+			String testOutput = String.format("%-10s %-10.2f %-20.4f\n", "MYR" , 1000000.00, 307000.0000);
+			testOutput += String.format("%-10s %-10.2f %-20.4f\n", "KRW" , 5000000.00, 437445.0000);
+			System.out.println(testOutput);
+			System.out.println("-------------\n"+allHoldings);
+			//testOutput = String.format("%-10s %-10.2f %-20.4f\n", "" , "" ,"" );
+			assertEquals("Check expected outcome" , testOutput, allHoldings);
 	}
 	
 	//Member 1 - ADD CURRENCY
