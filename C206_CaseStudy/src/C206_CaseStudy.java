@@ -4,6 +4,8 @@ public class C206_CaseStudy {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		ArrayList<Currency> currencyList = new ArrayList<>();
+		ArrayList<MoneyHolding> holdingList = new ArrayList<>();
 		int option = -1;
 
 		while (option != 5) {
@@ -11,16 +13,15 @@ public class C206_CaseStudy {
 			menu();
 			option = Helper.readInt("Enter choice > ");
 			if (option == 1) {
-				viewAllItems(itemList);
+				addCurrency(currencyList);
 			} else if (option == 2) {
-				addItem();
-				itemList =load();
+				viewAllCurrency(currencyList);
 			} else if (option == 3) {
-				getMostExpensive(itemList);
+				deleteCurrency(currencyList);
 			} else if (option == 4) {
-				getCheapest(itemList);
+				//getCheapest(itemList);
 			} else if (option == 5) {
-				System.out.println("Thank you for using Sushi World!");
+				System.out.println("Goodbye!");
 			} else {
 				System.out.println("Invalid option!");
 			}
@@ -44,7 +45,7 @@ public class C206_CaseStudy {
 		
 	}
 	
-	public void addCurrency(ArrayList<Currency> currencyList ) {
+	public static void addCurrency(ArrayList<Currency> currencyList ) {
 		Helper.line(20, "-");
 		System.out.println("ADD CURRENCY");
 		Helper.line(20, "-");
@@ -63,8 +64,6 @@ public class C206_CaseStudy {
 			}
 			// INSERT INTO CurrencyList
 			currencyList.add(new Currency (iso,curName,buyRate,sellRate));
-			//test
-			
 		}
 		
 	}
@@ -74,7 +73,7 @@ public class C206_CaseStudy {
 		
 	}
 	
-	public void viewAllCurrency(ArrayList<Currency> currencyList) {
+	public static void viewAllCurrency(ArrayList<Currency> currencyList) {
 		Helper.line(20, "-");
 		System.out.println("VIEW ALL CURRENCY");
 		Helper.line(20, "-");
@@ -83,7 +82,7 @@ public class C206_CaseStudy {
 		}
 	}
 	
-	public void deleteCurrency(ArrayList<Currency> currencyList ) {
+	public static void deleteCurrency(ArrayList<Currency> currencyList ) {
 		Helper.line(20, "-");
 		System.out.println("DELETE CURRENCY");
 		Helper.line(20, "-");
@@ -109,7 +108,7 @@ public class C206_CaseStudy {
 		
 	}
 
-	public void addMoneyHolding(ArrayList<MoneyHolding> MoneyHolding) {
+	public void addMoneyHolding(ArrayList<MoneyHolding> holdingList) {
 		
 	}
 	
