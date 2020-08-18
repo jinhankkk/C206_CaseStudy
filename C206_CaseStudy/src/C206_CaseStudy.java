@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class C206_CaseStudy {
@@ -230,12 +231,39 @@ public class C206_CaseStudy {
 	}
 	
 	public Transaction inputTransaction() {
-		return null;
+
+		Helper.line(20, "-");
+        System.out.println("ADD TRANSACTION");
+        Helper.line(20, "-");
+        
+        String type = Helper.readString("Enter type > ");
+        String ccin = Helper.readString("Enter currency in > ");
+        double amtin = Helper.readDouble("Enter amount in > ");
+        String ccout = Helper.readString("Enter currency out > ");
+        
+        double amtout = 0.0; //DO CALCULATION AND RATE
+        double rate = 0.0;
+       
+        if (!type.equals(null) && !ccin.equals(null) && amtin != 0 && !ccout.equals(null)) {
+            
+        	Transaction t = new Transaction(LocalDateTime.now(), type, ccin, amtin, ccout, amtout,rate );
+            return t;
+
+        }
+        else
+        {
+        	return null;
+        }
+	
+
+		
 		
 	}
 	
 	public void addTransaction(ArrayList<Transaction> transactionList) {
 		 
+		inputTransaction();
+		System.out.println("Transaction Added!");
 	} 
 	
 	public String retrieveAllTransaction(ArrayList<Transaction>transactionList) {
