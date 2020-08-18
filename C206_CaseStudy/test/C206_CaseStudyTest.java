@@ -151,7 +151,7 @@ public void addTransaction() {
 		
 		
 		C206_CaseStudy.deleteTransaction(transactionList, 1);
-	    assertEquals(list2.get(1), t2);
+	    assertNotEquals(list2, transactionList);
 	}
 
 
