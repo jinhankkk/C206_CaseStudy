@@ -35,7 +35,7 @@ public class Currency {
 		String buyRate = Double.toString(this.buyRate);
 		String sellRate = Double.toString(this.sellRate); 
 		
-		String output = "ISO: " + iso + "\n" + "Currency Name: " + currencyName + "\n" + "Buy Rate: $" + buyRate+ "\n" + "Sell Rate: $" + sellRate;
+		String output = iso + "," + currencyName + "," + buyRate+ "," + sellRate;
 		return output ; 
 		
 	}
