@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import org.junit.Before;
@@ -26,7 +27,9 @@ public class C206_CaseStudyTest {
 		cc2 = new Currency("KRW", "Korean Won", 878.73, 874.89);
 		mh1 = new MoneyHolding("USD", 100000);
 		mh2 = new MoneyHolding("MYR", 500000);
-
+		double amountout=0;
+		t1 = new Transaction(LocalDateTime.now(),1,"SELL","SGD",100,"MYR",amountout,3.070);
+		t2 = new Transaction(LocalDateTime.now(),1,"BUY","MYR",100,"SGD",amountout,3.075);
 		currencyList = new ArrayList<>();
 		currencyList.add(cc1);
 		currencyList.add(cc2);
@@ -36,9 +39,17 @@ public class C206_CaseStudyTest {
 		holdingList.add(mh2);
 		
 		transactionList = new ArrayList<>();
-
+		transactionList.add(t1);
+		transactionList.add(t2);
 	}
-
+	//MEMBER 5 -ADD TRANSACTION RECORD
+	
+public void addTransaction() {
+	//check that the transaction object is created and addinto the transactionlist
+	assertNotNull("Check the transactionlist not empty",transactionList);
+	//
+	
+}
 	//MEMBER 4 - SEARCH BY CURRENCY TEST
 	public void searchRateByCurrency() {
 		//CHECK IF THE CURRENCY LIST IS NOT EMPTY
