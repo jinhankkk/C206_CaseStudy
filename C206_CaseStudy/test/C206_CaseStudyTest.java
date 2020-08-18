@@ -1,23 +1,37 @@
 import static org.junit.Assert.*;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import java.util.ArrayList;
 
 public class C206_CaseStudyTest {
 
-	@Before
-	public void setUp() throws Exception {
-	}
+	private Currency cc1;
+	private Currency cc2;
+	
+	private MoneyHolding mh1;
+	private MoneyHolding mh2;
+	
+	private Transaction t1;
+	private Transaction t2;
+	
 
-	@After
-	public void tearDown() throws Exception {
-	}
+	ArrayList<Currency> currencyList;
+	ArrayList<MoneyHolding> holdingList;
+	ArrayList<Transaction> transactionList;
+	
+	public void setUp() throws Exception
+	{
+		cc1 = new Currency("MYR","Malaysia Ringt",3.075,3.070);
+		cc2 = new Currency("KRW","Korean Won",878.73,874.89);
 
-	@Test
-	public void c206_test() {
-		//fail("Not yet implemented"); 
-		assertTrue("C206_CaseStudy_SampleTest ",true);
+		currencyList = new ArrayList<>();
+		holdingList = new ArrayList<>();
+		transactionList = new ArrayList<>();
+		
+		
+	}
+	public void searchRateByCurrency()
+	{
+		
 	}
 
 }
