@@ -95,8 +95,6 @@ public class C206_CaseStudy {
         	return null;
         }
 		
-	
-		
 	}
 	public static void addCurrency(ArrayList<Currency> currencyList ) {
 		inputCurrency();
