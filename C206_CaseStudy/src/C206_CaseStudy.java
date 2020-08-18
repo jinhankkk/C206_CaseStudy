@@ -52,7 +52,11 @@ public class C206_CaseStudy {
 				String ccout = Helper.readString("Enter Currency Out > ");
 				convertCurrency(currencyList,type,ccin,amtin,ccout);
 			}  else if (option == 9) {
-				addTransaction(transactionList, currencyList);
+				 int typei = Helper.readInt("Chose your transaction type (1)BUY (2)SELL >");
+			        String ccin = Helper.readString("Enter currency in > ");
+			        double amtin = Helper.readDouble("Enter amount in > ");
+			        double rate = 0.0;
+			        addTransaction(transactionList,currencyList, typei,ccin, amtin , rate );
 			}  else if (option == 10) {
 				viewAllTransaction(transactionList);
 			}  else if (option == 11) {
@@ -398,19 +402,12 @@ public class C206_CaseStudy {
 		
 	}
 
-	public static Transaction inputTransaction(ArrayList<Currency>currencyList) {
+	public static Transaction inputTransaction(ArrayList<Currency>currencyList, int typei,String ccin,double amtin ,double rate ) {
 
 		Helper.line(20, "-");
         System.out.println("ADD TRANSACTION");
         Helper.line(20, "-");
-        int typei = Helper.readInt("Chose your transaction type (1)BUY (2)SELL >");
        
-        String ccin = Helper.readString("Enter currency in > ");
-        double amtin = Helper.readDouble("Enter amount in > ");
-      
-        
-        double amtout = 0.0; //DO CALCULATION AND RATE
-        double rate = 0.0;
    	
 	
 		String type = "";
@@ -448,8 +445,8 @@ public class C206_CaseStudy {
 	} 
 	
 	
-	public static void addTransaction(ArrayList<Transaction> transactionList,ArrayList<Currency>currencyList) {
-			transactionList.add(inputTransaction(currencyList));
+	public static void addTransaction(ArrayList<Transaction> transactionList,ArrayList<Currency>currencyList, int typei,String ccin,double amtin ,double rate ) {
+			transactionList.add(inputTransaction(currencyList,  typei, ccin, amtin , rate ));
 			System.out.println("Transaction Added!");
 		} 
 
@@ -468,16 +465,24 @@ public class C206_CaseStudy {
 		} 
 	}
 	
-	public static void deleteTransaction(ArrayList<Transaction>transactionList,int id) {
+	public static String deleteTransaction(ArrayList<Transaction>transactionList,int id) {
 		
+		String output="";
         for(int i =0; i<transactionList.size(); i++) {
                if(transactionList.get(i).getTrid()==id) {
                 transactionList.remove(i);
+                output="Transaction deleted !";
+                System.out.println("Transaction deleted !");
+                return output;
+                
+                
                }
                else {
+            	   output="Transaction not found!";
                 System.out.println("Transaction not found!");
+                return output;
                }
-              }
+              } return output;
     }
 	
 	
