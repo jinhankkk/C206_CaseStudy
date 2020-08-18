@@ -132,7 +132,7 @@ public void addTransaction() {
 		// TEST IF THE CORRECT TRANSACTION IS DELETED
 		ArrayList<Transaction> list2 = new ArrayList<Transaction>();
 		list2.add(t1);
-		list2.add(t2);
+	
 		
 		
 		C206_CaseStudy.deleteTransaction(transactionList, 1);
