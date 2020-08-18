@@ -20,7 +20,7 @@ public class C206_CaseStudy {
 			} else if (option == 3) {
 				deleteCurrency(currencyList);
 			} else if (option == 4) {
-				//getCheapest(itemList);
+				addMoneyHolding(holdingList);
 			} else if (option == 5) {
 				System.out.println("Goodbye!");
 			} else {
@@ -102,7 +102,6 @@ public class C206_CaseStudy {
 				break;
 			}
 		}
-		
 		if (exist == false) {
 			System.out.println("Currency does not exist");
 		}
@@ -114,7 +113,7 @@ public class C206_CaseStudy {
 		
 	}
 
-	public void addMoneyHolding(ArrayList<MoneyHolding> holdingList) {
+	public static void addMoneyHolding(ArrayList<MoneyHolding> holdingList) {
 		
 	}
 	
@@ -144,7 +143,22 @@ public class C206_CaseStudy {
 		
 	}
 
-	public void searchRateByCurrency(ArrayList<Currency>Currency , String a) {
+	public void searchRateByCurrency(ArrayList<Currency>currencyList , String curr) {
+		
+		//String curr = Helper.readString("Enter currency name");
+		boolean exist = false;
+		
+		for (int i=0; i<currencyList.size(); i++) {
+			if (currencyList.get(i).getIso().equalsIgnoreCase(curr)) {
+				System.out.println(currencyList.get(i).toString());
+				exist = true;
+				break;
+			}
+		} 
+		if (exist == false) {
+			System.out.println("Currency does not exist");
+		}
+		
 		
 	}
 	
