@@ -12,7 +12,7 @@ public class Currency {
 		this.buyRate = buyRate;
 		this.sellRate = sellRate;
 	}
-
+ 
 	public String getIso() {
 		return iso;
 	}

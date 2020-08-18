@@ -8,7 +8,7 @@ public class C206_CaseStudy {
 		ArrayList<MoneyHolding> holdingList = new ArrayList<>();
 		ArrayList<Transaction> transactionList = new ArrayList<>();
 		int option = -1;
-
+ 
 		while (option != 12) {
 
 			menu();
@@ -158,7 +158,6 @@ public class C206_CaseStudy {
         {
         	return null;
         }
-		
 	}
 
 	public static void addMoneyHolding(ArrayList<MoneyHolding> holdingList) {
