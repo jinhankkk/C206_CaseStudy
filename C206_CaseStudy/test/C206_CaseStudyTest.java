@@ -98,20 +98,21 @@ public class C206_CaseStudyTest {
 		
 	} 
 	
-	
+	// MEMBER 3
 	@Test
 	public void viewAllHoldingAndSgdValueTest() {
 		// check not empty
-			assertNotNull("Check the holding not empty.", holdingList);
-			
-			String allHoldings = C206_CaseStudy.viewAllHoldingAndSgdValueTest(holdingList, currencyList);
-			
-			String testOutput = String.format("%-10s %-10.2f %-20.4f\n", "MYR" , 1000000.00, 307000.0000);
-			testOutput += String.format("%-10s %-10.2f %-20.4f\n", "KRW" , 5000000.00, 437445.0000);
-			System.out.println(testOutput);
-			System.out.println("-------------\n"+allHoldings);  
-			//testOutput = String.format("%-10s %-10.2f %-20.4f\n", "" , "" ,"" );
-			assertEquals("Check expected outcome" , testOutput, allHoldings);
+					assertNotNull("Check the holding not empty.", holdingList);
+					
+					String allHoldings = C206_CaseStudy.viewAllHoldingAndSgdValueTest(holdingList, currencyList);
+					
+					String testOutput= String.format("%-10s %-10.2f %-20.4f\n", "USD" , 100000.00, 72700.0000);
+					 testOutput += String.format("%-10s %-10.2f %-20.4f\n", "MYR" , 500000.00, 1535000.0000);
+						
+					System.out.println(testOutput);
+					System.out.println("-------------\n"+allHoldings);  
+					//testOutput = String.format("%-10s %-10.2f %-20.4f\n", "" , "" ,"" );
+					assertEquals("Check expected outcome" , testOutput, allHoldings);
 	}
 	
 	//Member 1 - ADD CURRENCY
@@ -133,6 +134,8 @@ public class C206_CaseStudyTest {
 		
 	
 	}
+	
+	
 	@Test//MEMBER 5 -ADD TRANSACTION RECORD
 public void addTransaction() {
 	//test that the transaction object is created and addinto the transactionlist
