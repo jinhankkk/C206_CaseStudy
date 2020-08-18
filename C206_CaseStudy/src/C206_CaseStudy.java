@@ -31,26 +31,21 @@ public class C206_CaseStudy {
 				viewAllCurrency(currencyList);
 				
 			} else if (option == OPTION_2) {
-				String iso = Helper.readString("Enter ISO > ");
-				String curName = Helper.readString("Enter Currency Name > ");
-				double buyRate = Helper.readDouble("Enter Buy Rate > "); 
-				double sellRate = Helper.readDouble("Enter Sell Rate > ");
-				
-				addCurrency(currencyList,iso,curName,buyRate,sellRate);
+				viewAllCurrency(currencyList);
+				addCurrency(currencyList);
 			} else if (option == 3) {
 				deleteCurrency(currencyList);
 			} else if (option == 4) {
 				viewAllHoldingAndSgdValue(holdingList,currencyList);
 			} else if (option == addHolding) {
-		        String iso = Helper.readString("Enter ISO > ");
-		        double amount = Helper.readInt("Enter amount > ");
-				addMoneyHolding(holdingList,iso,amount);
+				addMoneyHolding(holdingList);
 			}  else if (option == 6) {
 				deleteMoneyHolding(holdingList);
 			}  else if (option == 7) {
 				String name = Helper.readString("Enter Currency(ISO) name > ");
 				searchRateByCurrency(currencyList,name);
-			}  else if (option == 8) { 
+			}  else if (option == 8) {
+
 				String type = Helper.readString("Enter Type of transaction > " );
 				String ccin = Helper.readString("Enter Currency in > ");
 				double amtin = Helper.readDouble("Enter Amount in > ");
@@ -68,7 +63,8 @@ public class C206_CaseStudy {
 				int id1=Helper.readInt("Enter the transaction ID of the record:");
 				deleteTransaction(transactionList, id1);
 			} else if (option == 12) {
-				searchHoldingAndSgdValue(holdingList,currencyList);
+				String word = Helper.readString("Enter currency to search > ");
+				searchHoldingAndSgdValue(holdingList,currencyList, word);
 			} else if  (option == 13){
 				System.out.println("Goodbye!");
 			} else {
@@ -98,11 +94,16 @@ public class C206_CaseStudy {
 	}
 
 	//MEMBER 1 - ADD,VIEW,DELETE CURRENCY
-	public static Currency inputCurrency(String iso, String curName, double buyRate, double sellRate)
+	public static Currency inputCurrency()
 	{
 		Helper.line(20, "-");
         System.out.println("ADD CURRENCY");  
         Helper.line(20, "-");
+
+		String iso = Helper.readString("Enter ISO > ");
+		String curName = Helper.readString("Enter Currency Name > ");
+		double buyRate = Helper.readDouble("Enter Buy Rate > "); 
+		double sellRate = Helper.readDouble("Enter Sell Rate > ");
 
 		if (iso != null && curName != null) {
             
@@ -115,12 +116,9 @@ public class C206_CaseStudy {
         }
 		
 	}
-	public static String addCurrency(ArrayList<Currency> currencyList, String iso, String curName, double buyRate, double sellRate ) {
-		
-		currencyList.add(inputCurrency(iso,curName,buyRate,sellRate));
-		String output = "Currency Added!";
-		System.out.println(output);
-		return output;
+	public static void addCurrency(ArrayList<Currency> currencyList ) {
+		currencyList.add(inputCurrency());
+		System.out.println("Currency Added!");
 		
 	}
 	
@@ -160,29 +158,30 @@ public class C206_CaseStudy {
 	//MONEY HOLDING
 	
 	//MEMBER2
-	public static MoneyHolding inputMoneyHolding(String iso, double amount) {
+	public static MoneyHolding inputMoneyHolding() {
 
 		Helper.line(20, "-");
         System.out.println("ADD HOLDING");
         Helper.line(20, "-");
+        String iso = Helper.readString("Enter ISO > ");
+        double amount = Helper.readInt("Enter amount > ");
 
         if (!iso.equals(null) && amount > 0) {
             
         	MoneyHolding mh = new MoneyHolding(iso,amount);
             return mh;
 
-        } 
+        }
         else
         {
         	return null;
         }
 	}
 
-	public static String addMoneyHolding(ArrayList<MoneyHolding> holdingList,String iso, double amount) {
+	public static void addMoneyHolding(ArrayList<MoneyHolding> holdingList) {
 
-		holdingList.add(inputMoneyHolding(iso,amount));
-		String output = "Holdings added!";
-		return output;
+		holdingList.add(inputMoneyHolding());
+		System.out.println("Holdings added!");
 	}
 
 	
@@ -207,7 +206,6 @@ public class C206_CaseStudy {
 			}
 			}
 		return output;
-		//System.out.println(output);
 	}
 	
 		public static void viewAllHoldingAndSgdValue(ArrayList<MoneyHolding> holdingList,ArrayList<Currency> currencyList) {
@@ -218,9 +216,8 @@ public class C206_CaseStudy {
 			String output = String.format("%-10s %-10s %-20s\n", "ISO" , "HOLDINGS" , "SGD_VALUE");
 			output+= viewAllHoldingAndSgdValueTest(holdingList,currencyList);
 			System.out.println(output);
-			
-			
 			}
+		
 		public static void deleteMoneyHolding(ArrayList<MoneyHolding> MoneyHolding) {
 			Helper.line(20, "-");
 			System.out.println("DELETE Holding");
@@ -245,12 +242,9 @@ public class C206_CaseStudy {
 		}
 	}
 		//MEMBER 3 (8)
-				public static void searchHoldingAndSgdValue(ArrayList<MoneyHolding> holdingList, ArrayList<Currency> currencyList) {
+		public static String searchHoldingAndSgdValue(ArrayList<MoneyHolding> holdingList, ArrayList<Currency> currencyList, String word) {
 					
-					String curToSearch = Helper.readString("Enter currency to search > ");
-					
-					String output = String.format("%-10s %-10s %-20s\n", "ISO" , "HOLDINGS" , "SGD_VALUE");
-					
+					String curToSearch = word;
 					String iso = "";
 					double holdingAmt = 0.0;
 					
@@ -261,12 +255,14 @@ public class C206_CaseStudy {
 						String items [] = i.toString().split(",");
 						iso = items[0];
 						holdingAmt = Double.parseDouble(items[1]);
+						
 						exist = true;
 						break;
 					}
 					}
 					// if exist
 					if (exist == true) {
+						String output = String.format("%-10s %-10s %-20s\n", "ISO" , "HOLDINGS" , "SGD_VALUE");
 						for (int j =0; j <currencyList.size(); j++) {
 							if (currencyList.get(j).getIso().equalsIgnoreCase(iso)) {
 								//GET SELL RATE
@@ -278,11 +274,15 @@ public class C206_CaseStudy {
 							}
 							
 						}
-						
+						System.out.println(output);
+					}
+					if (exist == false) {
+						String output = "Currency does not exist";
+						System.out.println(output);
+						return output;
 					}
 					
-					
-					System.out.println(output);
+					return "";
 				}
 
 	public static void viewAllMoneyHoldingAndSgdValue(ArrayList<MoneyHolding> holdingList,ArrayList<Currency> currencyList) {
