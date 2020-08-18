@@ -232,52 +232,44 @@ public class C206_CaseStudy {
 		}
 	}
 		//MEMBER 3 (8)
-		
-		public static String searchHoldingAndSgdValueTest(ArrayList<MoneyHolding> holdingList, ArrayList<Currency> currencyList) {
-			String curToSearch = Helper.readString("Enter currency to search > ");
-			String iso = "";
-			double holdingAmt = 0.0;
-			
-			boolean exist = false;
-			// check if exist
-			for (MoneyHolding i : holdingList) {
-				if (i.getIso().equalsIgnoreCase(curToSearch)) {
-				String items [] = i.toString().split(",");
-				iso = items[0];
-				holdingAmt = Double.parseDouble(items[1]);
-				exist = true;
-				break;
-			}
-			}
-			// if exist
-			if (exist == true) {
-				for (int j =0; j <currencyList.size(); j++) {
-					if (currencyList.get(j).getIso().equalsIgnoreCase(iso)) {
-						//GET SELL RATE
-						double sellRate = currencyList.get(j).getSellRate();
-						//CALCULATE SGD
-						double sgdValue = holdingAmt * sellRate;
-						String output = String.format("%-10s %-10.2f %-20.4f\n", iso, holdingAmt,sgdValue);
-						return output;
-					}
-					
-				}
-				
-			}
-			
-			return iso;
-			//System.out.println(output);
-			
-		}
 				public static void searchHoldingAndSgdValue(ArrayList<MoneyHolding> holdingList, ArrayList<Currency> currencyList) {
 					
+					String curToSearch = Helper.readString("Enter currency to search > ");
 					
-		
 					String output = String.format("%-10s %-10s %-20s\n", "ISO" , "HOLDINGS" , "SGD_VALUE");
 					
-					output += searchHoldingAndSgdValueTest(holdingList,currencyList);
-					System.out.println(output);
+					String iso = "";
+					double holdingAmt = 0.0;
 					
+					boolean exist = false;
+					// check if exist
+					for (MoneyHolding i : holdingList) {
+						if (i.getIso().equalsIgnoreCase(curToSearch)) {
+						String items [] = i.toString().split(",");
+						iso = items[0];
+						holdingAmt = Double.parseDouble(items[1]);
+						exist = true;
+						break;
+					}
+					}
+					// if exist
+					if (exist == true) {
+						for (int j =0; j <currencyList.size(); j++) {
+							if (currencyList.get(j).getIso().equalsIgnoreCase(iso)) {
+								//GET SELL RATE
+								double sellRate = currencyList.get(j).getSellRate();
+								//CALCULATE SGD
+								double sgdValue = holdingAmt * sellRate;
+								output += String.format("%-10s %-10.2f %-20.4f\n", iso, holdingAmt,sgdValue);
+								
+							}
+							
+						}
+						
+					}
+					
+					
+					System.out.println(output);
 				}
 
 	public static void viewAllMoneyHoldingAndSgdValue(ArrayList<MoneyHolding> holdingList,ArrayList<Currency> currencyList) {
