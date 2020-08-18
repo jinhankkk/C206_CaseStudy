@@ -271,7 +271,7 @@ public class C206_CaseStudy {
 				break;
 			}
 			
-			// if exist
+			// if exist 
 			if (exist == true) {
 				for (int i =0; i <currencyList.size(); i++) {
 					if (currencyList.get(i).getIso().equalsIgnoreCase(iso)) {
