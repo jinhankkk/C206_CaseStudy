@@ -11,7 +11,7 @@ public class Transaction {
 	private double rate;
 	
 	public Transaction(LocalDateTime txnDate,String type , String ccyIn, double amtIn, String ccyOut, double amtOut, double rate) {
-		this.txnDate = txnDate;
+		this.txnDate = LocalDateTime.now();
 		this.type = type;
 		this.ccyIn = ccyIn;
 		this.amtIn = amtIn;
