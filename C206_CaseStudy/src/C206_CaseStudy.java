@@ -9,18 +9,11 @@ public class C206_CaseStudy {
 		ArrayList<Transaction> transactionList = new ArrayList<>();
 		int option = -1;
 
-		ArrayList<MoneyHolding>  MoneyHolding = new ArrayList<MoneyHolding>();
-		
-		while (option != 5) {
-
-
 		while (option != 12) {
-
 
 			menu();
 			option = Helper.readInt("Enter choice > ");
 			if (option == 1) {
-				addCurrency(currencyList);
 				viewAllCurrency(currencyList);
 				
 			} else if (option == 2) {
@@ -51,7 +44,7 @@ public class C206_CaseStudy {
 				System.out.println("Invalid option!");
 			}
 
-		}}
+		}
 	}
 	public static void menu() {
 		//TODO: P05 Task 1 - Write code here for the menu options.
@@ -79,26 +72,34 @@ public class C206_CaseStudy {
 		
 	} 
 	
-	public static void addCurrency(ArrayList<Currency> currencyList ) {
+	public static Currency inputCurrency()
+	{
 		Helper.line(20, "-");
-		System.out.println("ADD CURRENCY");
-		Helper.line(20, "-");
+        System.out.println("ADD CURRENCY");
+        Helper.line(20, "-");
+
 		String iso = Helper.readString("Enter ISO > ");
 		String curName = Helper.readString("Enter Currency Name > ");
 		double buyRate = Helper.readDouble("Enter Buy Rate > "); 
 		double sellRate = Helper.readDouble("Enter Sell Rate > ");
-		
+
 		if (iso != null && curName != null) {
-			// CHECK IF CURRENCY EXIST
-			for (int i=0; i<currencyList.size(); i++) {
-				if (currencyList.get(i).getCurrencyName().equalsIgnoreCase(curName)) {
-					System.out.println("Currency already exist");
-					break;
-				}
-			}
-			// INSERT INTO CURRENCY LIST
-			currencyList.add(new Currency (iso,curName,buyRate,sellRate));
-		}
+            
+        	Currency c = new Currency(iso,curName,buyRate,sellRate);
+            return c;
+
+        }
+        else
+        {
+        	return null;
+        }
+		
+	
+		
+	}
+	public static void addCurrency(ArrayList<Currency> currencyList ) {
+		inputCurrency();
+		System.out.println("Currency Added!");
 		
 	}
 	
@@ -106,8 +107,13 @@ public class C206_CaseStudy {
 		Helper.line(20, "-");
 		System.out.println("VIEW ALL CURRENCY");
 		Helper.line(20, "-");
-		for (Currency i : currencyList) {
-			System.out.println(i.toString());
+		
+		System.out.println(String.format("%-10s%-10s%-20s%-20s", "ISO", "CURRENCY", "BUY RATE", "SELL RATE"));
+		
+		for (Currency i : currencyList)
+		{			
+			String items [] = i.toString().split(",");
+			System.out.println(String.format("%-10s%-10s%-20.4f%-20.4fs", items[0], items[1], items[2], items[3]));
 		}
 	}
 	public static void deleteCurrency(ArrayList<Currency> currencyList ) {
@@ -134,31 +140,31 @@ public class C206_CaseStudy {
 		return null;		
 	}
 
-	public MoneyHolding inputMoneyHolding() {
+	public static MoneyHolding inputMoneyHolding() {
+
 		Helper.line(20, "-");
-		System.out.println("ADD HOLDING");
-		Helper.line(20, "-");
-		String iso = Helper.readString("Enter ISO > ");
-		String holdingname = Helper.readString("Enter Holding Name > ");
-		double buyRate = Helper.readDouble("Enter Buy Rate > "); 
-		double sellRate = Helper.readDouble("Enter Sell Rate > ");
-		
-		if (iso != null && holdingname != null) {
-			// CHECK IF CURRENCY EXIST
-			for (int i=0; i<MoneyHolding.size(); i++) {
-				if (MoneyHolding.get(i).getMoneyHolding().equalsIgnoreCase(holdingname)) {
-					System.out.println("Currency already exist");
-					break;
-				}
-			}
-			// INSERT INTO CURRENCY LIST
-			MoneyHolding.add(new MoneyHolding (iso,holdingname,buyRate,sellRate));
-		
+        System.out.println("ADD HOLDING");
+        Helper.line(20, "-");
+        String iso = Helper.readString("Enter ISO > ");
+        double amount = Helper.readInt("Enter amount > ");
+
+        if (!iso.equals(null) && amount > 0) {
+            
+        	MoneyHolding mh = new MoneyHolding(iso,amount);
+            return mh;
+
+        }
+        else
+        {
+        	return null;
+        }
 		
 	}
 
 	public static void addMoneyHolding(ArrayList<MoneyHolding> holdingList) {
-		
+
+		inputMoneyHolding();
+		System.out.println("Holdings added!");
 	}
 	
 	public String retrieveAllMoneyHolding(ArrayList<MoneyHolding> holdingList) {
@@ -166,44 +172,22 @@ public class C206_CaseStudy {
 		
 	}
 	
-
-	public void viewAllMoneyHolding(ArrayList<MoneyHolding>MoneyHolding) {
-		Helper.line(20, "-");
-		System.out.println("VIEW ALL HOLDING");
-		Helper.line(20, "-");
-		for (MoneyHolding i : MoneyHolding) {
-			System.out.println(i.toString());
-		}
-		
-
 	public void viewAllMoneyHolding(ArrayList<MoneyHolding> holdingList) {
 		Helper.line(20, "-");
 		System.out.println("VIEW ALL HOLDING");
 		Helper.line(20, "-");
-		for (MoneyHolding i : holdingList) {
-			System.out.println(i.toString());
-		}
+		for (MoneyHolding i : holdingList)
+		{			
+			String items [] = i.toString().split(",");
 
+			//HOW TO CALCULATE THE SGD VALUE 
+			int sgd = Integer.parseInt(items[1]); //----> HOW GET THE SELL RATE 
+			System.out.println(String.format("%-10s%-10.2f%-20.4f", items[0], items[1],sgd ));
+			
+		}
 	}
 	
 	public void deleteMoneyHolding(ArrayList<MoneyHolding> MoneyHolding) {
-		Helper.line(20, "-");
-		System.out.println("DELETE CURRENCY");
-		Helper.line(20, "-");
-		String holdingname = Helper.readString("Enter Holding Name > ");
-		boolean exist = false;
-		
-		for (MoneyHolding i : MoneyHolding) {
-			if (i.getMoneyHolding().equalsIgnoreCase(holdingname)) {
-				MoneyHolding.remove(i);
-				exist = true;
-				break;
-			}
-		}
-		
-		if (exist == false) {
-			System.out.println("Holding does not exist");
-		}
 		
 	}
 	
@@ -215,12 +199,18 @@ public class C206_CaseStudy {
 		
 	}
 
-	public static void searchRateByCurrency(ArrayList<Currency>currencyList , String curr) {
+	public static void searchRateByCurrency(ArrayList<Currency>currencyList , String name) {
 		boolean exist = false;
 		
-		for (int i=0; i<currencyList.size(); i++) {
-			if (currencyList.get(i).getIso().equalsIgnoreCase(curr)) {
-				System.out.println(currencyList.get(i).toString());
+		System.out.println(String.format("%-10s%-10s%-20s%-20s", "ISO", "CURRENCY", "BUY RATE", "SELL RATE"));
+
+		for (Currency i : currencyList)
+		{
+			if (i.getIso().equalsIgnoreCase(name)) 
+			{				
+				String items [] = i.toString().split(",");
+				System.out.println(String.format("%-10s%-10s%-20.4f%-20.4fs", items[0], items[1], items[2], items[3]));
+				
 				exist = true;
 				break;
 			}
@@ -232,12 +222,12 @@ public class C206_CaseStudy {
 	}
 	
 	public void convertCurrency(ArrayList<Currency>Currency) {
+		double sgd = 1.0;
 		for(int i = 0 ; i < Currency.size() ; i++)
 		{
-			
+			System.out.println("Currency: " + Currency.get(i).getCurrencyName());
+			System.out.println("SGD" + sgd + "=" + Currency.get(i).getIso() + sgd*Currency.get(i).getSellRate());
 		}
-		
-		
 	}
 	
 	public Transaction inputTransaction() {
