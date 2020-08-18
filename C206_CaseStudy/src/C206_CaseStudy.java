@@ -319,17 +319,20 @@ public class C206_CaseStudy {
 				output=String.format("%-10s%-20s%-20s%-20s", items[0], items[1], items[2], items[3]);
 				
 				exist = true;
+				System.out.println(output);
 				return output;
 			}
 		} 
 		
 		if (exist == false) {
 			output = "Currency does not exist";
+			System.out.println(output);
 			return output;
 		}
 		
 		return output;
 	}
+
 	
 	public static String convertCurrency(ArrayList<Currency>currencyList, String type, String ccin, double amtin, String ccout) {
 			
@@ -373,7 +376,7 @@ public class C206_CaseStudy {
 			return output;
 		}
 	}
-	
+
 	
 	//MEMBER 5 - TRANSACTION
 	public static double getrate(ArrayList<Currency> Currency , String a,String type) {

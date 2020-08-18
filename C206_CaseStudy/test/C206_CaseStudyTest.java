@@ -45,7 +45,6 @@ public class C206_CaseStudyTest {
 	
 	
 	
-
 	//MEMBER 4 - SEARCH BY CURRENCY TEST
 	@Test
 	public void searchRateByCurrency() {
@@ -63,7 +62,9 @@ public class C206_CaseStudyTest {
 		assertEquals("Test searchRateByCurrency", searchedOutput,search);
 
 	}
+	
 	//MEMBER 4 - CONVERT CURRENCY TEST
+	@Test
 	public void convertCurrencyTest()
 	{
 		//CHECK IF THE CURRENCY LIST IS NOT EMPTY
@@ -71,12 +72,15 @@ public class C206_CaseStudyTest {
 
 
 		//TEST IF THE SEARCHED CURRENCY IS NOT IN THE LIST
-		String missingTest =  C206_CaseStudy.searchRateByCurrency(currencyList, "SGD");
-		String expected = "";
-		assertEquals("Test that the searched currency is not in the list", expected,missingTest);
-			
+		String getConvert =  C206_CaseStudy.convertCurrency(currencyList, "SELL","MYR",500,"KRW");
+		String expected = "SELLING KRW 437445.00 for MYR 500.00";
+		
+		System.out.println(expected);
+		System.out.println(getConvert);
+		assertEquals("Test that the searched currency MYR is converted correctly", expected,getConvert);
 		
 	}
+
 
 
 
