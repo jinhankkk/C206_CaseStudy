@@ -244,7 +244,7 @@ public class C206_CaseStudy {
 					MoneyHolding.remove(i);
 					exist = true;
 					break;
-				}
+				} 
 			}
 			if (exist == false) {
 				System.out.println("Holding does not exist");
