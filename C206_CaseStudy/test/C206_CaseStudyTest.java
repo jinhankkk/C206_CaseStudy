@@ -152,8 +152,29 @@ public class C206_CaseStudyTest {
 
 	
 	
+	@Test//MEMBER 5 -ADD TRANSACTION RECORD
+public void addTransaction() {
+	//test that the transaction object is created and addinto the transactionlist
+		 ArrayList<Transaction> tList=new ArrayList<Transaction>();
+	C206_CaseStudy.addTransaction(tList, currencyList, 1, "MYR", 100, 3.075);
+	assertNotNull(tList);
 
 	
+}
+	@Test
+	public void deleteTransaction() {
+		// TEST IF THE CORRECT TRANSACTION IS DELETED
+		ArrayList<Transaction> list2 = new ArrayList<Transaction>();
+		list2.add(t1);
+		String output="Transaction deleted !";
+		
+		
+		String s=C206_CaseStudy.deleteTransaction(transactionList, 1);
+		
+		assertEquals(output, s);
+
+
+	}
 
 
 
@@ -180,26 +201,5 @@ public class C206_CaseStudyTest {
 
 	
 	
-	@Test//MEMBER 5 -ADD TRANSACTION RECORD
-public void addTransaction() {
-	//check that the transaction object is created and addinto the transactionlist
-	assertNotNull("Check the transactionlist not empty",transactionList);
-	assertNotEquals(null, t1);
-	assertNotEquals(null, t2);
 
-	
-}
-	@Test
-	public void deleteTransaction() {
-		// TEST IF THE CORRECT TRANSACTION IS DELETED
-		ArrayList<Transaction> list2 = new ArrayList<Transaction>();
-		list2.add(t1);
-		list2.add(t2);
-		
-		
-		C206_CaseStudy.deleteTransaction(transactionList, 1);
-	    assertNotEquals(list2, transactionList);
-	}
-
-	
 }
