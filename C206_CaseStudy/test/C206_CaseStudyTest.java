@@ -1,3 +1,4 @@
+
 import static org.junit.Assert.*;
 
 import java.time.LocalDateTime;
@@ -30,6 +31,7 @@ public class C206_CaseStudyTest {
 		mh1 = new MoneyHolding("USD", 100000);
 		mh2 = new MoneyHolding("MYR", 500000);
 		//double amountout=0;
+		
 		t1 = new Transaction(LocalDateTime.now(),1,"SELL","SGD",100,"MYR",(100*3.075),3.075);
 		t2 = new Transaction(LocalDateTime.now(),2,"BUY","MYR",100,"SGD",(100*3.070),3.070);
 		currencyList = new ArrayList<>();
@@ -101,33 +103,21 @@ public class C206_CaseStudyTest {
 					assertEquals("Check expected outcome" , testOutput, allHoldings);
 	}
 
-
-	@Test//MEMBER 2 ADD MONEY INTO HOLDING 
-
-	public void addMoneyHoldingTest() {
-		//CHECKING THE LIST IS NOT EMPTY 
-		assertNotNull("Check the holding not empty.", holdingList);
-		//MAKE SURE IS NOT EMPTY
-		C206_CaseStudy.inputMoneyHolding();
-		assertEquals("Check that holding arraylist size is 1", 1, holdingList.size());
-		assertSame("Check that holding is added", mh1, holdingList.get(0));
-
-		assertEquals("Check that holding arraylist size is 2", 2, holdingList.size());
-		assertSame("Check that holding is added", mh2, holdingList.get(1));
 		
-		
-	} 
-		
-	//Member 1 - ADD CURRENCY
+	//Member 1 - ADD CURRENCY TEST
 	@Test
 	public void addCurrencyTest() { 
+		//LIST IS NOT EMPTY
 		assertNotNull("Check the currency not empty.", currencyList);
-		C206_CaseStudy.addCurrency(currencyList);
-		assertEquals("Check that currency arraylist size is 1", 1, currencyList.size());
-		assertSame("Check that Currency is added", cc1, currencyList.get(0));
+		
+		//CHECK IF THE ARRAYLIST INCREASE BY 1 WHEN THE OBJECT HAVE BEEN ADDED
+		//add new object
+		String expectedOutput = C206_CaseStudy.addCurrency(currencyList,"SGD","SINGAPORE",1.0,1.0);
+		//did the size increase?
+		assertEquals("Check that currency arraylist size is 4", 4, currencyList.size());
+		//did it succeed?
+		assertEquals("Check that Currency is added", "Currency Added!",expectedOutput );
 
-		assertEquals("Check that currency arraylist size is 2", 2, currencyList.size());
-		assertSame("Check that Currency is added", cc2, currencyList.get(1));
 	}
 	
 	// MEMBER 3
@@ -144,25 +134,25 @@ public class C206_CaseStudyTest {
 				
 		// TEST IF CORRECT 
 			String testOutput = String.format("%-10s %-10s %-20s\n", "ISO" , "HOLDINGS" , "SGD_VALUE");
-			testOutput += String.format("%-10s %-10.2f %-20.4f", "MYR" , 500000.00, 1535000.0000);	
+			testOutput += String.format("%-10s %-10.2f %-20.4f\n", "MYR" , 500000.00, 1535000.0000);	
 			String correctTest =  C206_CaseStudy.searchHoldingAndSgdValue(holdingList, currencyList, "MYR");
 			assertEquals("Check expected outcome" , testOutput, correctTest);
-
 	}
+
 
 	
 	
 	@Test//MEMBER 5 -ADD TRANSACTION RECORD
-public void addTransaction() {
-	//test that the transaction object is created and addinto the transactionlist
-		 ArrayList<Transaction> tList=new ArrayList<Transaction>();
-		 
-		 //TEST THE TRANSACTION IS ADDED SUCCESSFULLY
-	C206_CaseStudy.addTransaction(tList, currencyList, 1, "MYR", 100, 3.075);
-	assertNotNull(tList);
-
+	public void addTransaction() {
+		//test that the transaction object is created and addinto the transactionlist
+			 ArrayList<Transaction> tList=new ArrayList<Transaction>();
+			 
+			 //TEST THE TRANSACTION IS ADDED SUCCESSFULLY
+		C206_CaseStudy.addTransaction(tList, currencyList, 1, "MYR", 100, 3.075);
+		assertNotNull(tList);
 	
-}
+		
+	}
 	@Test
 	public void deleteTransaction() {
 		// TEST IF THE CORRECT TRANSACTION IS DELETED
@@ -178,28 +168,23 @@ public void addTransaction() {
 
 	}
 
-
-
-	
-
-
-
 	//MEMBER 2 ADD MONEY INTO HOLDING TEST
-	@Test
-	public void addinputHoldingTest() {
-		//CHECKING THE LIST IS NOT EMPTY 
-		assertNotNull("Check the holding not empty.", holdingList);
-		
-		//CHECK THE CURRENT SIZE OF THE ARRAYLIST
-		assertEquals("Check that holding arraylist size is 2", 2, holdingList.size());
+		@Test 
+		public void addinputHoldingTest() {
+			//CHECKING THE LIST IS NOT EMPTY 
+			assertNotNull("Check the holding not empty.", holdingList);
+			
+			//CHECK THE CURRENT SIZE OF THE ARRAYLIST
+			assertEquals("Check that holding arraylist size is 2", 2, holdingList.size());
 
-		//CHECK THAT THE ARRAYLIST SIZE INCREASE WHEN THE HOLDINGS HAVE BEEN ADDED
-		String output = C206_CaseStudy.addMoneyHolding(holdingList,"USD",5000.0);
-		
-		assertEquals("Check that holding arraylist size is ", 3, holdingList.size());
-		assertSame("Check that holding is added", "Holdings Added!", output);
-		 
-	} 
+			//CHECK THAT THE ARRAYLIST SIZE INCREASE WHEN THE HOLDINGS HAVE BEEN ADDED
+			String output = C206_CaseStudy.addMoneyHolding(holdingList,"USD",5000.0);
+			
+			assertEquals("Check that holding arraylist size is ", 3, holdingList.size());
+			assertSame("Check that holding is added", "Holdings Added!", output);
+			 
+		} 
+ 
 
 	
 	
