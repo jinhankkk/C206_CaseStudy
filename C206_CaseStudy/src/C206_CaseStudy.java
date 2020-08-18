@@ -439,7 +439,7 @@ public void addTransaction(ArrayList<Transaction> transactionList,ArrayList<Curr
 		for (Transaction i : transactionList) {
 
 			String items [] = i.toString().split(",");
-			System.out.println(String.format("%-10s%-10s%-20s%-10.2f%-20s%-10.2f%-10.2f", item[0], item[1], item[2], item[3],item[4],item[5],item[6]));
+			System.out.println(String.format("%-10s%-10s%-20s%-10.2f%-20s%-10.2f%-10.2f", items[0], items[1], items[2], items[3],items[4],items[5],items[6]));
 
 		}
 	}
