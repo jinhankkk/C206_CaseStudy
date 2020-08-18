@@ -11,7 +11,7 @@ public class C206_CaseStudy {
 		int option = -1;
  
 		while (option != 12) {
-
+ 
 			menu();
 			option = Helper.readInt("Enter choice > ");
 			if (option == 1) {
@@ -29,10 +29,9 @@ public class C206_CaseStudy {
 			}  else if (option == 6) {
 				
 			}  else if (option == 7) {
-				String curr = Helper.readString("Enter currency name");
-				searchRateByCurrency(currencyList, curr);
+				searchRateByCurrency(currencyList);
 			}  else if (option == 8) {
-				
+				convertCurrency(currencyList);
 			}  else if (option == 9) {
 				
 			}  else if (option == 10) {
@@ -76,7 +75,7 @@ public class C206_CaseStudy {
 	public static Currency inputCurrency()
 	{
 		Helper.line(20, "-");
-        System.out.println("ADD CURRENCY"); 
+        System.out.println("ADD CURRENCY");  
         Helper.line(20, "-");
 
 		String iso = Helper.readString("Enter ISO > ");
@@ -139,6 +138,7 @@ public class C206_CaseStudy {
 		return null;		
 	}
 
+	//MONEY HOLDING
 	public static MoneyHolding inputMoneyHolding() {
 
 		Helper.line(20, "-");
@@ -186,6 +186,22 @@ public class C206_CaseStudy {
 	}
 	
 	public void deleteMoneyHolding(ArrayList<MoneyHolding> MoneyHolding) {
+		Helper.line(20, "-");
+		System.out.println("DELETE Holding");
+		Helper.line(20, "-");
+		String curName = Helper.readString("Enter Holding Name > ");
+		boolean exist = false;
+		
+		for (MoneyHolding i : MoneyHolding) {
+			if (i.getMoneyHolding().equalsIgnoreCase(curName)) {
+				MoneyHolding.remove(i);
+				exist = true;
+				break;
+			}
+		}
+		if (exist == false) {
+			System.out.println("Holding does not exist");
+		}
 		
 	}
 	
@@ -196,8 +212,16 @@ public class C206_CaseStudy {
 	public void viewAllHoldingAndSgdValue(ArrayList<MoneyHolding>MoneyHolding) {
 		
 	}
+<<<<<<< HEAD
 //MEMEBER 4 - SEARCH AND CURRENCY CONVERTER
 	public static void searchRateByCurrency(ArrayList<Currency>currencyList , String name) {
+=======
+	
+	//MEMEBER 4 - SEARCH AND CURRNCEY CONVERTER
+	public static void searchRateByCurrency(ArrayList<Currency>currencyList) {
+		
+		String name = Helper.readString("Enter currency(iso) to search > ");
+>>>>>>> branch 'master' of https://github.com/jinhankkk/C206_CaseStudy.git
 		boolean exist = false;
 		
 		System.out.println(String.format("%-10s%-10s%-20s%-20s", "ISO", "CURRENCY", "BUY RATE", "SELL RATE"));
@@ -219,16 +243,50 @@ public class C206_CaseStudy {
 		}
 	}
 	
-	public void convertCurrency(ArrayList<Currency>Currency) {
-		double sgd = 1.0;
-		for(int i = 0 ; i < Currency.size() ; i++)
+	public static void convertCurrency(ArrayList<Currency>currencyList) {
+		
+		String type = Helper.readString("Enter Type of transaction > " );
+		String ccin = Helper.readString("Enter Currency in > ");
+		double amtin = Helper.readDouble("Enter Amount in > ");
+		String ccout = Helper.readString("Enter Currency Out > ");
+		
+		String output = "";
+		double convertedAmt = 0;
+		
+		if(type.equalsIgnoreCase("sell"))
 		{
-			System.out.println("Currency: " + Currency.get(i).getCurrencyName());
-			System.out.println("SGD" + sgd + "=" + Currency.get(i).getIso() + sgd*Currency.get(i).getSellRate());
+			for(Currency i : currencyList)
+			{
+				if(i.getIso().equalsIgnoreCase(ccout))
+				{
+					convertedAmt = amtin * i.getSellRate();
+					break;
+				}
+			}
+			output = String.format("SELLING %s%.2f for %s%f", ccout, convertedAmt, ccin, amtin);
 		}
+		else if(type.equalsIgnoreCase("buy"))
+		{
+			for(Currency i : currencyList)
+			{
+				if(i.getIso().equalsIgnoreCase(ccout))
+				{
+					convertedAmt = amtin * i.getBuyRate();
+					break;
+				}
+			}
+			output = String.format("SELLING %s%.2f for %s%f", ccout, convertedAmt, ccin, amtin);	
+		}
+		else
+		{
+			System.out.println("invalid type");
+		}
+	
+		System.out.println(output);
 	}
 	
-	//TRANSACTION
+	
+	//MEMBER 5 - TRANSACTION
 	public Transaction inputTransaction() {
 
 		Helper.line(20, "-");
