@@ -82,9 +82,10 @@ public class C206_CaseStudyTest {
 	public void addMoneyHoldingTest() {
 		//CHECKING THE LIST IS NOT EMPTY 
 		assertNotNull("Check the holding not empty.", holdingList);
-		C206_CaseStudy.addCurrency(currencyList);
+		
 		assertEquals("Check that holding arraylist size is 1", 1, holdingList.size());
 		assertSame("Check that holding is added", mh1, holdingList.get(0));
+		
 
 		assertEquals("Check that holding  arraylist size is 2", 2, holdingList.size());
 		assertSame("Check that holding  is added", mh2, holdingList.get(1));
