@@ -39,28 +39,13 @@ public class C206_CaseStudyTest {
 		holdingList.add(mh2);
 		
 		transactionList = new ArrayList<>();
-		//transactionList.add(t1);
+		transactionList.add(t1);
 		transactionList.add(t2);
 	}
 	
 	
 	
-	@Test//MEMBER 5 -ADD TRANSACTION RECORD
-public void addTransaction() {
-	//check that the transaction object is created and addinto the transactionlist
-	assertNotNull("Check the transactionlist not empty",transactionList);
-	assertNotEquals(null, t1);
-	assertNotEquals(null, t2);
-	// TEST IF THE CORRECT TRANSACTION IS DELETED
-	ArrayList<Transaction> list2 = new ArrayList<Transaction>();
-	list2.add(t1);
-	list2.add(t2);
-	
-	
-	C206_CaseStudy.deleteTransaction(transactionList, 1);
-assertNotEquals(list2, transactionList);
-	
-}
+
 	//MEMBER 4 - SEARCH BY CURRENCY TEST
 	@Test
 	public void searchRateByCurrency() {
@@ -132,6 +117,26 @@ assertNotEquals(list2, transactionList);
 		assertNotNull("Check the holding not empty.", holdingList);
 		
 	
+	}
+	@Test//MEMBER 5 -ADD TRANSACTION RECORD
+public void addTransaction() {
+	//check that the transaction object is created and addinto the transactionlist
+	assertNotNull("Check the transactionlist not empty",transactionList);
+	assertNotEquals(null, t1);
+	assertNotEquals(null, t2);
+
+	
+}
+	@Test
+	public void deleteTransaction() {
+		// TEST IF THE CORRECT TRANSACTION IS DELETED
+		ArrayList<Transaction> list2 = new ArrayList<Transaction>();
+		list2.add(t1);
+		list2.add(t2);
+		
+		
+		C206_CaseStudy.deleteTransaction(transactionList, 1);
+	    assertNotEquals(list2, transactionList);
 	}
 	
 }

@@ -51,8 +51,8 @@ public class C206_CaseStudy {
 			}  else if (option == 10) {
 				viewAllTransaction(transactionList);
 			}  else if (option == 11) {
-				int id=Helper.readInt("Enter the transaction ID of the record:");
-				deleteTransaction(transactionList, id);
+				int id1=Helper.readInt("Enter the transaction ID of the record:");
+				deleteTransaction(transactionList, id1);
 			} else if (option == 12) {
 				searchHoldingAndSgdValue(holdingList,currencyList);
 			} else if  (option == 13){
