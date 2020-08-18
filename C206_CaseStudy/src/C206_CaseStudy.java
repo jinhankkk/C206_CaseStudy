@@ -38,14 +38,15 @@ public class C206_CaseStudy {
 			} else if (option == 4) {
 				viewAllHoldingAndSgdValue(holdingList,currencyList);
 			} else if (option == addHolding) {
-				addMoneyHolding(holdingList);
+		        String iso = Helper.readString("Enter ISO > ");
+		        double amount = Helper.readInt("Enter amount > ");
+				addMoneyHolding(holdingList,iso,amount);
 			}  else if (option == 6) {
 				deleteMoneyHolding(holdingList);
 			}  else if (option == 7) {
 				String name = Helper.readString("Enter Currency(ISO) name > ");
 				searchRateByCurrency(currencyList,name);
-			}  else if (option == 8) {
-
+			}  else if (option == 8) { 
 				String type = Helper.readString("Enter Type of transaction > " );
 				String ccin = Helper.readString("Enter Currency in > ");
 				double amtin = Helper.readDouble("Enter Amount in > ");
@@ -153,29 +154,27 @@ public class C206_CaseStudy {
 	//MONEY HOLDING
 	
 	//MEMBER2
-	public static MoneyHolding inputMoneyHolding() {
+	public static MoneyHolding inputMoneyHolding(String iso, double amount) {
 
 		Helper.line(20, "-");
         System.out.println("ADD HOLDING");
         Helper.line(20, "-");
-        String iso = Helper.readString("Enter ISO > ");
-        double amount = Helper.readInt("Enter amount > ");
 
         if (!iso.equals(null) && amount > 0) {
             
         	MoneyHolding mh = new MoneyHolding(iso,amount);
             return mh;
 
-        }
+        } 
         else
         {
         	return null;
         }
 	}
 
-	public static void addMoneyHolding(ArrayList<MoneyHolding> holdingList) {
+	public static void addMoneyHolding(ArrayList<MoneyHolding> holdingList,String iso, double amount) {
 
-		holdingList.add(inputMoneyHolding());
+		holdingList.add(inputMoneyHolding(iso,amount));
 		System.out.println("Holdings added!");
 	}
 
