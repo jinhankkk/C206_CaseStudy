@@ -47,15 +47,8 @@ public class C206_CaseStudyTest {
 		transactionList.add(t2);
 	}
 	
+	//MEMBER 5 - ADD TRANSACTION TEST
 	@Test
-	public void searchHoldingAndSgdValueTest() {
-		// CHECKING THE LIST IS NOT EMPTY 
-		assertNotNull("Check the holding not empty.", holdingList);
-
-	}
-	
-	
-	@Test//MEMBER 5 - ADD TRANSACTION RECORD
 	public void addTransaction() {
 		//check that the transaction object is created and addinto the transactionlist
 		assertNotNull("Check the transactionlist not empty",transactionList);
@@ -63,7 +56,7 @@ public class C206_CaseStudyTest {
 		assertNotEquals(null, t2);
 	
 	}
-	
+	//MEMBER 5 - DELETE TRANSACTION TEST
 	@Test
 	public void deleteTransaction() {
 		// TEST IF THE CORRECT TRANSACTION IS DELETED
@@ -112,7 +105,7 @@ public class C206_CaseStudyTest {
 		
 	}
 	
-	// MEMBER 3
+	//MEMBER 3 - VIEW ALL HOLDINGS TEST
 	@Test
 	public void viewAllHoldingAndSgdValueTest() {
 		// check not empty
@@ -125,9 +118,17 @@ public class C206_CaseStudyTest {
 						
 		assertEquals("Check expected outcome" , testOutput, allHoldings);
 	}
+	
+	//MEMBER 3 - SEARCH HOLDINGS BY CURRENCY TEST
+	@Test
+	public void searchHoldingAndSgdValueTest() {
+		// CHECKING THE LIST IS NOT EMPTY 
+		assertNotNull("Check the holding not empty.", holdingList);
+
+	}
 
 
-	//MEMBER 2 ADD MONEY INTO HOLDING 
+	//MEMBER 2 ADD MONEY INTO HOLDING TEST
 	@Test
 	public void addinputHoldingTest() {
 		//CHECKING THE LIST IS NOT EMPTY 
@@ -145,7 +146,7 @@ public class C206_CaseStudyTest {
 	} 
 	 
 	
-	//Member 1 - ADD CURRENCY
+	//Member 1 - ADD CURRENCY TEST
 	@Test
 	public void addCurrencyTest() { 
 		//LIST IS NOT EMPTY
