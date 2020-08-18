@@ -47,6 +47,34 @@ public class C206_CaseStudyTest {
 		transactionList.add(t2);
 	}
 	
+	@Test
+	public void searchHoldingAndSgdValueTest() {
+		// CHECKING THE LIST IS NOT EMPTY 
+		assertNotNull("Check the holding not empty.", holdingList);
+
+	}
+	
+	
+	@Test//MEMBER 5 - ADD TRANSACTION RECORD
+	public void addTransaction() {
+		//check that the transaction object is created and addinto the transactionlist
+		assertNotNull("Check the transactionlist not empty",transactionList);
+		assertNotEquals(null, t1);
+		assertNotEquals(null, t2);
+	
+	}
+	
+	@Test
+	public void deleteTransaction() {
+		// TEST IF THE CORRECT TRANSACTION IS DELETED
+		ArrayList<Transaction> list2 = new ArrayList<Transaction>();
+		list2.add(t1);
+		list2.add(t2);
+		
+		
+		C206_CaseStudy.deleteTransaction(transactionList, 1);
+	    assertNotEquals(list2, transactionList);
+	}
 	
 	
 	//MEMBER 4 - SEARCH BY CURRENCY TEST
@@ -88,17 +116,14 @@ public class C206_CaseStudyTest {
 	@Test
 	public void viewAllHoldingAndSgdValueTest() {
 		// check not empty
-					assertNotNull("Check the holding not empty.", holdingList);
-					
-					String allHoldings = C206_CaseStudy.viewAllHoldingAndSgdValueTest(holdingList, currencyList);
-					
-					String testOutput= String.format("%-10s %-10.2f %-20.4f\n", "USD" , 100000.00, 72700.0000);
-					 testOutput += String.format("%-10s %-10.2f %-20.4f\n", "MYR" , 500000.00, 1535000.0000);
+		assertNotNull("Check the holding not empty.", holdingList);
+				
+		String allHoldings = C206_CaseStudy.viewAllHoldingAndSgdValueTest(holdingList, currencyList);
+			
+		String testOutput= String.format("%-10s %-10.2f %-20.4f\n", "USD" , 100000.00, 72700.0000);
+		testOutput += String.format("%-10s %-10.2f %-20.4f\n", "MYR" , 500000.00, 1535000.0000);
 						
-					System.out.println(testOutput);
-					System.out.println("-------------\n"+allHoldings);  
-					//testOutput = String.format("%-10s %-10.2f %-20.4f\n", "" , "" ,"" );
-					assertEquals("Check expected outcome" , testOutput, allHoldings);
+		assertEquals("Check expected outcome" , testOutput, allHoldings);
 	}
 
 
@@ -115,9 +140,7 @@ public class C206_CaseStudyTest {
 		String output = C206_CaseStudy.addMoneyHolding(holdingList,"USD",5000.0);
 		
 		assertEquals("Check that holding arraylist size is ", 3, holdingList.size());
-		
-		String expected = "Holdings Added!";
-		assertSame("Check that holding is added", "Holdings Added!", expected);
+		assertSame("Check that holding is added", "Holdings Added!", output);
 		 
 	} 
 	 
@@ -138,33 +161,6 @@ public class C206_CaseStudyTest {
 
 	}
 
-	@Test
-	public void searchHoldingAndSgdValueTest() {
-		// CHECKING THE LIST IS NOT EMPTY 
-		assertNotNull("Check the holding not empty.", holdingList);
 
-	}
-	
-	
-	@Test//MEMBER 5 - ADD TRANSACTION RECORD
-	public void addTransaction() {
-		//check that the transaction object is created and addinto the transactionlist
-		assertNotNull("Check the transactionlist not empty",transactionList);
-		assertNotEquals(null, t1);
-		assertNotEquals(null, t2);
-	
-		
-	}
-	@Test
-	public void deleteTransaction() {
-		// TEST IF THE CORRECT TRANSACTION IS DELETED
-		ArrayList<Transaction> list2 = new ArrayList<Transaction>();
-		list2.add(t1);
-		list2.add(t2);
-		
-		
-		C206_CaseStudy.deleteTransaction(transactionList, 1);
-	    assertNotEquals(list2, transactionList);
-	}
 	
 }
