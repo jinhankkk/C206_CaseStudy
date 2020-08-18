@@ -177,6 +177,7 @@ public class C206_CaseStudy {
 		if (exist == false) {
 			System.out.println("Currency does not exist");
 		}
+	}
 	
 	public void convertCurrency(ArrayList<Currency>Currency) {
 		for(int i = 0 ; i < Currency.size() ; i++)
