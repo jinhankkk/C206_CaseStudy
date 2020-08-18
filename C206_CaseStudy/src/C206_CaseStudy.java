@@ -7,7 +7,8 @@ public class C206_CaseStudy {
 		
 		ArrayList<Currency> currencyList = new ArrayList<Currency>();
 		int option = -1;
-
+		ArrayList<MoneyHolding>  MoneyHolding = new ArrayList<MoneyHolding>();
+		
 		while (option != 5) {
 
 			menu();
@@ -114,7 +115,25 @@ public class C206_CaseStudy {
 
 
 	public MoneyHolding inputMoneyHolding() {
-		return null;
+		Helper.line(20, "-");
+		System.out.println("ADD HOLDING");
+		Helper.line(20, "-");
+		String iso = Helper.readString("Enter ISO > ");
+		String holdingname = Helper.readString("Enter Holding Name > ");
+		double buyRate = Helper.readDouble("Enter Buy Rate > "); 
+		double sellRate = Helper.readDouble("Enter Sell Rate > ");
+		
+		if (iso != null && holdingname != null) {
+			// CHECK IF CURRENCY EXIST
+			for (int i=0; i<MoneyHolding.size(); i++) {
+				if (MoneyHolding.get(i).getMoneyHolding().equalsIgnoreCase(holdingname)) {
+					System.out.println("Currency already exist");
+					break;
+				}
+			}
+			// INSERT INTO CURRENCY LIST
+			MoneyHolding.add(new MoneyHolding (iso,holdingname,buyRate,sellRate));
+		
 		
 	}
 
@@ -128,10 +147,33 @@ public class C206_CaseStudy {
 	}
 	
 	public void viewAllMoneyHolding(ArrayList<MoneyHolding>MoneyHolding) {
+		Helper.line(20, "-");
+		System.out.println("VIEW ALL HOLDING");
+		Helper.line(20, "-");
+		for (MoneyHolding i : MoneyHolding) {
+			System.out.println(i.toString());
+		}
 		
 	}
 	
 	public void deleteMoneyHolding(ArrayList<MoneyHolding> MoneyHolding) {
+		Helper.line(20, "-");
+		System.out.println("DELETE CURRENCY");
+		Helper.line(20, "-");
+		String holdingname = Helper.readString("Enter Holding Name > ");
+		boolean exist = false;
+		
+		for (MoneyHolding i : MoneyHolding) {
+			if (i.getMoneyHolding().equalsIgnoreCase(holdingname)) {
+				MoneyHolding.remove(i);
+				exist = true;
+				break;
+			}
+		}
+		
+		if (exist == false) {
+			System.out.println("Holding does not exist");
+		}
 		
 	}
 	
