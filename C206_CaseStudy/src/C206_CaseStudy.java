@@ -76,17 +76,9 @@ public class C206_CaseStudy {
 		System.out.println("10. VIEW ALL TRANSACTION");
 		System.out.println("11. DELETE TRANSACTION");
 		System.out.println("12. SEARCH HOLDING OF CURRENCY");
-		System.out.println(" ");
-		
-	//	System.out.println("4. VIEW HOLDINGS OF CURRENCY");
-	//	System.out.println("5. ADD HOLDINGS TO CURRENCY");
-	//	System.out.println("6. DELETE HOLDINGS OF CURRENCY");
-		
+		System.out.println("13. QUIT");
 	}
 
-	public void setHeader(String a) {
-		
-	} 
 	//MEMBER 1 - ADD,VIEW,DELETE CURRENCY
 	public static Currency inputCurrency()
 	{
@@ -103,7 +95,6 @@ public class C206_CaseStudy {
             
         	Currency c = new Currency(iso,curName,buyRate,sellRate);
             return c;
-
         }
         else
         {
@@ -149,10 +140,6 @@ public class C206_CaseStudy {
 		}
 		
 	} 
-	
-	public String retrieveAllCurrency(ArrayList<Currency> cur) {
-		return null;		
-	}
 
 	//MONEY HOLDING
 	//MEMBER2
@@ -181,11 +168,7 @@ public class C206_CaseStudy {
 		holdingList.add(inputMoneyHolding());
 		System.out.println("Holdings added!");
 	}
-	
-//	public String retrieveAllMoneyHolding(ArrayList<MoneyHolding> holdingList) {
-//		return null;
-//		
-//	}
+
 	
 	public static void viewAllMoneyHolding(ArrayList<MoneyHolding> holdingList,ArrayList<Currency> currencyList) {
 		Helper.line(20, "-");
@@ -199,9 +182,6 @@ public class C206_CaseStudy {
 				if (holdingList.get(i).getIso().equalsIgnoreCase(currencyList.get(j).getIso())) {
 					String items [] = holdingList.get(i).toString().split(",");
 					
-
-					
-					
 					output += String.format("%-10s%-10.2f%-20.4f", items[0]);
 
 					//GET SELL RATE
@@ -213,8 +193,9 @@ public class C206_CaseStudy {
 					System.out.println(output);
 					break;
 				}
-			}}
+			}
 		}
+	}
 		/*
 		Helper.line(20, "-");
 		System.out.println("VIEW ALL HOLDING");
@@ -285,40 +266,33 @@ public class C206_CaseStudy {
 					}
 				}
 			}
-			
-			
 		}
-		public static void viewAllMoneyHoldingAndSgdValue(ArrayList<MoneyHolding> holdingList,ArrayList<Currency> currencyList) {
-			Helper.line(20, "-");
-			System.out.println("VIEW ALL HOLDING");
-			Helper.line(20, "-");
-			
-			String output = String.format("%-10s% -10s% -20s", "ISO" , "HOLDINGS" , "SGD_VALUE");
-			
-			for (int i =0; i < holdingList.size(); i++) {
-				for (int j =0; j < currencyList.size(); j++) {
-					if (holdingList.get(i).getIso().equalsIgnoreCase(currencyList.get(j).getIso())) {
-						String items [] = holdingList.get(i).toString().split(",");
-						
-						//GET SELL RATE
-						double sellRate = currencyList.get(j).getSellRate();
-						//CALCULATE SGD
-						double sgdValue = Double.parseDouble(items[1]) * sellRate;
-						output += String.format("%-10s%-10.2f%-20.4f", items[0], items[1],sgdValue);
-						System.out.println(output);
-						break;
-					}
-				}}
-			}
-	
-	
-	public void retrieveAllHoldingAndSgdValue(ArrayList<MoneyHolding> MoneyHolding) {
-		
-	}
-	
-	public void viewAllHoldingAndSgdValue(ArrayList<MoneyHolding>MoneyHolding) {
 
+	public static void viewAllMoneyHoldingAndSgdValue(ArrayList<MoneyHolding> holdingList,ArrayList<Currency> currencyList) {
+		Helper.line(20, "-");
+		System.out.println("VIEW ALL HOLDING");
+		Helper.line(20, "-");
+		
+		String output = String.format("%-10s% -10s% -20s", "ISO" , "HOLDINGS" , "SGD_VALUE");
+		
+		for (int i =0; i < holdingList.size(); i++) {
+			for (int j =0; j < currencyList.size(); j++) {
+				if (holdingList.get(i).getIso().equalsIgnoreCase(currencyList.get(j).getIso())) {
+					String items [] = holdingList.get(i).toString().split(",");
+					
+					//GET SELL RATE
+					double sellRate = currencyList.get(j).getSellRate();
+					//CALCULATE SGD
+					double sgdValue = Double.parseDouble(items[1]) * sellRate;
+					output += String.format("%-10s%-10.2f%-20.4f", items[0], items[1],sgdValue);
+					System.out.println(output);
+					break;
+				}
+			}
+		}
 	}
+	
+	
 	//MEMEBER 4 - SEARCH AND CURRNCEY CONVERTER
 	public static void searchRateByCurrency(ArrayList<Currency>currencyList) {
 
@@ -454,13 +428,10 @@ public class C206_CaseStudy {
 	        {
 	        	return null;
 	        }
-		
-	
-			return null;
-			
+	        
+	        return null;
 	} 
 	
-
 	
 	public static void addTransaction(ArrayList<Transaction> transactionList,ArrayList<Currency>currencyList) {
 			transactionList.add(inputTransaction(currencyList));
