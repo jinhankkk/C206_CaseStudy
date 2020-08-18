@@ -24,7 +24,7 @@ public class C206_CaseStudy {
 			} else if (option == 4) {
 				//getCheapest();
 			} else if (option == 5) {
-				System.out.println("Thank you for using Sushi World!");
+				System.out.println("!");
 			} else {
 				System.out.println("Invalid option!");
 			}
@@ -76,9 +76,8 @@ public class C206_CaseStudy {
 					break;
 				}
 			}
-			// INSERT INTO CurrencyList
+			// INSERT INTO CURRENCY LIST
 			currencyList.add(new Currency (iso,curName,buyRate,sellRate));
-			
 			
 		}
 		
@@ -106,7 +105,7 @@ public class C206_CaseStudy {
 	}
 	
 	public String retrieveAllCurrency(ArrayList<Currency> cur) {
-		return null;
+		
 		
 	}
 	
@@ -145,10 +144,18 @@ public class C206_CaseStudy {
 	}
 
 	public void searchRateByCurrency(ArrayList<Currency>Currency , String a) {
+		for(int i = 0 ; i < Currency.size();i++)
+		{
+			if(Currency.get(i).getCurrencyName().equalsIgnoreCase(a))
+			{
+				System.out.println(Currency.get(i).toString());	
+			}
+		}
 		
 	}
 	
 	public void convertCurrency(ArrayList<Currency>Currency) {
+		
 		
 	}
 	
