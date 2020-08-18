@@ -442,8 +442,6 @@ public void addTransaction(ArrayList<Transaction> transactionList,ArrayList<Curr
 		}
 	}
 	
-	public void deleteTransaction(ArrayList<Transaction>transactionList, String word) {
-		
-	}
+	
 	
 }
