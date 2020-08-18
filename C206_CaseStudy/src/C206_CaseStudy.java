@@ -3,6 +3,8 @@ import java.util.ArrayList;
 
 public class C206_CaseStudy {
 
+	private static final int OPTION_2 = 2;
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ArrayList<Currency> currencyList = new ArrayList<>();
@@ -10,6 +12,14 @@ public class C206_CaseStudy {
 		ArrayList<Transaction> transactionList = new ArrayList<>();
 		int option = -1;
  
+		//add default objects
+		Currency a = new Currency("MYR","Malaysia Ringt",3.075,3.070);
+		currencyList.add(a);
+
+		Currency b = new Currency("KRW","Korean Won",878.73,874.89);
+		currencyList.add(b);
+		
+		
 		while (option != 13) {
  
 			menu();
@@ -17,7 +27,7 @@ public class C206_CaseStudy {
 			if (option == 1) {
 				viewAllCurrency(currencyList);
 				
-			} else if (option == 2) {
+			} else if (option == OPTION_2) {
 				viewAllCurrency(currencyList);
 				addCurrency(currencyList);
 			} else if (option == 3) {
@@ -33,11 +43,11 @@ public class C206_CaseStudy {
 			}  else if (option == 8) {
 				convertCurrency(currencyList);
 			}  else if (option == 9) {
-				
+				addTransaction(transactionList, currencyList);
 			}  else if (option == 10) {
-				
+				viewAllTransaction(transactionList);
 			}  else if (option == 11) {
-				
+				deleteTransaction(transactionList, null);
 			} else if (option == 12) {
 				viewAllMoneyHolding(holdingList,currencyList);
 			} else if  (option == 13){
@@ -351,16 +361,18 @@ public class C206_CaseStudy {
 	
 	
 	//MEMBER 5 - TRANSACTION
-	public double getrate(ArrayList<Currency> Currency , String a,String type) {
+	public static double getrate(ArrayList<Currency> Currency , String a,String type) {
 		double rate =0;
 		for(int i = 0 ; i < Currency.size();i++)
 		{
-			if(Currency.get(i).getCurrencyName().equalsIgnoreCase(a))
+			if(Currency.get(i).getIso().equalsIgnoreCase(a))
 			{if(type.equalsIgnoreCase("BUY")) {
 				rate=Currency.get(i).getBuyRate();
+				return rate;
 				}
 			else if (type.equalsIgnoreCase("SELL")) {
 				rate = Currency.get(i).getSellRate();
+				return rate;
 			}
 			}
 		} 
@@ -368,12 +380,12 @@ public class C206_CaseStudy {
 		
 	}
 
-	public Transaction inputTransaction(ArrayList<Currency>currencyList) {
+	public static Transaction inputTransaction(ArrayList<Currency>currencyList) {
 
 		Helper.line(20, "-");
         System.out.println("ADD TRANSACTION");
         Helper.line(20, "-");
-        int typei = Helper.readInt("Chose your transaction type (1)BUY (2)SELL");
+        int typei = Helper.readInt("Chose your transaction type (1)BUY (2)SELL >");
        
         String ccin = Helper.readString("Enter currency in > ");
         double amtin = Helper.readDouble("Enter amount in > ");
@@ -396,14 +408,16 @@ public class C206_CaseStudy {
 		 }
 	        if (!type.equals(null) && !ccin.equals(null) && amtin != 0 && !ccout.equals(null)) {
 	        	if(type.equalsIgnoreCase("BUY")) {
-	        		 getrate(currencyList, ccin, "BUY");
+	        		System.out.println(currencyList+ccin);
+	        		rate= getrate(currencyList, ccin, "BUY");
 	        	Transaction t = new Transaction(LocalDateTime.now(), type, ccin, amtin, "SGD", (amtin*rate),rate );
 	            //update holding munus (amtin*rate)
 	        	return t;
 	            }
 	        	else if(type.equalsIgnoreCase("SELL")) {
-	        		getrate(currencyList, "SGD", "SELL");
+	        		rate=getrate(currencyList, "SGD", "SELL");
 	            	Transaction t = new Transaction(LocalDateTime.now(), type, "SGD", amtin, ccin, (amtin/rate),rate );
+	            	
 	                return t;}
 	        	 //update holding plus (amtin*rate)
 	        }
@@ -419,26 +433,36 @@ public class C206_CaseStudy {
 	
 
 	
-public void addTransaction(ArrayList<Transaction> transactionList,ArrayList<Currency>currencyList) {
-		inputTransaction(currencyList);
-		System.out.println("Transaction Added!");
-	} 
+	public static void addTransaction(ArrayList<Transaction> transactionList,ArrayList<Currency>currencyList) {
+			transactionList.add(inputTransaction(currencyList));
+			System.out.println("Transaction Added!");
+		} 
 
 	
-	public void viewAllTransaction(ArrayList<Transaction> transactionList) {
+	public static void viewAllTransaction(ArrayList<Transaction> transactionList) {
 		Helper.line(20, "-");
 		System.out.println("VIEW ALL TRANSACTIONS");
-		System.out.println(String.format("%-10s%-10s%-20s%-10s%-20s%-10s%-10s", "DATE", "TYPE", "CURRENCY IN", "AMOUNT IN", "CURRENCY OUT","RATE"));
+		System.out.println(String.format("%-10s%-10s%-20s%-10s%-20s%-20s%-10s", "DATE", "TYPE", "CURRENCY IN", "AMOUNT IN", "CURRENCY OUT","AMOUNT OUT","RATE"));
 
 		Helper.line(20, "-");
 		for (Transaction i : transactionList) {
 
 			String items [] = i.toString().split(",");
-			System.out.println(String.format("%-10s%-10s%-20s%-10.2f%-20s%-10.2f%-10.2f", items[0], items[1], items[2], items[3],items[4],items[5],items[6]));
+			System.out.println(String.format("%-10s%-10s%-20s%-10s%-20s%-20s%-10s", items[0], items[1], items[2], items[3],items[4],items[5],items[6]));
 
-		}
+		} 
 	}
 	
+	public static void deleteTransaction(ArrayList<Transaction>transactionList, String word) {
+        for(int i =0; i<transactionList.size(); i++) {
+               if(transactionList.get(i).getTxnDate().equals(word)) {
+                transactionList.remove(i);
+               }
+               else {
+                System.out.println("Transaction not found!");
+               }
+              }
+    }
 	
 	
 }
