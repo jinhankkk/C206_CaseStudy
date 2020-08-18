@@ -9,7 +9,7 @@ public class C206_CaseStudyTest {
 
 	private Currency cc1;
 	private Currency cc2;
-	
+	   
 	private MoneyHolding mh1;
 	private MoneyHolding mh2;
 	
