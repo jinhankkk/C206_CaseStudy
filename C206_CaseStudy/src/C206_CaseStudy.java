@@ -194,7 +194,7 @@ public class C206_CaseStudy {
 					System.out.println(output);
 					break;
 				}
-			}
+			}}
 		}
 		/*
 		Helper.line(20, "-");
