@@ -76,7 +76,7 @@ public class C206_CaseStudy {
 	public static Currency inputCurrency()
 	{
 		Helper.line(20, "-");
-        System.out.println("ADD CURRENCY");
+        System.out.println("ADD CURRENCY"); 
         Helper.line(20, "-");
 
 		String iso = Helper.readString("Enter ISO > ");
