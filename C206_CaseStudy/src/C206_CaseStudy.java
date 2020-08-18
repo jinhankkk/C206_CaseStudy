@@ -72,7 +72,7 @@ public class C206_CaseStudy {
 	public void setHeader(String a) {
 		
 	} 
-	
+	//MEMBER 1 - ADD,VIEW,DELETE CURRENCY
 	public static Currency inputCurrency()
 	{
 		Helper.line(20, "-");
@@ -196,7 +196,7 @@ public class C206_CaseStudy {
 	public void viewAllHoldingAndSgdValue(ArrayList<MoneyHolding>MoneyHolding) {
 		
 	}
-//MEMEBER 4 - SEARCH AND CURRNCEY CONVERTER
+//MEMEBER 4 - SEARCH AND CURRENCY CONVERTER
 	public static void searchRateByCurrency(ArrayList<Currency>currencyList , String name) {
 		boolean exist = false;
 		
