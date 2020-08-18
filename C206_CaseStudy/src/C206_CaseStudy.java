@@ -150,7 +150,7 @@ public class C206_CaseStudy {
 			{
 				System.out.println(Currency.get(i).toString());	
 			}
-		}
+		} 
 		
 	}
 	
