@@ -212,16 +212,11 @@ public class C206_CaseStudy {
 	public void viewAllHoldingAndSgdValue(ArrayList<MoneyHolding>MoneyHolding) {
 		
 	}
-<<<<<<< HEAD
-//MEMEBER 4 - SEARCH AND CURRENCY CONVERTER
-	public static void searchRateByCurrency(ArrayList<Currency>currencyList , String name) {
-=======
 	
 	//MEMEBER 4 - SEARCH AND CURRNCEY CONVERTER
 	public static void searchRateByCurrency(ArrayList<Currency>currencyList) {
 		
 		String name = Helper.readString("Enter currency(iso) to search > ");
->>>>>>> branch 'master' of https://github.com/jinhankkk/C206_CaseStudy.git
 		boolean exist = false;
 		
 		System.out.println(String.format("%-10s%-10s%-20s%-20s", "ISO", "CURRENCY", "BUY RATE", "SELL RATE"));
