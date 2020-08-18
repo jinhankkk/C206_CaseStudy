@@ -488,7 +488,7 @@ public class C206_CaseStudy {
                 transactionList.remove(i);
                }
                else {
-                System.out.println("Transaction not found!");
+                System.out.println("Transaction not found!"); 
                }
               }
     }
