@@ -210,6 +210,28 @@ public class C206_CaseStudy {
 			
 		}
 		*/
+		public void deleteMoneyHolding(ArrayList<MoneyHolding> MoneyHolding) {
+			Helper.line(20, "-");
+			System.out.println("DELETE Holding");
+			Helper.line(20, "-");
+			String ISO = Helper.readString("Enter Holding Name > ");
+			boolean exist = false;
+			
+			for (MoneyHolding i : MoneyHolding) {
+
+				if (i.getIso().equalsIgnoreCase(ISO)) {
+
+				 {
+					MoneyHolding.remove(i);
+					exist = true;
+					break;
+				}
+			}
+			if (exist == false) {
+				System.out.println("Holding does not exist");
+			}
+			
+		}
 	}
 	//MEMBER 3 (8)
 		public void searchHolding(ArrayList<MoneyHolding> holdingList, ArrayList<Currency> currencyList) {
@@ -247,28 +269,7 @@ public class C206_CaseStudy {
 			
 			
 		}
-	public void deleteMoneyHolding(ArrayList<MoneyHolding> MoneyHolding) {
-		Helper.line(20, "-");
-		System.out.println("DELETE Holding");
-		Helper.line(20, "-");
-		String ISO = Helper.readString("Enter Holding Name > ");
-		boolean exist = false;
-		
-		for (MoneyHolding i : MoneyHolding) {
-
-			if (i.getIso().equalsIgnoreCase(curName)) {
-
-			if (i.getHoldingAmt().equalsIgnoreCase(ISO)) {
-				MoneyHolding.remove(i);
-				exist = true;
-				break;
-			}
-		}
-		if (exist == false) {
-			System.out.println("Holding does not exist");
-		}
-		
-	}
+	
 	
 	public void retrieveAllHoldingAndSgdValue(ArrayList<MoneyHolding> MoneyHolding) {
 		
