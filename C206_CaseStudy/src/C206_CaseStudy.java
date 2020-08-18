@@ -280,13 +280,12 @@ public class C206_CaseStudy {
 	public void viewAllHoldingAndSgdValue(ArrayList<MoneyHolding>MoneyHolding) {
 
 	}
-
-
 	//MEMEBER 4 - SEARCH AND CURRNCEY CONVERTER
 	public static void searchRateByCurrency(ArrayList<Currency>currencyList) {
-		
-		String name = Helper.readString("Enter currency(ISO) to search > ");
 
+		
+		String name = Helper.readString("Enter currency(iso) to search > ");
+		
 		boolean exist = false;
 		
 		System.out.println(String.format("%-10s%-20s%-20s%-20s", "ISO", "CURRENCY", "BUY RATE", "SELL RATE"));
