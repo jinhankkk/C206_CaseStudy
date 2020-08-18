@@ -445,7 +445,7 @@ public class C206_CaseStudy {
 	            }
 	        	else if(type.equalsIgnoreCase("SELL")) {
 	        		rate=getrate(currencyList, "SGD", "SELL");
-	            	Transaction t = new Transaction(LocalDateTime.now(),currencyList.size()+1, type, "SGD", amtin, ccin, (amtin/rate),rate );
+	            	Transaction t = new Transaction(LocalDateTime.now(),currencyList.size()+1, type, "SGD", amtin, ccin, (amtin*rate),rate );
 	            	
 	                return t;}
 	        	 //update holding plus (amtin*rate)
