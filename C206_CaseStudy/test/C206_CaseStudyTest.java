@@ -10,13 +10,14 @@ public class C206_CaseStudyTest {
 
 	private Currency cc1;
 	private Currency cc2;
+	private Currency cc3;
 
 	private MoneyHolding mh1;
 	private MoneyHolding mh2;
 
 	private Transaction t1;
 	private Transaction t2;
-
+ 
 	private ArrayList<Currency> currencyList;
 	private ArrayList<MoneyHolding> holdingList;
 	private ArrayList<Transaction> transactionList;
@@ -25,6 +26,7 @@ public class C206_CaseStudyTest {
 	public void setUp() throws Exception {
 		cc1 = new Currency("MYR", "Malaysia Ringt", 3.075, 3.070);
 		cc2 = new Currency("KRW", "Korean Won", 878.73, 874.89);
+		cc3 = new Currency("USD","United State Dollar", 0.78,0.727);
 		mh1 = new MoneyHolding("USD", 100000);
 		mh2 = new MoneyHolding("MYR", 500000);
 		//double amountout=0;
@@ -33,6 +35,7 @@ public class C206_CaseStudyTest {
 		currencyList = new ArrayList<>();
 		currencyList.add(cc1);
 		currencyList.add(cc2);
+		currencyList.add(cc3);
 		
 		holdingList = new ArrayList<>();
 		holdingList.add(mh1);
@@ -79,7 +82,23 @@ public class C206_CaseStudyTest {
 		assertEquals("Test that the searched currency MYR is converted correctly", expected,getConvert);
 		
 	}
-
+	
+	// MEMBER 3
+	@Test
+	public void viewAllHoldingAndSgdValueTest() {
+		// check not empty
+					assertNotNull("Check the holding not empty.", holdingList);
+					
+					String allHoldings = C206_CaseStudy.viewAllHoldingAndSgdValueTest(holdingList, currencyList);
+					
+					String testOutput= String.format("%-10s %-10.2f %-20.4f\n", "USD" , 100000.00, 72700.0000);
+					 testOutput += String.format("%-10s %-10.2f %-20.4f\n", "MYR" , 500000.00, 1535000.0000);
+						
+					System.out.println(testOutput);
+					System.out.println("-------------\n"+allHoldings);  
+					//testOutput = String.format("%-10s %-10.2f %-20.4f\n", "" , "" ,"" );
+					assertEquals("Check expected outcome" , testOutput, allHoldings);
+	}
 
 
 	@Test//MEMBER 2 ADD MONEY INTO HOLDING 
@@ -98,22 +117,7 @@ public class C206_CaseStudyTest {
 		
 	} 
 	
-	// MEMBER 3
-	@Test
-	public void viewAllHoldingAndSgdValueTest() {
-		// check not empty
-					assertNotNull("Check the holding not empty.", holdingList);
-					
-					String allHoldings = C206_CaseStudy.viewAllHoldingAndSgdValueTest(holdingList, currencyList);
-					
-					String testOutput= String.format("%-10s %-10.2f %-20.4f\n", "USD" , 100000.00, 72700.0000);
-					 testOutput += String.format("%-10s %-10.2f %-20.4f\n", "MYR" , 500000.00, 1535000.0000);
-						
-					System.out.println(testOutput);
-					System.out.println("-------------\n"+allHoldings);  
-					//testOutput = String.format("%-10s %-10.2f %-20.4f\n", "" , "" ,"" );
-					assertEquals("Check expected outcome" , testOutput, allHoldings);
-	}
+
 	
 	//Member 1 - ADD CURRENCY
 	@Test
