@@ -120,7 +120,7 @@ public class C206_CaseStudyTest {
 	}
 	@Test//MEMBER 5 -ADD TRANSACTION RECORD
 public void addTransaction() {
-	//check that the transaction object is created and addinto the transactionlist
+	//test that the transaction object is created and addinto the transactionlist
 	assertNotNull("Check the transactionlist not empty",transactionList);
 	assertNotEquals(null, t1);
 	assertNotEquals(null, t2);
@@ -138,5 +138,8 @@ public void addTransaction() {
 		C206_CaseStudy.deleteTransaction(transactionList, 1);
 	    assertNotEquals(list2, transactionList);
 	}
+
+
+	
 	
 }
