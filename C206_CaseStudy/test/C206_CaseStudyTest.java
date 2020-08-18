@@ -50,9 +50,19 @@ public class C206_CaseStudyTest {
 
 	public void addCurrencyTest() {
 		assertNotNull("Check the currency not empty.", currencyList);
+		C206_CaseStudy.addCurrency(currencyList);
+		assertEquals("Check that Camcorder arraylist size is 1", 1, currencyList.size());
+		assertSame("Check that Currency is added", cc1, currencyList.get(0));
+
+		assertEquals("Check that Camcorder arraylist size is 2", 2, currencyList.size());
+		assertSame("Check that Currency is added", cc2, currencyList.get(1));
+
+	
 	}
 	public void deleteCurrencyTest() { 
 		assertNotNull("Check the currency exist.", currencyList);
 	}
+	
+	
 
 }
