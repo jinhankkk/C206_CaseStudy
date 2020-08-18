@@ -52,6 +52,8 @@ public class C206_CaseStudyTest {
 		// check not empty
 				assertNotNull("Check the holding not empty.", holdingList);
 	}
+	
+	//Member 1
 	public void addCurrencyTest() {
 		assertNotNull("Check the currency not empty.", currencyList);
 		C206_CaseStudy.addCurrency(currencyList);
@@ -60,14 +62,7 @@ public class C206_CaseStudyTest {
 
 		assertEquals("Check that Camcorder arraylist size is 2", 2, currencyList.size());
 		assertSame("Check that Currency is added", cc2, currencyList.get(1));
- 
-	
 	}
-	public void deleteCurrencyTest() { 
-		assertNotNull("Check the currency exist.", currencyList);
-	}
-	
-	
 
 	@Test
 	public void searchHoldingAndSgdValueTest() {
