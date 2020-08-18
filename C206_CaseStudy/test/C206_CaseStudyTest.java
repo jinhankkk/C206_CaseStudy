@@ -62,15 +62,35 @@ assertNotEquals(list2, transactionList);
 	
 }
 	//MEMBER 4 - SEARCH BY CURRENCY TEST
+	@Test
 	public void searchRateByCurrency() {
 		//CHECK IF THE CURRENCY LIST IS NOT EMPTY
 		assertNotNull("Check the currencyList not empty.", currencyList);
+		
+		//TEST IF THE SEARCHED CURRENCY IS NOT IN THE LIST
+		String missingTest =  C206_CaseStudy.searchRateByCurrency(currencyList, "SGD");
+		String expected = "";
+		assertEquals("Test that the searched currency is not in the list", expected,missingTest);
 		
 		//TEST IF THE EXPECTED OUTPUT STRING IS SAME AS WHAT WAS SEARCHED
 		String searchedOutput = String.format("%-10s%-20s%-20s%-20s","MYR","Malaysia Ringt","3.075","3.07");
 		String search =  C206_CaseStudy.searchRateByCurrency(currencyList, "MYR");
 		assertEquals("Test searchRateByCurrency", searchedOutput,search);
 
+	}
+	//MEMBER 4 - CONVERT CURRENCY TEST
+	public void convertCurrencyTest()
+	{
+		//CHECK IF THE CURRENCY LIST IS NOT EMPTY
+		assertNotNull("Check the currencyList not empty.", currencyList);
+
+
+		//TEST IF THE SEARCHED CURRENCY IS NOT IN THE LIST
+		String missingTest =  C206_CaseStudy.searchRateByCurrency(currencyList, "SGD");
+		String expected = "";
+		assertEquals("Test that the searched currency is not in the list", expected,missingTest);
+			
+		
 	}
 
 	@Test//MEMBER 2 ADD MONEY INTO HOLDING 
@@ -83,7 +103,16 @@ assertNotEquals(list2, transactionList);
 	@Test
 	public void viewAllHoldingAndSgdValueTest() {
 		// check not empty
-				assertNotNull("Check the holding not empty.", holdingList);
+			assertNotNull("Check the holding not empty.", holdingList);
+			
+			String allHoldings = C206_CaseStudy.viewAllHoldingAndSgdValueTest(holdingList, currencyList);
+			
+			String testOutput = String.format("%-10s %-10.2f %-20.4f\n", "MYR" , 1000000.00, 307000.0000);
+			testOutput += String.format("%-10s %-10.2f %-20.4f\n", "KRW" , 5000000.00, 437445.0000);
+			System.out.println(testOutput);
+			System.out.println("-------------\n"+allHoldings);  
+			//testOutput = String.format("%-10s %-10.2f %-20.4f\n", "" , "" ,"" );
+			assertEquals("Check expected outcome" , testOutput, allHoldings);
 	}
 	
 	//Member 1 - ADD CURRENCY
