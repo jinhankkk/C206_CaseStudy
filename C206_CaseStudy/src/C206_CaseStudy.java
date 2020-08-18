@@ -59,7 +59,8 @@ public class C206_CaseStudy {
 				int id1=Helper.readInt("Enter the transaction ID of the record:");
 				deleteTransaction(transactionList, id1);
 			} else if (option == 12) {
-				searchHoldingAndSgdValue(holdingList,currencyList);
+				String word = Helper.readString("Enter currency to search > ");
+				searchHoldingAndSgdValue(holdingList,currencyList, word);
 			} else if  (option == 13){
 				System.out.println("Goodbye!");
 			} else {
@@ -201,7 +202,6 @@ public class C206_CaseStudy {
 			}
 			}
 		return output;
-		//System.out.println(output);
 	}
 	
 		public static void viewAllHoldingAndSgdValue(ArrayList<MoneyHolding> holdingList,ArrayList<Currency> currencyList) {
@@ -212,9 +212,8 @@ public class C206_CaseStudy {
 			String output = String.format("%-10s %-10s %-20s\n", "ISO" , "HOLDINGS" , "SGD_VALUE");
 			output+= viewAllHoldingAndSgdValueTest(holdingList,currencyList);
 			System.out.println(output);
-			
-			
 			}
+		
 		public static void deleteMoneyHolding(ArrayList<MoneyHolding> MoneyHolding) {
 			Helper.line(20, "-");
 			System.out.println("DELETE Holding");
@@ -239,9 +238,9 @@ public class C206_CaseStudy {
 		}
 	}
 		//MEMBER 3 (8)
-				public static void searchHoldingAndSgdValue(ArrayList<MoneyHolding> holdingList, ArrayList<Currency> currencyList) {
+				public static String searchHoldingAndSgdValue(ArrayList<MoneyHolding> holdingList, ArrayList<Currency> currencyList, String word) {
 					
-					String curToSearch = Helper.readString("Enter currency to search > ");
+					String curToSearch = word;
 					
 					String output = String.format("%-10s %-10s %-20s\n", "ISO" , "HOLDINGS" , "SGD_VALUE");
 					
@@ -255,6 +254,7 @@ public class C206_CaseStudy {
 						String items [] = i.toString().split(",");
 						iso = items[0];
 						holdingAmt = Double.parseDouble(items[1]);
+						
 						exist = true;
 						break;
 					}
@@ -275,8 +275,8 @@ public class C206_CaseStudy {
 						
 					}
 					
-					
-					System.out.println(output);
+					//System.out.println(output);
+					return output;
 				}
 
 	public static void viewAllMoneyHoldingAndSgdValue(ArrayList<MoneyHolding> holdingList,ArrayList<Currency> currencyList) {
