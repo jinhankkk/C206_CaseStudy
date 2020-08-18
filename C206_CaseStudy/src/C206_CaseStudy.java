@@ -10,7 +10,7 @@ public class C206_CaseStudy {
 		ArrayList<Transaction> transactionList = new ArrayList<>();
 		int option = -1;
  
-		while (option != 12) {
+		while (option != 13) {
  
 			menu();
 			option = Helper.readInt("Enter choice > ");
@@ -65,6 +65,8 @@ public class C206_CaseStudy {
 		System.out.println("10. VIEW ALL TRANSACTION");
 		System.out.println("11. DELETE TRANSACTION");
 		System.out.println("12. SEARCH HOLDING OF CURRENCY");
+		System.out.println(" ");
+		
 	//	System.out.println("4. VIEW HOLDINGS OF CURRENCY");
 	//	System.out.println("5. ADD HOLDINGS TO CURRENCY");
 	//	System.out.println("6. DELETE HOLDINGS OF CURRENCY");
@@ -109,7 +111,7 @@ public class C206_CaseStudy {
 		System.out.println("VIEW ALL CURRENCY");
 		Helper.line(20, "-");
 		
-		System.out.println(String.format("%-10s%-10s%-20s%-20s", "ISO", "CURRENCY", "BUY RATE", "SELL RATE"));
+		System.out.println(String.format("%-10s%-20s%-20s%-20s", "ISO", "CURRENCY", "BUY RATE", "SELL RATE"));
 		
 		for (Currency i : currencyList)
 		{			
@@ -311,18 +313,18 @@ public class C206_CaseStudy {
 	//MEMEBER 4 - SEARCH AND CURRNCEY CONVERTER
 	public static void searchRateByCurrency(ArrayList<Currency>currencyList) {
 		
-		String name = Helper.readString("Enter currency(iso) to search > ");
+		String name = Helper.readString("Enter currency(ISO) to search > ");
 
 		boolean exist = false;
 		
-		System.out.println(String.format("%-10s%-10s%-20s%-20s", "ISO", "CURRENCY", "BUY RATE", "SELL RATE"));
-
+		System.out.println(String.format("%-10s%-20s%-20s%-20s", "ISO", "CURRENCY", "BUY RATE", "SELL RATE"));
+		
 		for (Currency i : currencyList)
 		{
 			if (i.getIso().equalsIgnoreCase(name)) 
 			{				
 				String items [] = i.toString().split(",");
-				System.out.println(String.format("%-10s%-10s%-20.4f%-20.4fs", items[0], items[1], items[2], items[3]));
+				System.out.println(String.format("%-10s%-20s%-20s%-20s", items[0], items[1], items[2], items[3]));
 				
 				exist = true;
 				break;
@@ -354,7 +356,7 @@ public class C206_CaseStudy {
 					break;
 				}
 			}
-			output = String.format("SELLING %s%.2f for %s%f", ccout, convertedAmt, ccin, amtin);
+			output = String.format("SELLING %s%.2f for %s%.2f", ccout, convertedAmt, ccin, amtin);
 		}
 		else if(type.equalsIgnoreCase("buy"))
 		{
@@ -378,47 +380,83 @@ public class C206_CaseStudy {
 	
 	
 	//MEMBER 5 - TRANSACTION
-	public Transaction inputTransaction() {
+	public double getrate(ArrayList<Currency> Currency , String a,String type) {
+		double rate =0;
+		for(int i = 0 ; i < Currency.size();i++)
+		{
+			if(Currency.get(i).getCurrencyName().equalsIgnoreCase(a))
+			{if(type.equalsIgnoreCase("BUY")) {
+				rate=Currency.get(i).getBuyRate();
+				}
+			else if (type.equalsIgnoreCase("SELL")) {
+				rate = Currency.get(i).getSellRate();
+			}
+			}
+		} 
+		return rate;
+		
+	}
+
+	public Transaction inputTransaction(ArrayList<Currency>currencyList) {
 
 		Helper.line(20, "-");
         System.out.println("ADD TRANSACTION");
         Helper.line(20, "-");
-        
-        String type = Helper.readString("Enter type > ");
+        int typei = Helper.readInt("Chose your transaction type (1)BUY (2)SELL");
+       
         String ccin = Helper.readString("Enter currency in > ");
         double amtin = Helper.readDouble("Enter amount in > ");
         String ccout = Helper.readString("Enter currency out > ");
         
-        double amtout = 0.0; //-------------------DO CALCULATION AND RATE-------------------------
+        double amtout = 0.0; //DO CALCULATION AND RATE
         double rate = 0.0;
-       
+   	
+	
+	String type = "";
+	 //the admin enter the type 
+	 if (typei==1) {
+		 type="BUY";
+	 }
+	 else if (typei==2) {
+		 type="SELL";
+	 }
+	 else {
+		 typei = Helper.readInt("Please enter a valid number");
+	 }
         if (!type.equals(null) && !ccin.equals(null) && amtin != 0 && !ccout.equals(null)) {
-            
-        	Transaction t = new Transaction(LocalDateTime.now(), type, ccin, amtin, ccout, amtout,rate );
-            return t;
-
+        	if(type.equalsIgnoreCase("BUY")) {
+        		 getrate(currencyList, ccin, "BUY");
+        	Transaction t = new Transaction(LocalDateTime.now(), type, ccin, amtin, "SGD", (amtin*rate),rate );
+            //update holding munus (amtin*rate)
+        	return t;
+            }
+        	else if(type.equalsIgnoreCase("SELL")) {
+        		getrate(currencyList, "SGD", "SELL");
+            	Transaction t = new Transaction(LocalDateTime.now(), type, "SGD", amtin, ccin, (amtin/rate),rate );
+                return t;}
+        	 //update holding plus (amtin*rate)
         }
         else
         {
         	return null;
         }
-		
-	}
 	
-	public void addTransaction(ArrayList<Transaction> transactionList) {
-		 
-		transactionList.add(inputTransaction());
-		System.out.println("Transaction Added!");
-	} 
-	
-	public String retrieveAllTransaction(ArrayList<Transaction>transactionList) {
+
 		return null;
 		
-	}
+	} 
+	
+
+	
+public void addTransaction(ArrayList<Transaction> transactionList,ArrayList<Currency>currencyList) {
+		inputTransaction(currencyList);
+		System.out.println("Transaction Added!");
+	} 
+
 	
 	public void viewAllTransaction(ArrayList<Transaction> transactionList) {
 		Helper.line(20, "-");
-		System.out.println("VIEW ALL HOLDING");
+		System.out.println("VIEW ALL TRANSACTIONS");
 		System.out.println(String.format("%-10s%-10s%-20s%-10s%-20s%-10s%-10s", "DATE", "TYPE", "CURRENCY IN", "AMOUNT IN", "CURRENCY OUT","RATE"));
 
 		Helper.line(20, "-");
@@ -430,8 +468,6 @@ public class C206_CaseStudy {
 		}
 	}
 	
-	public void deleteTransaction(ArrayList<Transaction>transactionList, String word) {
-		
-	}
+	
 	
 }
