@@ -188,6 +188,22 @@ public class C206_CaseStudy {
 	}
 	
 	public void deleteMoneyHolding(ArrayList<MoneyHolding> MoneyHolding) {
+		Helper.line(20, "-");
+		System.out.println("DELETE Holding");
+		Helper.line(20, "-");
+		String curName = Helper.readString("Enter Holding Name > ");
+		boolean exist = false;
+		
+		for (MoneyHolding i : MoneyHolding) {
+			if (i.getMoneyHolding().equalsIgnoreCase(curName)) {
+				MoneyHolding.remove(i);
+				exist = true;
+				break;
+			}
+		}
+		if (exist == false) {
+			System.out.println("Holding does not exist");
+		}
 		
 	}
 	
