@@ -48,7 +48,7 @@ public class C206_CaseStudy {
 			}  else if (option == 10) {
 				viewAllTransaction(transactionList);
 			}  else if (option == 11) {
-				deleteTransaction(transactionList, null);
+				deleteTransaction(transactionList, 1);
 			} else if (option == 12) {
 				viewAllMoneyHolding(holdingList,currencyList);
 			} else if  (option == 13){
@@ -418,7 +418,7 @@ public class C206_CaseStudy {
        
         String ccin = Helper.readString("Enter currency in > ");
         double amtin = Helper.readDouble("Enter amount in > ");
-        String ccout = Helper.readString("Enter currency out > ");
+      
         
         double amtout = 0.0; //DO CALCULATION AND RATE
         double rate = 0.0;
@@ -435,17 +435,17 @@ public class C206_CaseStudy {
 		 else {
 			 typei = Helper.readInt("Please enter a valid number");
 		 }
-	        if (!type.equals(null) && !ccin.equals(null) && amtin != 0 && !ccout.equals(null)) {
+	        if (!type.equals(null) && !ccin.equals(null) && amtin != 0 ) {
 	        	if(type.equalsIgnoreCase("BUY")) {
 	        		System.out.println(currencyList+ccin);
 	        		rate= getrate(currencyList, ccin, "BUY");
-	        	Transaction t = new Transaction(LocalDateTime.now(), type, ccin, amtin, "SGD", (amtin*rate),rate );
+	        	Transaction t = new Transaction(LocalDateTime.now(),currencyList.size()+1, type, ccin, amtin, "SGD", (amtin*rate),rate );
 	            //update holding munus (amtin*rate)
 	        	return t;
 	            }
 	        	else if(type.equalsIgnoreCase("SELL")) {
 	        		rate=getrate(currencyList, "SGD", "SELL");
-	            	Transaction t = new Transaction(LocalDateTime.now(), type, "SGD", amtin, ccin, (amtin/rate),rate );
+	            	Transaction t = new Transaction(LocalDateTime.now(),currencyList.size()+1, type, "SGD", amtin, ccin, (amtin/rate),rate );
 	            	
 	                return t;}
 	        	 //update holding plus (amtin*rate)
@@ -482,9 +482,10 @@ public class C206_CaseStudy {
 		} 
 	}
 	
-	public static void deleteTransaction(ArrayList<Transaction>transactionList, String word) {
+	public static void deleteTransaction(ArrayList<Transaction>transactionList,int id) {
+		id=Helper.readInt("Enter the transaction ID of the record:");
         for(int i =0; i<transactionList.size(); i++) {
-               if(transactionList.get(i).getTxnDate().equals(word)) {
+               if(transactionList.get(i).getTrid()==id) {
                 transactionList.remove(i);
                }
                else {

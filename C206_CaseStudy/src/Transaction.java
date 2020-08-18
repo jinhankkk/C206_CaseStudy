@@ -6,6 +6,7 @@ import java.time.format.FormatStyle;
 public class Transaction {
 
 	private LocalDateTime txnDate;
+	private int Trid;
 	private String type;
 	private String ccyIn;
 	private double amtIn;
@@ -13,7 +14,8 @@ public class Transaction {
 	private double amtOut;
 	private double rate;
 	
-	public Transaction(LocalDateTime txnDate,String type , String ccyIn, double amtIn, String ccyOut, double amtOut, double rate) {
+	public Transaction(LocalDateTime txnDate,int Trid,String type , String ccyIn, double amtIn, String ccyOut, double amtOut, double rate) {
+		this.Trid = Trid;
 		this.txnDate = LocalDateTime.now();
 		this.type = type;
 		this.ccyIn = ccyIn;
@@ -21,6 +23,9 @@ public class Transaction {
 		this.ccyout = ccyOut;
 		this.amtOut = amtOut;
 		this.rate = rate;
+	}
+	public int getTrid() {
+		return Trid;
 	}
 	
 	public LocalDateTime getTxnDate() {
