@@ -10,7 +10,7 @@ public class C206_CaseStudy {
 		ArrayList<Transaction> transactionList = new ArrayList<>();
 		int option = -1;
  
-		while (option != 12) {
+		while (option != 13) {
  
 			menu();
 			option = Helper.readInt("Enter choice > ");
@@ -65,6 +65,8 @@ public class C206_CaseStudy {
 		System.out.println("10. VIEW ALL TRANSACTION");
 		System.out.println("11. DELETE TRANSACTION");
 		System.out.println("12. SEARCH HOLDING OF CURRENCY");
+		System.out.println(" ");
+		
 	//	System.out.println("4. VIEW HOLDINGS OF CURRENCY");
 	//	System.out.println("5. ADD HOLDINGS TO CURRENCY");
 	//	System.out.println("6. DELETE HOLDINGS OF CURRENCY");
@@ -109,7 +111,7 @@ public class C206_CaseStudy {
 		System.out.println("VIEW ALL CURRENCY");
 		Helper.line(20, "-");
 		
-		System.out.println(String.format("%-10s%-10s%-20s%-20s", "ISO", "CURRENCY", "BUY RATE", "SELL RATE"));
+		System.out.println(String.format("%-10s%-20s%-20s%-20s", "ISO", "CURRENCY", "BUY RATE", "SELL RATE"));
 		
 		for (Currency i : currencyList)
 		{			
@@ -283,18 +285,18 @@ public class C206_CaseStudy {
 	//MEMEBER 4 - SEARCH AND CURRNCEY CONVERTER
 	public static void searchRateByCurrency(ArrayList<Currency>currencyList) {
 		
-		String name = Helper.readString("Enter currency(iso) to search > ");
+		String name = Helper.readString("Enter currency(ISO) to search > ");
 
 		boolean exist = false;
 		
-		System.out.println(String.format("%-10s%-10s%-20s%-20s", "ISO", "CURRENCY", "BUY RATE", "SELL RATE"));
-
+		System.out.println(String.format("%-10s%-20s%-20s%-20s", "ISO", "CURRENCY", "BUY RATE", "SELL RATE"));
+		
 		for (Currency i : currencyList)
 		{
 			if (i.getIso().equalsIgnoreCase(name)) 
 			{				
 				String items [] = i.toString().split(",");
-				System.out.println(String.format("%-10s%-10s%-20.4f%-20.4fs", items[0], items[1], items[2], items[3]));
+				System.out.println(String.format("%-10s%-20s%-20s%-20s", items[0], items[1], items[2], items[3]));
 				
 				exist = true;
 				break;
@@ -326,7 +328,7 @@ public class C206_CaseStudy {
 					break;
 				}
 			}
-			output = String.format("SELLING %s%.2f for %s%f", ccout, convertedAmt, ccin, amtin);
+			output = String.format("SELLING %s%.2f for %s%.2f", ccout, convertedAmt, ccin, amtin);
 		}
 		else if(type.equalsIgnoreCase("buy"))
 		{
