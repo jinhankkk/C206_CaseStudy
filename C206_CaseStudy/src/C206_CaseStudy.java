@@ -384,38 +384,38 @@ public class C206_CaseStudy {
         double rate = 0.0;
    	
 	
-	String type = "";
-	 //the admin enter the type 
-	 if (typei==1) {
-		 type="BUY";
-	 }
-	 else if (typei==2) {
-		 type="SELL";
-	 }
-	 else {
-		 typei = Helper.readInt("Please enter a valid number");
-	 }
-        if (!type.equals(null) && !ccin.equals(null) && amtin != 0 && !ccout.equals(null)) {
-        	if(type.equalsIgnoreCase("BUY")) {
-        		 getrate(currencyList, ccin, "BUY");
-        	Transaction t = new Transaction(LocalDateTime.now(), type, ccin, amtin, "SGD", (amtin*rate),rate );
-            //update holding munus (amtin*rate)
-        	return t;
-            }
-        	else if(type.equalsIgnoreCase("SELL")) {
-        		getrate(currencyList, "SGD", "SELL");
-            	Transaction t = new Transaction(LocalDateTime.now(), type, "SGD", amtin, ccin, (amtin/rate),rate );
-                return t;}
-        	 //update holding plus (amtin*rate)
-        }
-        else
-        {
-        	return null;
-        }
-	
-
-		return null;
+		String type = "";
+		 //the admin enter the type 
+		 if (typei==1) {
+			 type="BUY";
+		 }
+		 else if (typei==2) {
+			 type="SELL";
+		 }
+		 else {
+			 typei = Helper.readInt("Please enter a valid number");
+		 }
+	        if (!type.equals(null) && !ccin.equals(null) && amtin != 0 && !ccout.equals(null)) {
+	        	if(type.equalsIgnoreCase("BUY")) {
+	        		 getrate(currencyList, ccin, "BUY");
+	        	Transaction t = new Transaction(LocalDateTime.now(), type, ccin, amtin, "SGD", (amtin*rate),rate );
+	            //update holding munus (amtin*rate)
+	        	return t;
+	            }
+	        	else if(type.equalsIgnoreCase("SELL")) {
+	        		getrate(currencyList, "SGD", "SELL");
+	            	Transaction t = new Transaction(LocalDateTime.now(), type, "SGD", amtin, ccin, (amtin/rate),rate );
+	                return t;}
+	        	 //update holding plus (amtin*rate)
+	        }
+	        else
+	        {
+	        	return null;
+	        }
 		
+	
+			return null;
+			
 	} 
 	
 
