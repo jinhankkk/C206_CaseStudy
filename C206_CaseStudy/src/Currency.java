@@ -1,4 +1,3 @@
-
 public class Currency {
 	
 	private String iso; 
@@ -12,7 +11,7 @@ public class Currency {
 		this.buyRate = buyRate;
 		this.sellRate = sellRate;
 	}
- 
+
 	public String getIso() {
 		return iso;
 	}
@@ -36,7 +35,8 @@ public class Currency {
 		String buyRate = Double.toString(this.buyRate);
 		String sellRate = Double.toString(this.sellRate); 
 		
-		return iso +","+ currencyName+","+ buyRate+","+sellRate ; 
+		String output = iso + "," + currencyName + "," + buyRate+ "," + sellRate;
+		return output ; 
 		
 	}
 	
