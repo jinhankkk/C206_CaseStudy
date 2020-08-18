@@ -45,14 +45,18 @@ public class C206_CaseStudy {
 				String name = Helper.readString("Enter Currency(ISO) name > ");
 				searchRateByCurrency(currencyList,name);
 			}  else if (option == 8) {
-				convertCurrency(currencyList);
+
+				String type = Helper.readString("Enter Type of transaction > " );
+				String ccin = Helper.readString("Enter Currency in > ");
+				double amtin = Helper.readDouble("Enter Amount in > ");
+				String ccout = Helper.readString("Enter Currency Out > ");
+				convertCurrency(currencyList,type,ccin,amtin,ccout);
 			}  else if (option == 9) {
 				addTransaction(transactionList, currencyList);
 			}  else if (option == 10) {
 				viewAllTransaction(transactionList);
 			}  else if (option == 11) {
-				int id1=Helper.readInt("Enter the transaction ID of the record:");
-				deleteTransaction(transactionList, id1);
+				deleteTransaction(transactionList, 1);
 			} else if (option == 12) {
 				searchHoldingAndSgdValue(holdingList,currencyList);
 			} else if  (option == 13){
@@ -326,13 +330,8 @@ public class C206_CaseStudy {
 		return output;
 	}
 	
-	public static void convertCurrency(ArrayList<Currency>currencyList) {
-		
-		String type = Helper.readString("Enter Type of transaction > " );
-		String ccin = Helper.readString("Enter Currency in > ");
-		double amtin = Helper.readDouble("Enter Amount in > ");
-		String ccout = Helper.readString("Enter Currency Out > ");
-		
+	public static String convertCurrency(ArrayList<Currency>currencyList, String type, String ccin, double amtin, String ccout) {
+			
 		String output = "";
 		double convertedAmt = 0;
 		
@@ -346,7 +345,10 @@ public class C206_CaseStudy {
 					break;
 				}
 			}
-			output = String.format("SELLING %s%.2f for %s%.2f", ccout, convertedAmt, ccin, amtin);
+			output = String.format("SELLING %s%.2f for %s%.2f", ccout.toUpperCase(), convertedAmt, ccin.toUpperCase(), amtin);
+
+			System.out.println(output);
+			return output;
 		}
 		else if(type.equalsIgnoreCase("buy"))
 		{
@@ -355,17 +357,20 @@ public class C206_CaseStudy {
 				if(i.getIso().equalsIgnoreCase(ccout))
 				{
 					convertedAmt = amtin * i.getBuyRate();
-					break;
+					break;  
 				}
 			}
-			output = String.format("SELLING %s%.2f for %s%f", ccout, convertedAmt, ccin, amtin);	
+			output = String.format("SELLING %s %.2f for %s %f", ccout.toUpperCase(), convertedAmt, ccin.toUpperCase(), amtin);	
+
+			System.out.println(output);
+			return output;
 		}
 		else
 		{
-			System.out.println("invalid type");
+			output = "invalid type";
+			System.out.println(output);
+			return output;
 		}
-	
-		System.out.println(output);
 	}
 	
 	
@@ -460,7 +465,7 @@ public class C206_CaseStudy {
 	}
 	
 	public static void deleteTransaction(ArrayList<Transaction>transactionList,int id) {
-		
+		id=Helper.readInt("Enter the transaction ID of the record:");
         for(int i =0; i<transactionList.size(); i++) {
                if(transactionList.get(i).getTrid()==id) {
                 transactionList.remove(i);
