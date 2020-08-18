@@ -51,10 +51,13 @@ public class C206_CaseStudyTest {
 
 	}
 
-	@Test
+	@Test//MEMBER 2 ADD MONEY INTO HOLDING 
 	public void addMoneyHoldingTest() {
+		//CHECKING THE LIST IS NOT EMPTY 
 		assertNotNull("Check the holding not empty.", holdingList);
 	} 
+	
+	
 	@Test
 	public void viewAllHoldingAndSgdValueTest() {
 		// check not empty
@@ -74,7 +77,7 @@ public class C206_CaseStudyTest {
 
 	@Test
 	public void searchHoldingAndSgdValueTest() {
-		// check not empty
+		// CHECKING THE LIST IS NOT EMPTY 
 		assertNotNull("Check the holding not empty.", holdingList);
 		
 	
