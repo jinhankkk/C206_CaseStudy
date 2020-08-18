@@ -9,7 +9,7 @@ import org.junit.Test;
 public class C206_CaseStudyTest {
 
 	private Currency cc1;
-	private Currency cc2;
+	private Currency cc2;  
 	private Currency cc3;
 
 	private MoneyHolding mh1;
