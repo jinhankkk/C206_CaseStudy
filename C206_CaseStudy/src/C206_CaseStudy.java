@@ -11,6 +11,7 @@ public class C206_CaseStudy {
 		ArrayList<Currency> currencyList = new ArrayList<>();
 		ArrayList<MoneyHolding> holdingList = new ArrayList<>();
 		ArrayList<Transaction> transactionList = new ArrayList<>();
+		ArrayList<Threshold> thresholdList = new ArrayList<>();
 		int option = -1;
  
 		//add default objects
@@ -190,7 +191,7 @@ public class C206_CaseStudy {
 	}
 
 	
-	//MEMBER 2 (6) and 3 (7)
+	//MEMBER 2 (6) and 3.1
 	
 	public static String viewAllHoldingAndSgdValueTest(ArrayList<MoneyHolding> holdingList,ArrayList<Currency> currencyList) {
 		String output = "";
@@ -246,8 +247,14 @@ public class C206_CaseStudy {
 			
 		}
 	}
-		//MEMBER 3 (8)
-		public static String searchHoldingAndSgdValue(ArrayList<MoneyHolding> holdingList, ArrayList<Currency> currencyList, String word) {
+		//MEMBER 3.2
+		public static void viewConvertedSGDvalue(ArrayList<Currency> currencyList) {
+			
+		}
+		
+		
+		//MEMBER 3.3 SEARCH HOLDING AND SGD VALUE
+ 		public static String searchHoldingAndSgdValue(ArrayList<MoneyHolding> holdingList, ArrayList<Currency> currencyList, String word) {
 					
 					String curToSearch = word;
 					String iso = "";
@@ -291,6 +298,18 @@ public class C206_CaseStudy {
 					return "";
 				}
 
+		
+		//MEMBER 3.4
+		public static void updateThreshold(ArrayList<Threshold> thresholdList) {
+			
+		}
+		
+		//MEMBER 3.5
+		public static void viewBelowThreshold(ArrayList<MoneyHolding> holdingList,ArrayList<Threshold> thresholdList ) {
+			
+		}
+		
+		
 	public static void viewAllMoneyHoldingAndSgdValue(ArrayList<MoneyHolding> holdingList,ArrayList<Currency> currencyList) {
 		Helper.line(20, "-");
 		System.out.println("VIEW ALL HOLDING");
