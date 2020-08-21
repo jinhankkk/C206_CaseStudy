@@ -24,6 +24,9 @@ public class C206_CaseStudy {
 		holdingList.add(new MoneyHolding("MYR" , 100000));
 		holdingList.add(new MoneyHolding("KRW" , 500000));
 		
+		thresholdList.add(new Threshold("MYR", 100000, 50000));
+		thresholdList.add(new Threshold("KRW" , 500000, 2000000));
+		
 		while (option != 13) {
  
 			menu();
