@@ -119,78 +119,7 @@ public class C206_CaseStudy {
 		}
 	}
 	
-	//GROUPING METHOD
-	public static String Group(ArrayList<Transaction> summaryList) {
-		// TODO Auto-generated method stub
-		ArrayList<Transaction> sell = new ArrayList<Transaction>();
-		ArrayList<Transaction> buy = new ArrayList<Transaction>();
-		ArrayList<Transaction> displayList = new ArrayList<Transaction>();
-		
-		for(Transaction i : summaryList)
-		{
-			if(i.getType().equalsIgnoreCase("sell"))
-			{
-				sell.add(i);
-			}
-			else if(i.getType().equalsIgnoreCase("buy"))
-			{
-				buy.add(i);
-			}
-		}
-		
-		Collections.sort(sell, Comparator.comparing(Transaction::getCcyIn));
-		Collections.sort(buy, Comparator.comparing(Transaction::getCcyIn));
-		
-		displayList.addAll(sell);
-		displayList.addAll(buy);
-		
-		String output = String.format("%-10s%-15s%-15s%-20s%-20s\n", "TYPE", "CURRENCY IN", "AMOUNT IN", "CURRENCY OUT","AMOUNT OUT");
-		for(Transaction i : displayList)
-		{
-			output += String.format("%-10s%-15s%-15.2f%-20s%-20.2f\n", i.getType(), i.getCcyIn(), i.getAmtIn(), i.getCcyout(), i.getAmtOut());
-
-		}
-		System.out.println(output);
-		return output;
-		
-	}
 	
-	//VIEW BY WEEKS
-	public static String viewByWeeks(ArrayList<Transaction> transactionList,int num) {
-
-		ArrayList <Transaction> summaryList = new ArrayList<Transaction>();
-		LocalDate startdate = LocalDate.now();		
-	
-		for(Transaction i : transactionList)
-		{
-			if(i.getTxnDate().isEqual(startdate.minusWeeks(num)))
-			{
-				summaryList.add(i);
-			}
-		}
-		
-		String output = Group(summaryList);
-		return output;
-		
-		
-	}
-	//VIEW BY DAYS
-	public static String viewByDays(ArrayList<Transaction> transactionList, int num) {
-		
-		ArrayList <Transaction> summaryList = new ArrayList<Transaction>();
-		LocalDate startdate = LocalDate.now();		
-		for(Transaction i : transactionList)
-		{
-			if(i.getTxnDate().isEqual(startdate.minusDays(num)))
-			{
-				summaryList.add(i);
-			}
-		}
-		
-		String output = Group(summaryList);
-		return output;
-		
-	}
 	public static void menu() {
 		//TODO: P05 Task 1 - Write code here for the menu options.
 		Helper.line(20, "-");
@@ -519,6 +448,79 @@ public class C206_CaseStudy {
 			return output;
 		}
 	}
+	
+	//GROUPING METHOD
+		public static String Group(ArrayList<Transaction> summaryList) {
+			// TODO Auto-generated method stub
+			ArrayList<Transaction> sell = new ArrayList<Transaction>();
+			ArrayList<Transaction> buy = new ArrayList<Transaction>();
+			ArrayList<Transaction> displayList = new ArrayList<Transaction>();
+			
+			for(Transaction i : summaryList)
+			{
+				if(i.getType().equalsIgnoreCase("sell"))
+				{
+					sell.add(i);
+				}
+				else if(i.getType().equalsIgnoreCase("buy"))
+				{
+					buy.add(i);
+				}
+			}
+			
+			Collections.sort(sell, Comparator.comparing(Transaction::getCcyIn));
+			Collections.sort(buy, Comparator.comparing(Transaction::getCcyIn));
+			
+			displayList.addAll(sell);
+			displayList.addAll(buy);
+			
+			String output = String.format("%-10s%-15s%-15s%-20s%-20s\n", "TYPE", "CURRENCY IN", "AMOUNT IN", "CURRENCY OUT","AMOUNT OUT");
+			for(Transaction i : displayList)
+			{
+				output += String.format("%-10s%-15s%-15.2f%-20s%-20.2f\n", i.getType(), i.getCcyIn(), i.getAmtIn(), i.getCcyout(), i.getAmtOut());
+
+			}
+			System.out.println(output);
+			return output;
+			
+		}
+		
+		//MEMBER 4 - VIEW BY WEEKS
+		public static String viewByWeeks(ArrayList<Transaction> transactionList,int num) {
+
+			ArrayList <Transaction> summaryList = new ArrayList<Transaction>();
+			LocalDate startdate = LocalDate.now();		
+		
+			for(Transaction i : transactionList)
+			{
+				if(i.getTxnDate().isEqual(startdate.minusWeeks(num)))
+				{
+					summaryList.add(i);
+				}
+			}
+			
+			String output = Group(summaryList);
+			return output;
+			
+			
+		}
+		//MEMBER 4 - VIEW BY DAYS
+		public static String viewByDays(ArrayList<Transaction> transactionList, int num) {
+			
+			ArrayList <Transaction> summaryList = new ArrayList<Transaction>();
+			LocalDate startdate = LocalDate.now();		
+			for(Transaction i : transactionList)
+			{
+				if(i.getTxnDate().isEqual(startdate.minusDays(num)))
+				{
+					summaryList.add(i);
+				}
+			}
+			
+			String output = Group(summaryList);
+			return output;
+			
+		}
 
 	
 	//MEMBER 5 - TRANSACTION
