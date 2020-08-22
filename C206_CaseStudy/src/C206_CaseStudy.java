@@ -91,7 +91,7 @@ public class C206_CaseStudy {
 				searchHoldingAndSgdValue(holdingList,currencyList, word);
 			} else if (option == 13) {
 				//MEMBER 4 - ESE ASSIGNMENT
-				System.out.println("CHOOSE TO VIEW BY DAYS/WEEKS\n1. DAYS\n2.WEEKS");
+				System.out.println("CHOOSE TO VIEW BY DAYS/WEEKS\n1. DAYS\n2. WEEKS");
 				int choice = Helper.readInt("Enter choice > ");
 				
 				if(choice == 1)
@@ -118,7 +118,9 @@ public class C206_CaseStudy {
 
 		}
 	}
-	private static String Group(ArrayList<Transaction> summaryList) {
+	
+	//GROUPING METHOD
+	public static String Group(ArrayList<Transaction> summaryList) {
 		// TODO Auto-generated method stub
 		ArrayList<Transaction> sell = new ArrayList<Transaction>();
 		ArrayList<Transaction> buy = new ArrayList<Transaction>();
@@ -145,7 +147,7 @@ public class C206_CaseStudy {
 		String output = String.format("%-10s%-15s%-15s%-20s%-20s\n", "TYPE", "CURRENCY IN", "AMOUNT IN", "CURRENCY OUT","AMOUNT OUT");
 		for(Transaction i : displayList)
 		{
-			output += String.format("%-10s%-20s%-15.2f%-20s%-20.2f\n", i.getType(), i.getCcyIn(), i.getAmtIn(), i.getCcyout(), i.getAmtOut());
+			output += String.format("%-10s%-15s%-15.2f%-20s%-20.2f\n", i.getType(), i.getCcyIn(), i.getAmtIn(), i.getCcyout(), i.getAmtOut());
 
 		}
 		System.out.println(output);
@@ -154,7 +156,7 @@ public class C206_CaseStudy {
 	}
 	
 	//VIEW BY WEEKS
-	private static String viewByWeeks(ArrayList<Transaction> transactionList,int num) {
+	public static String viewByWeeks(ArrayList<Transaction> transactionList,int num) {
 
 		ArrayList <Transaction> summaryList = new ArrayList<Transaction>();
 		LocalDate startdate = LocalDate.now();		
@@ -173,7 +175,7 @@ public class C206_CaseStudy {
 		
 	}
 	//VIEW BY DAYS
-	private static String viewByDays(ArrayList<Transaction> transactionList, int num) {
+	public static String viewByDays(ArrayList<Transaction> transactionList, int num) {
 		
 		ArrayList <Transaction> summaryList = new ArrayList<Transaction>();
 		LocalDate startdate = LocalDate.now();		
