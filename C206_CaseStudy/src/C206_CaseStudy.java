@@ -35,7 +35,7 @@ public class C206_CaseStudy {
 		transactionList.add(new Transaction(LocalDate.of(2020,8,20),currencyList.size()+1,"SELL", "SGD", 100.00, "KRW", 877200.00, 877.20));
 		transactionList.add(new Transaction(LocalDate.of(2020,8,20),currencyList.size()+1,"BUY", "MYR", 1000.00, "SGD", 325.00, 3.075));
 		transactionList.add(new Transaction(LocalDate.of(2020,8,20),currencyList.size()+1,"BUY", "USD", 1000.00, "SGD", 1369.11, 0.7304));
-		 System.out.println(transactionList);
+		
 		
 		holdingList.add(new MoneyHolding("MYR" , 100000));
 		holdingList.add(new MoneyHolding("KRW" , 500000));
