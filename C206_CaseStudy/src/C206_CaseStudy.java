@@ -1,5 +1,15 @@
-import java.time.LocalDateTime;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class C206_CaseStudy {
 
@@ -21,13 +31,19 @@ public class C206_CaseStudy {
 		Currency b = new Currency("KRW","Korean Won",878.73,874.89);
 		currencyList.add(b);
 		
+		transactionList.add(new Transaction(LocalDate.of(2020,8,20),currencyList.size()+1,"SELL", "SGD", 500.00, "MYR", 1535, 3.070));
+		transactionList.add(new Transaction(LocalDate.of(2020,8,20),currencyList.size()+1,"SELL", "SGD", 100.00, "KRW", 877200.00, 877.20));
+		transactionList.add(new Transaction(LocalDate.of(2020,8,20),currencyList.size()+1,"BUY", "MYR", 1000.00, "SGD", 325.00, 3.075));
+		transactionList.add(new Transaction(LocalDate.of(2020,8,20),currencyList.size()+1,"BUY", "USD", 1000.00, "SGD", 1369.11, 0.7304));
+		 System.out.println(transactionList);
+		
 		holdingList.add(new MoneyHolding("MYR" , 100000));
 		holdingList.add(new MoneyHolding("KRW" , 500000));
 		
 		thresholdList.add(new Threshold("MYR", 100000, 50000));
 		thresholdList.add(new Threshold("KRW" , 500000, 2000000));
 		
-		while (option != 13) {
+		while (option != 14) {
  
 			menu();
 			option = Helper.readInt("Enter choice > ");
@@ -45,7 +61,6 @@ public class C206_CaseStudy {
 			} else if (option == 4) {
 				viewAllHoldingAndSgdValue(holdingList,currencyList);
 			} else if (option == addHolding) {
-
 		        String iso = Helper.readString("Enter ISO > ");
 		        double amount = Helper.readInt("Enter amount > ");
 				addMoneyHolding(holdingList,iso,amount);
@@ -55,7 +70,6 @@ public class C206_CaseStudy {
 				String name = Helper.readString("Enter Currency(ISO) name > ");
 				searchRateByCurrency(currencyList,name);
 			}  else if (option == 8) {
-
 				String type = Helper.readString("Enter Type of transaction > " );
 				String ccin = Helper.readString("Enter Currency in > ");
 				double amtin = Helper.readDouble("Enter Amount in > ");
@@ -75,13 +89,105 @@ public class C206_CaseStudy {
 			} else if (option == 12) {
 				String word = Helper.readString("Enter currency to search > ");
 				searchHoldingAndSgdValue(holdingList,currencyList, word);
-			} else if  (option == 13){
+			} else if (option == 13) {
+				//MEMBER 4 - ESE ASSIGNMENT
+				System.out.println("CHOOSE TO VIEW BY DAYS/WEEKS\n1. DAYS\n2.WEEKS");
+				int choice = Helper.readInt("Enter choice > ");
+				
+				if(choice == 1)
+				{
+					int numOfDays = Helper.readInt("VIEW SUMMARY OF DATA FOR PAST __ DAYS? > ");
+					viewByDays(transactionList,numOfDays);
+				}
+				else if(choice == 2)
+				{
+					int numOfWeeks = Helper.readInt("VIEW SUMMARY OF DATA FOR PAST __ WEEKS? > ");
+					viewByWeeks(transactionList,numOfWeeks);
+				}
+				else
+				{
+					System.out.println("Invalid Option");
+				}
+			}
+				
+			else if  (option == 14){
 				System.out.println("Goodbye!");
 			} else {
 				System.out.println("Invalid option!");
 			}
 
 		}
+	}
+	private static String Group(ArrayList<Transaction> summaryList) {
+		// TODO Auto-generated method stub
+		ArrayList<Transaction> sell = new ArrayList<Transaction>();
+		ArrayList<Transaction> buy = new ArrayList<Transaction>();
+		ArrayList<Transaction> displayList = new ArrayList<Transaction>();
+		
+		for(Transaction i : summaryList)
+		{
+			if(i.getType().equalsIgnoreCase("sell"))
+			{
+				sell.add(i);
+			}
+			else if(i.getType().equalsIgnoreCase("buy"))
+			{
+				buy.add(i);
+			}
+		}
+		
+		Collections.sort(sell, Comparator.comparing(Transaction::getCcyIn));
+		Collections.sort(buy, Comparator.comparing(Transaction::getCcyIn));
+		
+		displayList.addAll(sell);
+		displayList.addAll(buy);
+		
+		String output = String.format("%-10s%-15s%-15s%-20s%-20s\n", "TYPE", "CURRENCY IN", "AMOUNT IN", "CURRENCY OUT","AMOUNT OUT");
+		for(Transaction i : displayList)
+		{
+			output += String.format("%-10s%-20s%-15.2f%-20s%-20.2f\n", i.getType(), i.getCcyIn(), i.getAmtIn(), i.getCcyout(), i.getAmtOut());
+
+		}
+		System.out.println(output);
+		return output;
+		
+	}
+	
+	//VIEW BY WEEKS
+	private static String viewByWeeks(ArrayList<Transaction> transactionList,int num) {
+
+		ArrayList <Transaction> summaryList = new ArrayList<Transaction>();
+		LocalDate startdate = LocalDate.now();		
+	
+		for(Transaction i : transactionList)
+		{
+			if(i.getTxnDate().isEqual(startdate.minusWeeks(num)))
+			{
+				summaryList.add(i);
+			}
+		}
+		
+		String output = Group(summaryList);
+		return output;
+		
+		
+	}
+	//VIEW BY DAYS
+	private static String viewByDays(ArrayList<Transaction> transactionList, int num) {
+		
+		ArrayList <Transaction> summaryList = new ArrayList<Transaction>();
+		LocalDate startdate = LocalDate.now();		
+		for(Transaction i : transactionList)
+		{
+			if(i.getTxnDate().isEqual(startdate.minusDays(num)))
+			{
+				summaryList.add(i);
+			}
+		}
+		
+		String output = Group(summaryList);
+		return output;
+		
 	}
 	public static void menu() {
 		//TODO: P05 Task 1 - Write code here for the menu options.
@@ -100,7 +206,8 @@ public class C206_CaseStudy {
 		System.out.println("10. VIEW ALL TRANSACTION");
 		System.out.println("11. DELETE TRANSACTION");
 		System.out.println("12. SEARCH HOLDING OF CURRENCY");
-		System.out.println("13. QUIT");
+		System.out.println("13. VIEW SUMMARY OF DATA FOR PAST DAYS/WEEKS");
+		System.out.println("14. QUIT");
 	}
 
 	//MEMBER 1 - ADD,VIEW,DELETE CURRENCY
@@ -455,13 +562,13 @@ public class C206_CaseStudy {
 	        	if(type.equalsIgnoreCase("BUY")) {
 	        		System.out.println(currencyList+ccin);
 	        		rate= getrate(currencyList, ccin, "BUY");
-	        	Transaction t = new Transaction(LocalDateTime.now(),currencyList.size()+1, type, ccin, amtin, "SGD", (amtin*rate),rate );
+	        	Transaction t = new Transaction(LocalDate.now(),currencyList.size()+1, type, ccin, amtin, "SGD", (amtin*rate),rate );
 	            //update holding munus (amtin*rate)
 	        	return t;
 	            }
 	        	else if(type.equalsIgnoreCase("SELL")) {
 	        		rate=getrate(currencyList, "SGD", "SELL");
-	            	Transaction t = new Transaction(LocalDateTime.now(),currencyList.size()+1, type, "SGD", amtin, ccin, (amtin*rate),rate );
+	            	Transaction t = new Transaction(LocalDate.now(),currencyList.size()+1, type, "SGD", amtin, ccin, (amtin*rate),rate );
 	            	
 	                return t;}
 	        	 //update holding plus (amtin*rate)

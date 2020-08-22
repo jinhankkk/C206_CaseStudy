@@ -1,11 +1,10 @@
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
 public class Transaction {
 
-	private LocalDateTime txnDate;
+	private LocalDate txnDate;
 	private int Trid;
 	private String type;
 	private String ccyIn;
@@ -14,9 +13,9 @@ public class Transaction {
 	private double amtOut;
 	private double rate;
 	
-	public Transaction(LocalDateTime txnDate,int Trid,String type , String ccyIn, double amtIn, String ccyOut, double amtOut, double rate) {
+	public Transaction(LocalDate localdate,int Trid,String type , String ccyIn, double amtIn, String ccyOut, double amtOut, double rate) {
 		this.Trid = Trid;
-		this.txnDate = LocalDateTime.now();
+		this.txnDate = localdate;
 		this.type = type;
 		this.ccyIn = ccyIn;
 		this.amtIn = amtIn;
@@ -28,7 +27,7 @@ public class Transaction {
 		return Trid;
 	}
 	
-	public LocalDateTime getTxnDate() {
+	public LocalDate getTxnDate() {
 		return txnDate;
 	}
 	
@@ -44,7 +43,7 @@ public class Transaction {
 		return amtIn;
 	}
 	
-	public String Ccyout() {
+	public String getCcyout() {
 		return ccyout;
 	}
 	
@@ -58,7 +57,7 @@ public class Transaction {
 	
 	public String toString() {
 		
-		LocalDateTime now = LocalDateTime.now();
+		LocalDate now = this.getTxnDate();
 		String formattedDate = now.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
 		
 		String type = this.type;
